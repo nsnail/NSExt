@@ -74,6 +74,7 @@ public static class DateTimeExtensions
         return me.ToString("yyyy-MM-dd HH:mm:ss");
     }
 
+    // ReSharper disable once InconsistentNaming
     public static string yyyyMMddHHmmssfff(this DateTime me)
     {
         return me.ToString("yyyy-MM-dd HH:mm:ss.fff");
