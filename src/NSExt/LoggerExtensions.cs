@@ -2,7 +2,7 @@
 // @file: LoggerExtensions.cs
 // @author: tao ke
 // @mailto: taokeu@gmail.com
-// @created: 07/15/2022 20:36
+// @created: 07/26/2022 21:57
 
 using System.Runtime.CompilerServices;
 using Microsoft.Extensions.Logging;
@@ -19,7 +19,7 @@ public static class LoggerExtensions
                                             int    callerLineNumber)
     {
         return
-            $"[{Thread.CurrentThread.ManagedThreadId}#{callerName}@{Path.GetFileName(callerFilePath)}:{callerLineNumber}] {message}";
+            $"{message} <s:{Thread.CurrentThread.ManagedThreadId}#{callerName}@{Path.GetFileName(callerFilePath)}:{callerLineNumber}>";
     }
 
     public static void Debug(this ILogger              me,
