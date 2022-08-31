@@ -301,36 +301,7 @@ public static class StringExtensions
                            .ToLower(CultureInfo.CurrentCulture);
     }
 
-
-    /// <summary>
-    ///     对一个字符串进行sha1hash运算
-    /// </summary>
-    /// <param name="me">字符串</param>
-    /// <param name="e">字符串使用的编码</param>
-    /// <returns>hash摘要的16进制文本形式（无连字符小写）</returns>
-    public static string Sha1(this string me, Encoding e)
-    {
-        using var sha1 = new SHA1();
-        return BitConverter.ToString(sha1.ComputeHash(e.GetBytes(me)))
-                           .Replace("-", string.Empty)
-                           .ToLower(CultureInfo.CurrentCulture);
-    }
-
-
-    /// <summary>
-    ///     对一个字符串进行sha1hash运算
-    /// </summary>
-    /// <param name="me">字符串</param>
-    /// <param name="secret">密钥</param>
-    /// <param name="e">字符串使用的编码</param>
-    /// <returns>hash摘要的16进制文本形式（无连字符小写）</returns>
-    public static string HmacSha1(this string me, string secret, Encoding e)
-    {
-        using var hmacSha1 = new HMACSHA1(e.GetBytes(secret));
-        return BitConverter.ToString(hmacSha1.ComputeHash(e.GetBytes(me)))
-                           .Replace("-", string.Empty)
-                           .ToLower(CultureInfo.CurrentCulture);
-    }
+ 
 
 
     /// <summary>
