@@ -7,7 +7,8 @@
 using System.Runtime.CompilerServices;
 using Microsoft.Extensions.Logging;
 
-// ReSharper disable UnusedMember.Global
+// ReSharper disable TemplateIsNotCompileTimeConstantProblem
+
 
 namespace NSExt;
 
@@ -28,29 +29,34 @@ public static class LoggerExtensions
                              [CallerFilePath]   string callerFilePath   = null,
                              [CallerLineNumber] int    callerLineNumber = 0)
     {
-        // ReSharper disable once TemplateIsNotCompileTimeConstantProblem
         me.LogDebug(CallerInfoMessage(message, callerName, callerFilePath, callerLineNumber));
     }
 
 
     public static void Error(this ILogger              me,
                              object                    message,
+                             Exception                 ex               = null,
                              [CallerMemberName] string callerName       = null,
                              [CallerFilePath]   string callerFilePath   = null,
                              [CallerLineNumber] int    callerLineNumber = 0)
     {
-        // ReSharper disable once TemplateIsNotCompileTimeConstantProblem
-        me.LogError(CallerInfoMessage(message, callerName, callerFilePath, callerLineNumber));
+        if (ex is null)
+            me.LogError(CallerInfoMessage(message, callerName, callerFilePath, callerLineNumber));
+        else
+            me.LogError(CallerInfoMessage(message, callerName, callerFilePath, callerLineNumber), ex);
     }
 
     public static void Fatal(this ILogger              me,
                              object                    message,
+                             Exception                 ex               = null,
                              [CallerMemberName] string callerName       = null,
                              [CallerFilePath]   string callerFilePath   = null,
                              [CallerLineNumber] int    callerLineNumber = 0)
     {
-        // ReSharper disable once TemplateIsNotCompileTimeConstantProblem
-        me.LogCritical(CallerInfoMessage(message, callerName, callerFilePath, callerLineNumber));
+        if (ex is null)
+            me.LogCritical(CallerInfoMessage(message, callerName, callerFilePath, callerLineNumber));
+        else
+            me.LogCritical(CallerInfoMessage(message, callerName, callerFilePath, callerLineNumber), ex);
     }
 
 
@@ -60,7 +66,6 @@ public static class LoggerExtensions
                             [CallerFilePath]   string callerFilePath   = null,
                             [CallerLineNumber] int    callerLineNumber = 0)
     {
-        // ReSharper disable once TemplateIsNotCompileTimeConstantProblem
         me.LogInformation(CallerInfoMessage(message, callerName, callerFilePath, callerLineNumber));
     }
 
@@ -70,7 +75,6 @@ public static class LoggerExtensions
                             [CallerFilePath]   string callerFilePath   = null,
                             [CallerLineNumber] int    callerLineNumber = 0)
     {
-        // ReSharper disable once TemplateIsNotCompileTimeConstantProblem
         me.LogWarning(CallerInfoMessage(message, callerName, callerFilePath, callerLineNumber));
     }
 }
