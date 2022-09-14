@@ -1,10 +1,4 @@
-﻿// @program: NSExt
-// @file: DateTimeExtensions.cs
-// @author: tao ke
-// @mailto: taokeu@gmail.com
-// @created: 07/26/2022 21:57
-
-// ReSharper disable UnusedMember.Global
+﻿// ReSharper disable UnusedMember.Global
 
 namespace NSExt;
 

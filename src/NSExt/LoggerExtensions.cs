@@ -1,10 +1,4 @@
-﻿// @program: NSExt
-// @file: LoggerExtensions.cs
-// @author: tao ke
-// @mailto: taokeu@gmail.com
-// @created: 07/26/2022 21:57
-
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 using Microsoft.Extensions.Logging;
 
 // ReSharper disable TemplateIsNotCompileTimeConstantProblem
