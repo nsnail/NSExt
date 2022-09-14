@@ -1,10 +1,4 @@
-﻿// @program: NSExt
-// @file: EnumExtensions.cs
-// @author: tao ke
-// @mailto: taokeu@gmail.com
-// @created: 07/26/2022 21:57
-
-using System.ComponentModel;
+﻿using System.ComponentModel;
 
 namespace NSExt;
 

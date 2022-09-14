@@ -1,10 +1,4 @@
-﻿// @program: NSExt
-// @file: IntExtensions.cs
-// @author: tao ke
-// @mailto: taokeu@gmail.com
-// @created: 07/26/2022 21:57
-
-namespace NSExt;
+﻿namespace NSExt;
 
 public static class IntExtensions
 {

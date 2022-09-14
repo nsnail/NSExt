@@ -1,17 +1,10 @@
-﻿// @program: NSExt
-// @file: StringExtensions.cs
-// @author: tao ke
-// @mailto: taokeu@gmail.com
-// @created: 07/26/2022 21:57
-
-using System.Globalization;
+﻿using System.Globalization;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using HMACMD5 = System.Security.Cryptography.HMACMD5;
 using MD5 = SshNet.Security.Cryptography.MD5;
 
 // ReSharper disable UnusedMember.Global
@@ -86,11 +79,37 @@ public static class StringExtensions
     ///     将字符串转换成日期对象
     /// </summary>
     /// <param name="me">待转换字符串</param>
+    /// <param name="format">日期格式</param>
+    /// <returns>转换后的日期对象</returns>
+    public static DateTime DateTimeExact(this string me, string format)
+    {
+        return System.DateTime.ParseExact(me, format, CultureInfo.CurrentCulture);
+    }
+
+
+    /// <summary>
+    ///     将字符串转换成日期对象
+    /// </summary>
+    /// <param name="me">待转换字符串</param>
     /// <param name="def">转换失败时返回的日期对象</param>
     /// <returns>转换后的日期对象</returns>
     public static DateTime DateTimeTry(this string me, DateTime def)
     {
         return !System.DateTime.TryParse(me, out var ret) ? def : ret;
+    }
+
+    /// <summary>
+    ///     将字符串转换成日期对象
+    /// </summary>
+    /// <param name="me">待转换字符串</param>
+    /// <param name="format">日期格式</param>
+    /// <param name="def">转换失败时返回的日期对象</param>
+    /// <returns>转换后的日期对象</returns>
+    public static DateTime DateTimeExactTry(this string me, string format, DateTime def)
+    {
+        return !System.DateTime.TryParseExact(me, format, CultureInfo.CurrentCulture, DateTimeStyles.None, out var ret)
+                   ? def
+                   : ret;
     }
 
     /// <summary>
@@ -123,7 +142,7 @@ public static class StringExtensions
     /// <returns></returns>
     public static T Enum<T>(this string name) where T : Enum
     {
-        return (T)System.Enum.Parse(typeof(T), name);
+        return (T)System.Enum.Parse(typeof(T), name, true);
     }
 
 
@@ -271,7 +290,7 @@ public static class StringExtensions
     }
 
     /// <summary>
-    /// 对一个字符串进行sha1 hash运算
+    ///     对一个字符串进行sha1 hash运算
     /// </summary>
     /// <param name="me">对一个字符串进行sha1 hash运算</param>
     /// <param name="secret">密钥</param>
@@ -300,8 +319,6 @@ public static class StringExtensions
                            .Replace("-", string.Empty)
                            .ToLower(CultureInfo.CurrentCulture);
     }
-
- 
 
 
     /// <summary>
