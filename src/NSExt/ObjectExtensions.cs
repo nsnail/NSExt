@@ -1,6 +1,4 @@
-﻿using Newtonsoft.Json;
-
-namespace NSExt;
+﻿namespace NSExt;
 
 public static class ObjectExtensions
 {

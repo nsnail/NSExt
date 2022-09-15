@@ -1,6 +1,4 @@
-﻿using System.Text;
-
-namespace NSExt;
+﻿namespace NSExt;
 
 public static class ByteExtensions
 {
