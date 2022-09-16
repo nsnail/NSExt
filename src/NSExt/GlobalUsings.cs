@@ -1,0 +1,12 @@
+﻿global using System.Data;
+global using System.Data.Common;
+global using System.Runtime.CompilerServices;
+global using Microsoft.Extensions.Logging;
+global using System.Globalization;
+global using System.Text;
+global using System.Text.RegularExpressions;
+global using System.Web;
+global using Newtonsoft.Json;
+global using Newtonsoft.Json.Linq;
+global using System.ComponentModel;
+global using SshNet.Security.Cryptography;

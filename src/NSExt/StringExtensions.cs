@@ -1,13 +1,10 @@
-﻿using System.Globalization;
-using System.Security.Cryptography;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Web;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using MD5 = SshNet.Security.Cryptography.MD5;
+﻿// ReSharper disable UnusedMember.Global
 
-// ReSharper disable UnusedMember.Global
+
+using System.Security.Cryptography;
+using HMACMD5 = SshNet.Security.Cryptography.HMACMD5;
+using HMACSHA1 = SshNet.Security.Cryptography.HMACSHA1;
+using MD5 = SshNet.Security.Cryptography.MD5;
 
 namespace NSExt;
 
@@ -283,7 +280,7 @@ public static class StringExtensions
     /// <returns>hash摘要的16进制文本形式（无连字符小写）</returns>
     public static string Sha1(this string me, Encoding e)
     {
-        using var sha1 = SHA1.Create();
+        using var sha1 = HashAlgorithm.Create();
         return BitConverter.ToString(sha1.ComputeHash(e.GetBytes(me)))
                            .Replace("-", string.Empty)
                            .ToLower(CultureInfo.CurrentCulture);
@@ -437,5 +434,11 @@ public static class StringExtensions
     public static int IpV4ToInt32(this string me)
     {
         return BitConverter.ToInt32(me.Split('.').Select(byte.Parse).Reverse().ToArray(), 0);
+    }
+
+
+    public static bool NullOrWhiteSpace(this string me)
+    {
+        return string.IsNullOrWhiteSpace(me);
     }
 }

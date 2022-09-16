@@ -1,6 +1,4 @@
-﻿using System.ComponentModel;
-
-namespace NSExt;
+﻿namespace NSExt;
 
 public static class EnumExtensions
 {

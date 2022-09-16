@@ -1,7 +1,4 @@
-﻿using System.Data;
-using System.Data.Common;
-
-namespace NSExt;
+﻿namespace NSExt;
 
 public static class DbCommandExtensions
 {

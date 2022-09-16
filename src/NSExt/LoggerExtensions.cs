@@ -1,8 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using Microsoft.Extensions.Logging;
-
-// ReSharper disable TemplateIsNotCompileTimeConstantProblem
-
+﻿// ReSharper disable TemplateIsNotCompileTimeConstantProblem
 
 namespace NSExt;
 
@@ -29,15 +25,11 @@ public static class LoggerExtensions
 
     public static void Error(this ILogger              me,
                              object                    message,
-                             Exception                 ex               = null,
                              [CallerMemberName] string callerName       = null,
                              [CallerFilePath]   string callerFilePath   = null,
                              [CallerLineNumber] int    callerLineNumber = 0)
     {
-        if (ex is null)
-            me.LogError(CallerInfoMessage(message, callerName, callerFilePath, callerLineNumber));
-        else
-            me.LogError(CallerInfoMessage(message, callerName, callerFilePath, callerLineNumber), ex);
+        me.LogError(CallerInfoMessage(message, callerName, callerFilePath, callerLineNumber));
     }
 
     public static void Fatal(this ILogger              me,
