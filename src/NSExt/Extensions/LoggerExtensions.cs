@@ -1,6 +1,6 @@
 ﻿// ReSharper disable TemplateIsNotCompileTimeConstantProblem
 
-namespace NSExt;
+namespace NSExt.Extensions;
 
 public static class LoggerExtensions
 {

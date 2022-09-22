@@ -2,11 +2,8 @@
 
 
 using System.Security.Cryptography;
-using HMACMD5 = SshNet.Security.Cryptography.HMACMD5;
-using HMACSHA1 = SshNet.Security.Cryptography.HMACSHA1;
-using MD5 = SshNet.Security.Cryptography.MD5;
 
-namespace NSExt;
+namespace NSExt.Extensions;
 
 public static class StringExtensions
 {
@@ -280,7 +277,7 @@ public static class StringExtensions
     /// <returns>hash摘要的16进制文本形式（无连字符小写）</returns>
     public static string Sha1(this string me, Encoding e)
     {
-        using var sha1 = HashAlgorithm.Create();
+        using var sha1 = SHA1.Create();
         return BitConverter.ToString(sha1.ComputeHash(e.GetBytes(me)))
                            .Replace("-", string.Empty)
                            .ToLower(CultureInfo.CurrentCulture);
@@ -311,7 +308,7 @@ public static class StringExtensions
     /// <returns>hash摘要的16进制文本形式（无连字符小写）</returns>
     public static string Md5(this string me, Encoding e)
     {
-        using var md5 = new MD5();
+        using var md5 = MD5.Create();
         return BitConverter.ToString(md5.ComputeHash(e.GetBytes(me)))
                            .Replace("-", string.Empty)
                            .ToLower(CultureInfo.CurrentCulture);
