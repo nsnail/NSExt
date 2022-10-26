@@ -44,19 +44,6 @@ public static class DateTimeExtensions
 
 
     // ReSharper disable once InconsistentNaming
-    public static string yyyyMM(this DateTime me)
-    {
-        return me.ToString("yyyyMM");
-    }
-
-    // ReSharper disable once InconsistentNaming
-    public static string yyyyMMdd(this DateTime me)
-    {
-        return me.ToString("yyyyMMdd");
-    }
-
-
-    // ReSharper disable once InconsistentNaming
     public static string yyyy_MM(this DateTime me)
     {
         return me.ToString("yyyy-MM");
@@ -85,5 +72,18 @@ public static class DateTimeExtensions
     public static string yyyy_MM_dd_HH_mm_ss_fff(this DateTime me)
     {
         return me.ToString("yyyy-MM-dd HH:mm:ss.fff");
+    }
+
+
+    // ReSharper disable once InconsistentNaming
+    public static string yyyyMM(this DateTime me)
+    {
+        return me.ToString("yyyyMM");
+    }
+
+    // ReSharper disable once InconsistentNaming
+    public static string yyyyMMdd(this DateTime me)
+    {
+        return me.ToString("yyyyMMdd");
     }
 }

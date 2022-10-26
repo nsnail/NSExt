@@ -24,8 +24,15 @@ public static class IntExtensions
         return new Random(Guid.NewGuid().GetHashCode()).Next(me[0], me[1]);
     }
 
+    /// <summary>
+    ///     转换成ipv4
+    /// </summary>
+    /// <param name="me"></param>
+    /// <returns></returns>
     public static string ToIpV4(this int me)
     {
         return string.Join(".", BitConverter.GetBytes(me).Reverse());
     }
 }
+
+

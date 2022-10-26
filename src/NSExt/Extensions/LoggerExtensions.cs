@@ -64,3 +64,5 @@ public static class LoggerExtensions
         me.LogWarning(CallerInfoMessage(message, callerName, callerFilePath, callerLineNumber));
     }
 }
+
+

@@ -12,3 +12,6 @@ public static class UriExtensions
         return "//" + me.Authority + me.PathAndQuery;
     }
 }
+
+
+

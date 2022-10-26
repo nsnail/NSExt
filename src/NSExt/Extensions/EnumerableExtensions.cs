@@ -24,3 +24,5 @@ public static class EnumerableExtensions
         return me is null || !me.Any();
     }
 }
+
+

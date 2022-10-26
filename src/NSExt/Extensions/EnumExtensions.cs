@@ -15,3 +15,5 @@ public static class EnumExtensions
         return (attrs.Length != 0 ? attrs[0].Description : Enum.GetName(t, e)) ?? "";
     }
 }
+
+

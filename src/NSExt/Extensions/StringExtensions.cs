@@ -8,6 +8,21 @@ namespace NSExt.Extensions;
 public static class StringExtensions
 {
     /// <summary>
+    ///     MD5 hmac编码
+    /// </summary>
+    /// <param name="me">字符串</param>
+    /// <param name="key">密钥</param>
+    /// <param name="e">字符串使用的编码</param>
+    /// <returns>hash摘要的16进制文本形式（无连字符小写）</returns>
+    private static string Md5Hmac(this string me, string key, Encoding e)
+    {
+        using var md5Hmac = new HMACMD5(e.GetBytes(key));
+        return BitConverter.ToString(md5Hmac.ComputeHash(e.GetBytes(me)))
+                           .Replace("-", string.Empty)
+                           .ToLower(CultureInfo.CurrentCulture);
+    }
+
+    /// <summary>
     ///     base64编码
     /// </summary>
     /// <param name="me">待base64编码的字符串</param>
@@ -80,18 +95,6 @@ public static class StringExtensions
         return System.DateTime.ParseExact(me, format, CultureInfo.CurrentCulture);
     }
 
-
-    /// <summary>
-    ///     将字符串转换成日期对象
-    /// </summary>
-    /// <param name="me">待转换字符串</param>
-    /// <param name="def">转换失败时返回的日期对象</param>
-    /// <returns>转换后的日期对象</returns>
-    public static DateTime DateTimeTry(this string me, DateTime def)
-    {
-        return !System.DateTime.TryParse(me, out var ret) ? def : ret;
-    }
-
     /// <summary>
     ///     将字符串转换成日期对象
     /// </summary>
@@ -104,6 +107,18 @@ public static class StringExtensions
         return !System.DateTime.TryParseExact(me, format, CultureInfo.CurrentCulture, DateTimeStyles.None, out var ret)
                    ? def
                    : ret;
+    }
+
+
+    /// <summary>
+    ///     将字符串转换成日期对象
+    /// </summary>
+    /// <param name="me">待转换字符串</param>
+    /// <param name="def">转换失败时返回的日期对象</param>
+    /// <returns>转换后的日期对象</returns>
+    public static DateTime DateTimeTry(this string me, DateTime def)
+    {
+        return !System.DateTime.TryParse(me, out var ret) ? def : ret;
     }
 
     /// <summary>
@@ -187,6 +202,22 @@ public static class StringExtensions
     }
 
     /// <summary>
+    ///     对一个字符串进行sha1 hash运算
+    /// </summary>
+    /// <param name="me">对一个字符串进行sha1 hash运算</param>
+    /// <param name="secret">密钥</param>
+    /// <param name="e">使用的编码</param>
+    /// <returns>hash摘要的16进制文本形式（无连字符小写）</returns>
+    public static string HmacSha1(this string me, string secret, Encoding e)
+    {
+        using var hmacSha1 = new HMACSHA1(e.GetBytes(secret));
+
+        return BitConverter.ToString(hmacSha1.ComputeHash(e.GetBytes(me)))
+                           .Replace("-", string.Empty)
+                           .ToLower(CultureInfo.CurrentCulture);
+    }
+
+    /// <summary>
     ///     解码html编码
     /// </summary>
     /// <param name="me">html编码后的字符串</param>
@@ -240,6 +271,35 @@ public static class StringExtensions
         return !long.TryParse(me, out var ret) ? def : ret;
     }
 
+    /// <summary>
+    ///     ipv4格式转int32格式
+    /// </summary>
+    /// <param name="me"></param>
+    /// <returns></returns>
+    public static int IpV4ToInt32(this string me)
+    {
+        return BitConverter.ToInt32(me.Split('.').Select(byte.Parse).Reverse().ToArray(), 0);
+    }
+
+
+    /// <summary>
+    ///     是否base64字符串
+    /// </summary>
+    /// <param name="me">字符串</param>
+    /// <returns></returns>
+    public static bool IsBase64String(this string me)
+    {
+        // 一个合法的Base64，有着以下特征：
+        // 字符串的长度为4的整数倍。
+        // 字符串的符号取值只能在A -Z, a -z, 0 -9, +, /, =共计65个字符中，且 = 如果出现就必须在结尾出现。
+        if (!me.All(x => x.IsBase64Character())) return false;
+        if (me.Length % 4 != 0) return false;
+        var firstEqualSignPos = me.IndexOf('=');
+        if (firstEqualSignPos < 0) return true;
+        var lastEqualSignPos = me.LastIndexOf('=');
+        return lastEqualSignPos == me.Length - 1 && me[firstEqualSignPos..lastEqualSignPos].All(x => x == '=');
+    }
+
 
     /// <summary>
     ///     将一个json字符串反序列化成为jObject对象
@@ -251,6 +311,11 @@ public static class StringExtensions
         return Newtonsoft.Json.Linq.JObject.Parse(me);
     }
 
+    /// <summary>
+    ///     中文姓名打马赛克
+    /// </summary>
+    /// <param name="me"></param>
+    /// <returns></returns>
     public static string MaskChineseName(this string me)
     {
         if (me.Length == 2) return "*" + me[1..];
@@ -270,37 +335,6 @@ public static class StringExtensions
 
 
     /// <summary>
-    ///     对一个字符串进行sha1 hash运算
-    /// </summary>
-    /// <param name="me">字符串</param>
-    /// <param name="e">字符串使用的编码</param>
-    /// <returns>hash摘要的16进制文本形式（无连字符小写）</returns>
-    public static string Sha1(this string me, Encoding e)
-    {
-        using var sha1 = SHA1.Create();
-        return BitConverter.ToString(sha1.ComputeHash(e.GetBytes(me)))
-                           .Replace("-", string.Empty)
-                           .ToLower(CultureInfo.CurrentCulture);
-    }
-
-    /// <summary>
-    ///     对一个字符串进行sha1 hash运算
-    /// </summary>
-    /// <param name="me">对一个字符串进行sha1 hash运算</param>
-    /// <param name="secret">密钥</param>
-    /// <param name="e">使用的编码</param>
-    /// <returns>hash摘要的16进制文本形式（无连字符小写）</returns>
-    public static string HmacSha1(this string me, string secret, Encoding e)
-    {
-        using var hmacSha1 = new HMACSHA1(e.GetBytes(secret));
-
-        return BitConverter.ToString(hmacSha1.ComputeHash(e.GetBytes(me)))
-                           .Replace("-", string.Empty)
-                           .ToLower(CultureInfo.CurrentCulture);
-    }
-
-
-    /// <summary>
     ///     对一个字符串进行md5hash运算
     /// </summary>
     /// <param name="me">字符串</param>
@@ -314,22 +348,6 @@ public static class StringExtensions
                            .ToLower(CultureInfo.CurrentCulture);
     }
 
-
-    /// <summary>
-    ///     MD5 hmac编码
-    /// </summary>
-    /// <param name="me">字符串</param>
-    /// <param name="key">密钥</param>
-    /// <param name="e">字符串使用的编码</param>
-    /// <returns>hash摘要的16进制文本形式（无连字符小写）</returns>
-    private static string Md5Hmac(this string me, string key, Encoding e)
-    {
-        using var md5Hmac = new HMACMD5(e.GetBytes(key));
-        return BitConverter.ToString(md5Hmac.ComputeHash(e.GetBytes(me)))
-                           .Replace("-", string.Empty)
-                           .ToLower(CultureInfo.CurrentCulture);
-    }
-
     /// <summary>
     ///     判断字符串是否为null或不存在子元素（如果为集合对象）；如果为空，返回指定的默认值，否则返回字符串本身
     /// </summary>
@@ -339,6 +357,17 @@ public static class StringExtensions
     public static string NullOrEmpty(this string me, string defVal)
     {
         return me.AsEnumerable().NullOrEmpty() ? defVal : me;
+    }
+
+
+    /// <summary>
+    ///     null或空白字符
+    /// </summary>
+    /// <param name="me"></param>
+    /// <returns></returns>
+    public static bool NullOrWhiteSpace(this string me)
+    {
+        return string.IsNullOrWhiteSpace(me);
     }
 
     /// <summary>
@@ -379,6 +408,21 @@ public static class StringExtensions
     public static string RemoveWrapped(this string me)
     {
         return me.Replace("\r", "").Replace("\n", "");
+    }
+
+
+    /// <summary>
+    ///     对一个字符串进行sha1 hash运算
+    /// </summary>
+    /// <param name="me">字符串</param>
+    /// <param name="e">字符串使用的编码</param>
+    /// <returns>hash摘要的16进制文本形式（无连字符小写）</returns>
+    public static string Sha1(this string me, Encoding e)
+    {
+        using var sha1 = SHA1.Create();
+        return BitConverter.ToString(sha1.ComputeHash(e.GetBytes(me)))
+                           .Replace("-", string.Empty)
+                           .ToLower(CultureInfo.CurrentCulture);
     }
 
 
@@ -427,15 +471,5 @@ public static class StringExtensions
     {
         return Uri.UnescapeDataString(me);
     }
-
-    public static int IpV4ToInt32(this string me)
-    {
-        return BitConverter.ToInt32(me.Split('.').Select(byte.Parse).Reverse().ToArray(), 0);
-    }
-
-
-    public static bool NullOrWhiteSpace(this string me)
-    {
-        return string.IsNullOrWhiteSpace(me);
-    }
 }
+
