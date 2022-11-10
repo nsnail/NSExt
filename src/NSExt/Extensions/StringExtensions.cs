@@ -380,6 +380,19 @@ public static class StringExtensions
         return JsonConvert.DeserializeObject<T>(me);
     }
 
+
+    /// <summary>
+    ///     反序列化一个文件获得指定类型的数据对象
+    /// </summary>
+    /// <param name="me">等待反序列化的json文本</param>
+    /// <param name="type">实际类型</param>
+    /// <returns>反序列化后生成的对象</returns>
+    public static object Object(this string me, Type type)
+    {
+        return JsonConvert.DeserializeObject(me, type);
+    }
+
+
     /// <summary>
     ///     生成密码
     /// </summary>
@@ -472,4 +485,3 @@ public static class StringExtensions
         return Uri.UnescapeDataString(me);
     }
 }
-
