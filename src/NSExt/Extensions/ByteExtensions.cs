@@ -23,6 +23,15 @@ public static class ByteExtensions
     {
         return e.GetString(me);
     }
+
+
+    /// <summary>
+    ///     将字节数组解码成字符串
+    /// </summary>
+    /// <param name="me">字节数组</param>
+    /// <returns>解码后的原始字符串</returns>
+    public static string HexDe(this byte[] me)
+    {
+        return me.HexDe(Encoding.UTF8);
+    }
 }
-
-

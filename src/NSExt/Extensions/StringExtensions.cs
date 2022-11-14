@@ -202,6 +202,17 @@ public static class StringExtensions
     }
 
     /// <summary>
+    ///     将字符串转换成字节数组形式
+    /// </summary>
+    /// <param name="me">字符串</param>
+    /// <returns>字节数组</returns>
+    public static byte[] Hex(this string me)
+    {
+        return me.Hex(Encoding.UTF8);
+    }
+
+
+    /// <summary>
     ///     对一个字符串进行sha1 hash运算
     /// </summary>
     /// <param name="me">对一个字符串进行sha1 hash运算</param>
@@ -237,6 +248,26 @@ public static class StringExtensions
         return int.Parse(me, CultureInfo.CurrentCulture);
     }
 
+
+    /// <summary>
+    ///     string to double
+    /// </summary>
+    /// <param name="me">string</param>
+    /// <returns>Int32</returns>
+    public static double Double(this string me)
+    {
+        return double.Parse(me, CultureInfo.CurrentCulture);
+    }
+
+    /// <summary>
+    ///     string to float
+    /// </summary>
+    /// <param name="me">string</param>
+    /// <returns>Int32</returns>
+    public static float Float(this string me)
+    {
+        return float.Parse(me, CultureInfo.CurrentCulture);
+    }
 
     /// <summary>
     ///     尝试将字符串转为int32
@@ -483,5 +514,64 @@ public static class StringExtensions
     public static string UrlDe(this string me)
     {
         return Uri.UnescapeDataString(me);
+    }
+
+
+    /// <summary>
+    ///     蛇形命名
+    /// </summary>
+    /// <param name="me"></param>
+    /// <returns></returns>
+    public static string Snakecase(this string me)
+    {
+        return Regex.Replace(me, "([A-Z])", "-$1").ToLower().TrimStart('-');
+    }
+
+
+    /// <summary>
+    ///     aes加密
+    /// </summary>
+    /// <param name="me">要加密的串</param>
+    /// <param name="key">密钥</param>
+    /// <param name="cipherMode">指定要用于加密的块密码模式。</param>
+    /// <param name="paddingMode">指定在消息数据块短于加密操作所需的完整字节数时要应用的填充类型。</param>
+    /// <returns></returns>
+    public static string Aes(this string me,
+                             string      key,
+                             CipherMode  cipherMode  = CipherMode.ECB,
+                             PaddingMode paddingMode = PaddingMode.PKCS7)
+    {
+        using var aes = System.Security.Cryptography.Aes.Create();
+        aes.Padding = PaddingMode.PKCS7;
+        aes.Mode    = CipherMode.ECB;
+        aes.Key     = key.Hex();
+        using var encryptor = aes.CreateEncryptor();
+        var       bytes     = me.Hex();
+        var       decrypted = encryptor.TransformFinalBlock(bytes, 0, bytes.Length);
+        return decrypted.Base64();
+    }
+
+
+    /// <summary>
+    ///     aes解密
+    /// </summary>
+    /// <param name="me">要加密的串</param>
+    /// <param name="key">密钥</param>
+    /// <param name="cipherMode">指定要用于加密的块密码模式。</param>
+    /// <param name="paddingMode">指定在消息数据块短于加密操作所需的完整字节数时要应用的填充类型。</param>
+    /// <returns></returns>
+    public static string AesDe(this string me,
+                               string      key,
+                               CipherMode  cipherMode  = CipherMode.ECB,
+                               PaddingMode paddingMode = PaddingMode.PKCS7)
+    {
+        using var aes = System.Security.Cryptography.Aes.Create();
+        aes.Padding = PaddingMode.PKCS7;
+        aes.Mode    = CipherMode.ECB;
+        aes.Key     = key.Hex();
+        using var encryptor = aes.CreateDecryptor();
+        var       bytes     = me.Base64De();
+        var       decrypted = encryptor.TransformFinalBlock(bytes, 0, bytes.Length);
+        return decrypted.HexDe();
     }
 }
