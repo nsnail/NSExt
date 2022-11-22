@@ -2,24 +2,57 @@
 
 
 using System.Security.Cryptography;
+using System.Text.Json;
 
 namespace NSExt.Extensions;
 
 public static class StringExtensions
 {
     /// <summary>
-    ///     MD5 hmac编码
+    ///     aes加密
     /// </summary>
-    /// <param name="me">字符串</param>
+    /// <param name="me">要加密的串</param>
     /// <param name="key">密钥</param>
-    /// <param name="e">字符串使用的编码</param>
-    /// <returns>hash摘要的16进制文本形式（无连字符小写）</returns>
-    private static string Md5Hmac(this string me, string key, Encoding e)
+    /// <param name="cipherMode">指定要用于加密的块密码模式。</param>
+    /// <param name="paddingMode">指定在消息数据块短于加密操作所需的完整字节数时要应用的填充类型。</param>
+    /// <returns></returns>
+    public static string Aes(this string me,
+                             string      key,
+                             CipherMode  cipherMode  = CipherMode.ECB,
+                             PaddingMode paddingMode = PaddingMode.PKCS7)
     {
-        using var md5Hmac = new HMACMD5(e.GetBytes(key));
-        return BitConverter.ToString(md5Hmac.ComputeHash(e.GetBytes(me)))
-                           .Replace("-", string.Empty)
-                           .ToLower(CultureInfo.CurrentCulture);
+        using var aes = System.Security.Cryptography.Aes.Create();
+        aes.Padding = PaddingMode.PKCS7;
+        aes.Mode    = CipherMode.ECB;
+        aes.Key     = key.Hex();
+        using var encryptor = aes.CreateEncryptor();
+        var       bytes     = me.Hex();
+        var       decrypted = encryptor.TransformFinalBlock(bytes, 0, bytes.Length);
+        return decrypted.Base64();
+    }
+
+
+    /// <summary>
+    ///     aes解密
+    /// </summary>
+    /// <param name="me">要加密的串</param>
+    /// <param name="key">密钥</param>
+    /// <param name="cipherMode">指定要用于加密的块密码模式。</param>
+    /// <param name="paddingMode">指定在消息数据块短于加密操作所需的完整字节数时要应用的填充类型。</param>
+    /// <returns></returns>
+    public static string AesDe(this string me,
+                               string      key,
+                               CipherMode  cipherMode  = CipherMode.ECB,
+                               PaddingMode paddingMode = PaddingMode.PKCS7)
+    {
+        using var aes = System.Security.Cryptography.Aes.Create();
+        aes.Padding = PaddingMode.PKCS7;
+        aes.Mode    = CipherMode.ECB;
+        aes.Key     = key.Hex();
+        using var encryptor = aes.CreateDecryptor();
+        var       bytes     = me.Base64De();
+        var       decrypted = encryptor.TransformFinalBlock(bytes, 0, bytes.Length);
+        return decrypted.HexDe();
     }
 
     /// <summary>
@@ -143,6 +176,17 @@ public static class StringExtensions
         return !decimal.TryParse(me, out var ret) ? def : ret;
     }
 
+
+    /// <summary>
+    ///     string to double
+    /// </summary>
+    /// <param name="me">string</param>
+    /// <returns>Int32</returns>
+    public static double Double(this string me)
+    {
+        return double.Parse(me, CultureInfo.CurrentCulture);
+    }
+
     /// <summary>
     ///     将字符串转换成枚举对象
     /// </summary>
@@ -165,6 +209,16 @@ public static class StringExtensions
     public static T EnumTry<T>(this string name, T def) where T : Enum
     {
         return !System.Enum.TryParse(typeof(T), name, out var ret) ? def : (T)ret;
+    }
+
+    /// <summary>
+    ///     string to float
+    /// </summary>
+    /// <param name="me">string</param>
+    /// <returns>Int32</returns>
+    public static float Float(this string me)
+    {
+        return float.Parse(me, CultureInfo.CurrentCulture);
     }
 
 
@@ -248,27 +302,6 @@ public static class StringExtensions
         return int.Parse(me, CultureInfo.CurrentCulture);
     }
 
-
-    /// <summary>
-    ///     string to double
-    /// </summary>
-    /// <param name="me">string</param>
-    /// <returns>Int32</returns>
-    public static double Double(this string me)
-    {
-        return double.Parse(me, CultureInfo.CurrentCulture);
-    }
-
-    /// <summary>
-    ///     string to float
-    /// </summary>
-    /// <param name="me">string</param>
-    /// <returns>Int32</returns>
-    public static float Float(this string me)
-    {
-        return float.Parse(me, CultureInfo.CurrentCulture);
-    }
-
     /// <summary>
     ///     尝试将字符串转为int32
     /// </summary>
@@ -331,16 +364,6 @@ public static class StringExtensions
         return lastEqualSignPos == me.Length - 1 && me[firstEqualSignPos..lastEqualSignPos].All(x => x == '=');
     }
 
-
-    /// <summary>
-    ///     将一个json字符串反序列化成为jObject对象
-    /// </summary>
-    /// <param name="me">字符串</param>
-    /// <returns></returns>
-    public static JObject JObject(this string me)
-    {
-        return Newtonsoft.Json.Linq.JObject.Parse(me);
-    }
 
     /// <summary>
     ///     中文姓名打马赛克
@@ -408,7 +431,7 @@ public static class StringExtensions
     /// <returns>反序列化后生成的对象</returns>
     public static T Object<T>(this string me)
     {
-        return JsonConvert.DeserializeObject<T>(me);
+        return JsonSerializer.Deserialize<T>(me);
     }
 
 
@@ -420,7 +443,7 @@ public static class StringExtensions
     /// <returns>反序列化后生成的对象</returns>
     public static object Object(this string me, Type type)
     {
-        return JsonConvert.DeserializeObject(me, type);
+        return JsonSerializer.Deserialize(me, type);
     }
 
 
@@ -471,6 +494,17 @@ public static class StringExtensions
 
 
     /// <summary>
+    ///     蛇形命名
+    /// </summary>
+    /// <param name="me"></param>
+    /// <returns></returns>
+    public static string Snakecase(this string me)
+    {
+        return Regex.Replace(me, "([A-Z])", "-$1").ToLower().TrimStart('-');
+    }
+
+
+    /// <summary>
     ///     截取指定长度的字符串，代替substring
     /// </summary>
     /// <param name="me"></param>
@@ -516,62 +550,18 @@ public static class StringExtensions
         return Uri.UnescapeDataString(me);
     }
 
-
     /// <summary>
-    ///     蛇形命名
+    ///     MD5 hmac编码
     /// </summary>
-    /// <param name="me"></param>
-    /// <returns></returns>
-    public static string Snakecase(this string me)
-    {
-        return Regex.Replace(me, "([A-Z])", "-$1").ToLower().TrimStart('-');
-    }
-
-
-    /// <summary>
-    ///     aes加密
-    /// </summary>
-    /// <param name="me">要加密的串</param>
+    /// <param name="me">字符串</param>
     /// <param name="key">密钥</param>
-    /// <param name="cipherMode">指定要用于加密的块密码模式。</param>
-    /// <param name="paddingMode">指定在消息数据块短于加密操作所需的完整字节数时要应用的填充类型。</param>
-    /// <returns></returns>
-    public static string Aes(this string me,
-                             string      key,
-                             CipherMode  cipherMode  = CipherMode.ECB,
-                             PaddingMode paddingMode = PaddingMode.PKCS7)
+    /// <param name="e">字符串使用的编码</param>
+    /// <returns>hash摘要的16进制文本形式（无连字符小写）</returns>
+    private static string Md5Hmac(this string me, string key, Encoding e)
     {
-        using var aes = System.Security.Cryptography.Aes.Create();
-        aes.Padding = PaddingMode.PKCS7;
-        aes.Mode    = CipherMode.ECB;
-        aes.Key     = key.Hex();
-        using var encryptor = aes.CreateEncryptor();
-        var       bytes     = me.Hex();
-        var       decrypted = encryptor.TransformFinalBlock(bytes, 0, bytes.Length);
-        return decrypted.Base64();
-    }
-
-
-    /// <summary>
-    ///     aes解密
-    /// </summary>
-    /// <param name="me">要加密的串</param>
-    /// <param name="key">密钥</param>
-    /// <param name="cipherMode">指定要用于加密的块密码模式。</param>
-    /// <param name="paddingMode">指定在消息数据块短于加密操作所需的完整字节数时要应用的填充类型。</param>
-    /// <returns></returns>
-    public static string AesDe(this string me,
-                               string      key,
-                               CipherMode  cipherMode  = CipherMode.ECB,
-                               PaddingMode paddingMode = PaddingMode.PKCS7)
-    {
-        using var aes = System.Security.Cryptography.Aes.Create();
-        aes.Padding = PaddingMode.PKCS7;
-        aes.Mode    = CipherMode.ECB;
-        aes.Key     = key.Hex();
-        using var encryptor = aes.CreateDecryptor();
-        var       bytes     = me.Base64De();
-        var       decrypted = encryptor.TransformFinalBlock(bytes, 0, bytes.Length);
-        return decrypted.HexDe();
+        using var md5Hmac = new HMACMD5(e.GetBytes(key));
+        return BitConverter.ToString(md5Hmac.ComputeHash(e.GetBytes(me)))
+                           .Replace("-", string.Empty)
+                           .ToLower(CultureInfo.CurrentCulture);
     }
 }
