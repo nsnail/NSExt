@@ -8,6 +8,9 @@ namespace NSExt.Extensions;
 
 public static class StringExtensions
 {
+    private static readonly JsonSerializerOptions _DEFAULT_JSON_SERIALIZER_OPTIONS =
+        default(JsonSerializerOptions).NewJsonSerializerOptions();
+
     /// <summary>
     ///     aes加密
     /// </summary>
@@ -428,10 +431,11 @@ public static class StringExtensions
     ///     反序列化一个文件获得指定类型的数据对象
     /// </summary>
     /// <param name="me">等待反序列化的json文本</param>
+    /// <param name="options">序列化选项</param>
     /// <returns>反序列化后生成的对象</returns>
-    public static T Object<T>(this string me)
+    public static T Object<T>(this string me, JsonSerializerOptions options = null)
     {
-        return JsonSerializer.Deserialize<T>(me);
+        return JsonSerializer.Deserialize<T>(me, options ?? _DEFAULT_JSON_SERIALIZER_OPTIONS);
     }
 
 
@@ -440,10 +444,11 @@ public static class StringExtensions
     /// </summary>
     /// <param name="me">等待反序列化的json文本</param>
     /// <param name="type">实际类型</param>
+    /// <param name="options">序列化选项</param>
     /// <returns>反序列化后生成的对象</returns>
-    public static object Object(this string me, Type type)
+    public static object Object(this string me, Type type, JsonSerializerOptions options = null)
     {
-        return JsonSerializer.Deserialize(me, type);
+        return JsonSerializer.Deserialize(me, type, options ?? _DEFAULT_JSON_SERIALIZER_OPTIONS);
     }
 
 
