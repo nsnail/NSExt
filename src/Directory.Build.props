@@ -1,0 +1,18 @@
+<Project>
+	<PropertyGroup>
+		<Authors>nsnail</Authors>
+		<Product>NSExt</Product>
+		<Copyright>© 2006-2022 nsnail</Copyright>
+		<RepositoryUrl>https://github.com/nsnail/ns-ext.git</RepositoryUrl>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<EmbedUntrackedSource>true</EmbedUntrackedSource>
+		<DebugSymbols>True</DebugSymbols>
+		<DebugType>Embedded</DebugType>
+		<EmbedAllSources>true</EmbedAllSources>
+		<RepositoryType>Git</RepositoryType>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageProjectUrl>https://github.com/nsnail/ns-ext.git</PackageProjectUrl>
+		<PackageOutputPath>../../build/nupkgs</PackageOutputPath>
+	</PropertyGroup>
+</Project>

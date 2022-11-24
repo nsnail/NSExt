@@ -1,3 +1,4 @@
+build
 bin
 obj
 bin\log
@@ -19,5 +20,3 @@ app_data
 .idea
 node_modules
 dist
-/src/Ddf/Ddf.App/ddf-dcloud/unpackage/cache
-/src/Ddf/Ddf.App/ddf-dcloud/unpackage/release/apk
