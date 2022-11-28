@@ -6,11 +6,11 @@
 		<RepositoryUrl>https://github.com/nsnail/ns-ext.git</RepositoryUrl>
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
 		<EmbedUntrackedSource>true</EmbedUntrackedSource>
-		<DebugSymbols>True</DebugSymbols>
-		<DebugType>Embedded</DebugType>
 		<EmbedAllSources>true</EmbedAllSources>
 		<RepositoryType>Git</RepositoryType>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageProjectUrl>https://github.com/nsnail/ns-ext.git</PackageProjectUrl>
 		<PackageOutputPath>../../build/nupkgs</PackageOutputPath>
