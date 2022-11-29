@@ -1,4 +1,4 @@
-﻿namespace NSExt.Extensions;
+namespace NSExt.Extensions;
 
 public static class LongExtensions
 {
@@ -25,11 +25,3 @@ public static class LongExtensions
         return new DateTime(1970, 1, 1).AddMilliseconds(msFrom1970).ToLocalTime();
     }
 }
-
-
-
-
-
-
-
-

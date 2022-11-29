@@ -1,4 +1,4 @@
-﻿// ReSharper disable UnusedMember.Global
+// ReSharper disable UnusedMember.Global
 
 
 using System.Security.Cryptography;
@@ -570,7 +570,3 @@ public static class StringExtensions
         return Uri.UnescapeDataString(me);
     }
 }
-
-
-
-

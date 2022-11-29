@@ -1,4 +1,4 @@
-﻿// ReSharper disable TemplateIsNotCompileTimeConstantProblem
+// ReSharper disable TemplateIsNotCompileTimeConstantProblem
 
 namespace NSExt.Extensions;
 
@@ -64,10 +64,3 @@ public static class LoggerExtensions
         me.LogWarning(CallerInfoMessage(message, callerName, callerFilePath, callerLineNumber));
     }
 }
-
-
-
-
-
-
-

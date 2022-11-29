@@ -1,4 +1,4 @@
-﻿namespace NSExt.Extensions;
+namespace NSExt.Extensions;
 
 public static class ByteExtensions
 {
@@ -35,7 +35,3 @@ public static class ByteExtensions
         return me.HexDe(Encoding.UTF8);
     }
 }
-
-
-
-

@@ -1,4 +1,4 @@
-﻿namespace NSExt.Extensions;
+namespace NSExt.Extensions;
 
 public static class GenericExtensions
 {
@@ -41,11 +41,3 @@ public static class GenericExtensions
         return me.Equals(compare) ? ret : me;
     }
 }
-
-
-
-
-
-
-
-

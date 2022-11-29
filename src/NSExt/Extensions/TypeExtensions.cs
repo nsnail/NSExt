@@ -1,4 +1,4 @@
-﻿namespace NSExt.Extensions;
+namespace NSExt.Extensions;
 
 public static class TypeExtensions
 {
@@ -17,7 +17,3 @@ public static class TypeExtensions
                  .Cast<T>();
     }
 }
-
-
-
-

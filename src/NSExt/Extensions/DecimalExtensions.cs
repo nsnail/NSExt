@@ -1,4 +1,4 @@
-﻿namespace NSExt.Extensions;
+namespace NSExt.Extensions;
 
 public static class DecimalExtensions
 {
@@ -14,11 +14,3 @@ public static class DecimalExtensions
         return dec;
     }
 }
-
-
-
-
-
-
-
-

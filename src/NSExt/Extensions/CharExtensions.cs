@@ -1,4 +1,4 @@
-﻿namespace NSExt.Extensions;
+namespace NSExt.Extensions;
 
 public static class CharExtensions
 {
@@ -22,11 +22,3 @@ public static class CharExtensions
         return IsAsciiLetterOrDigit(me) || me is '+' or '/' or '=';
     }
 }
-
-
-
-
-
-
-
-

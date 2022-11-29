@@ -1,4 +1,4 @@
-﻿// ReSharper disable UnusedMember.Global
+// ReSharper disable UnusedMember.Global
 
 namespace NSExt.Extensions;
 
@@ -87,8 +87,3 @@ public static class DateTimeExtensions
         return me.ToString("yyyyMMdd");
     }
 }
-
-
-
-
-

@@ -1,4 +1,4 @@
-﻿namespace NSExt.Extensions;
+namespace NSExt.Extensions;
 
 public static class EnumerableExtensions
 {
@@ -24,10 +24,3 @@ public static class EnumerableExtensions
         return me is null || !me.Any();
     }
 }
-
-
-
-
-
-
-

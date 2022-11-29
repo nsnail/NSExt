@@ -1,4 +1,4 @@
-﻿using System.Text.Json;
+using System.Text.Json;
 
 namespace NSExt.Extensions;
 
@@ -19,8 +19,3 @@ public static class ObjectExtensions
                                         });
     }
 }
-
-
-
-
-

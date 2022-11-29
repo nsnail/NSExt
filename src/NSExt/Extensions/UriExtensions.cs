@@ -1,4 +1,4 @@
-﻿namespace NSExt.Extensions;
+namespace NSExt.Extensions;
 
 public static class UriExtensions
 {
@@ -12,12 +12,3 @@ public static class UriExtensions
         return "//" + me.Authority + me.PathAndQuery;
     }
 }
-
-
-
-
-
-
-
-
-

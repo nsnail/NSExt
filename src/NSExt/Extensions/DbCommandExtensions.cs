@@ -1,4 +1,4 @@
-﻿namespace NSExt.Extensions;
+namespace NSExt.Extensions;
 
 public static class DbCommandExtensions
 {
@@ -27,10 +27,3 @@ public static class DbCommandExtensions
         return sql;
     }
 }
-
-
-
-
-
-
-

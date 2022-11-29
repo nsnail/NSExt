@@ -1,4 +1,4 @@
-﻿namespace NSExt.Extensions;
+namespace NSExt.Extensions;
 
 public static class IntExtensions
 {
@@ -34,10 +34,3 @@ public static class IntExtensions
         return string.Join(".", BitConverter.GetBytes(me).Reverse());
     }
 }
-
-
-
-
-
-
-

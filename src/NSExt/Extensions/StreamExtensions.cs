@@ -1,4 +1,4 @@
-﻿namespace NSExt.Extensions;
+namespace NSExt.Extensions;
 
 public static class StreamExtensions
 {
@@ -20,7 +20,3 @@ public static class StreamExtensions
         }) < 0;
     }
 }
-
-
-
-
