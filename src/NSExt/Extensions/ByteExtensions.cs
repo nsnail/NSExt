@@ -35,3 +35,7 @@ public static class ByteExtensions
         return me.HexDe(Encoding.UTF8);
     }
 }
+
+
+
+

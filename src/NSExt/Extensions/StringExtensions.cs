@@ -12,6 +12,21 @@ public static class StringExtensions
         default(JsonSerializerOptions).NewJsonSerializerOptions();
 
     /// <summary>
+    ///     MD5 hmac编码
+    /// </summary>
+    /// <param name="me">字符串</param>
+    /// <param name="key">密钥</param>
+    /// <param name="e">字符串使用的编码</param>
+    /// <returns>hash摘要的16进制文本形式（无连字符小写）</returns>
+    private static string Md5Hmac(this string me, string key, Encoding e)
+    {
+        using var md5Hmac = new HMACMD5(e.GetBytes(key));
+        return BitConverter.ToString(md5Hmac.ComputeHash(e.GetBytes(me)))
+                           .Replace("-", string.Empty)
+                           .ToLower(CultureInfo.CurrentCulture);
+    }
+
+    /// <summary>
     ///     aes加密
     /// </summary>
     /// <param name="me">要加密的串</param>
@@ -554,19 +569,8 @@ public static class StringExtensions
     {
         return Uri.UnescapeDataString(me);
     }
-
-    /// <summary>
-    ///     MD5 hmac编码
-    /// </summary>
-    /// <param name="me">字符串</param>
-    /// <param name="key">密钥</param>
-    /// <param name="e">字符串使用的编码</param>
-    /// <returns>hash摘要的16进制文本形式（无连字符小写）</returns>
-    private static string Md5Hmac(this string me, string key, Encoding e)
-    {
-        using var md5Hmac = new HMACMD5(e.GetBytes(key));
-        return BitConverter.ToString(md5Hmac.ComputeHash(e.GetBytes(me)))
-                           .Replace("-", string.Empty)
-                           .ToLower(CultureInfo.CurrentCulture);
-    }
 }
+
+
+
+
