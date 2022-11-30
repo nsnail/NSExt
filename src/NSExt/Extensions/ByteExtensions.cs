@@ -34,4 +34,19 @@ public static class ByteExtensions
     {
         return me.HexDe(Encoding.UTF8);
     }
+
+    /// <summary>
+    ///     将字节数组转换成16进制字符串
+    /// </summary>
+    /// <param name="me"></param>
+    /// <param name="upperCase">是否大写</param>
+    /// <param name="splitShar">字节间分隔符</param>
+    /// <returns></returns>
+    public static string String(this byte[] me, bool upperCase = true, char? splitShar = '-')
+    {
+        var ret                                            = BitConverter.ToString(me);
+        if (!upperCase) ret                                = ret.ToLower();
+        if (splitShar is not null && splitShar != '-') ret = ret.Replace('-', splitShar.Value);
+        return ret;
+    }
 }
