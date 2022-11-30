@@ -42,11 +42,11 @@ public static class ByteExtensions
     /// <param name="upperCase">是否大写</param>
     /// <param name="splitShar">字节间分隔符</param>
     /// <returns></returns>
-    public static string String(this byte[] me, bool upperCase = true, char? splitShar = '-')
+    public static string String(this byte[] me, bool upperCase = true, string splitShar = null)
     {
-        var ret                                            = BitConverter.ToString(me);
-        if (!upperCase) ret                                = ret.ToLower();
-        if (splitShar is not null && splitShar != '-') ret = ret.Replace('-', splitShar.Value);
+        var ret                   = BitConverter.ToString(me);
+        if (!upperCase) ret       = ret.ToLower();
+        if (splitShar != "-") ret = ret.Replace("-", splitShar ?? string.Empty);
         return ret;
     }
 }
