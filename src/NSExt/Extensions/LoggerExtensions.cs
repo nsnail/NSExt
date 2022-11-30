@@ -10,7 +10,7 @@ public static class LoggerExtensions
                                             int    callerLineNumber)
     {
         return
-            $"{message} <s:{Thread.CurrentThread.ManagedThreadId}#{callerName}@{Path.GetFileName(callerFilePath)}:{callerLineNumber}>";
+            $"{message} <s:{Environment.CurrentManagedThreadId}#{callerName}@{Path.GetFileName(callerFilePath)}:{callerLineNumber}>";
     }
 
     public static void Debug(this ILogger              me,

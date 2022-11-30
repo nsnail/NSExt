@@ -1,8 +1,9 @@
+pkg
 build
 bin
 obj
-bin\log
 packages
+Migrations
 _gsdata_
 _ReSharper*
 TestResults

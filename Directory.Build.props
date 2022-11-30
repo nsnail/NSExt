@@ -1,0 +1,7 @@
+<Project>
+    <PropertyGroup>
+        <BaseOutputPath>../build/temp/bin</BaseOutputPath>
+        <BaseIntermediateOutputPath>../build/temp/obj</BaseIntermediateOutputPath>
+        <MSBuildProjectExtensionsPath>../build/temp/obj</MSBuildProjectExtensionsPath>
+    </PropertyGroup>
+</Project>

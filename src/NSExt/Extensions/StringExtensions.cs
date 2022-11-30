@@ -8,7 +8,7 @@ namespace NSExt.Extensions;
 
 public static class StringExtensions
 {
-    private static readonly JsonSerializerOptions _DEFAULT_JSON_SERIALIZER_OPTIONS =
+    private static readonly JsonSerializerOptions _defaultJsonSerializerOptions =
         default(JsonSerializerOptions).NewJsonSerializerOptions();
 
     /// <summary>
@@ -301,6 +301,16 @@ public static class StringExtensions
     }
 
     /// <summary>
+    ///     html编码
+    /// </summary>
+    /// <param name="me"></param>
+    /// <returns></returns>
+    public static string Html(this string me)
+    {
+        return HttpUtility.HtmlEncode(me);
+    }
+
+    /// <summary>
     ///     解码html编码
     /// </summary>
     /// <param name="me">html编码后的字符串</param>
@@ -450,7 +460,7 @@ public static class StringExtensions
     /// <returns>反序列化后生成的对象</returns>
     public static T Object<T>(this string me, JsonSerializerOptions options = null)
     {
-        return JsonSerializer.Deserialize<T>(me, options ?? _DEFAULT_JSON_SERIALIZER_OPTIONS);
+        return JsonSerializer.Deserialize<T>(me, options ?? _defaultJsonSerializerOptions);
     }
 
 
@@ -463,7 +473,7 @@ public static class StringExtensions
     /// <returns>反序列化后生成的对象</returns>
     public static object Object(this string me, Type type, JsonSerializerOptions options = null)
     {
-        return JsonSerializer.Deserialize(me, type, options ?? _DEFAULT_JSON_SERIALIZER_OPTIONS);
+        return JsonSerializer.Deserialize(me, type, options ?? _defaultJsonSerializerOptions);
     }
 
 
