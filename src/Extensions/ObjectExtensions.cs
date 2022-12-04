@@ -12,10 +12,7 @@ public static class ObjectExtensions
     /// <returns>json文本</returns>
     public static string Json(this object me, bool format = false)
     {
-        return JsonSerializer.Serialize(me,
-                                        new JsonSerializerOptions {
-                                            WriteIndented        = format,
-                                            PropertyNamingPolicy = JsonNamingPolicy.CamelCase
-                                        });
+        return JsonSerializer.Serialize(
+            me, new JsonSerializerOptions { WriteIndented = format, PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
     }
 }

@@ -8,8 +8,8 @@ namespace NSExt.Extensions;
 
 public static class StringExtensions
 {
-    private static readonly JsonSerializerOptions _defaultJsonSerializerOptions =
-        default(JsonSerializerOptions).NewJsonSerializerOptions();
+    private static readonly JsonSerializerOptions _defaultJsonSerializerOptions
+        = default(JsonSerializerOptions).NewJsonSerializerOptions();
 
     /// <summary>
     ///     MD5 hmac编码
@@ -34,10 +34,8 @@ public static class StringExtensions
     /// <param name="cipherMode">指定要用于加密的块密码模式。</param>
     /// <param name="paddingMode">指定在消息数据块短于加密操作所需的完整字节数时要应用的填充类型。</param>
     /// <returns></returns>
-    public static string Aes(this string me,
-                             string      key,
-                             CipherMode  cipherMode  = CipherMode.ECB,
-                             PaddingMode paddingMode = PaddingMode.PKCS7)
+    public static string Aes(this string me, string key, CipherMode cipherMode = CipherMode.ECB
+                           , PaddingMode paddingMode = PaddingMode.PKCS7)
     {
         using var aes = System.Security.Cryptography.Aes.Create();
         aes.Padding = PaddingMode.PKCS7;
@@ -58,10 +56,8 @@ public static class StringExtensions
     /// <param name="cipherMode">指定要用于加密的块密码模式。</param>
     /// <param name="paddingMode">指定在消息数据块短于加密操作所需的完整字节数时要应用的填充类型。</param>
     /// <returns></returns>
-    public static string AesDe(this string me,
-                               string      key,
-                               CipherMode  cipherMode  = CipherMode.ECB,
-                               PaddingMode paddingMode = PaddingMode.PKCS7)
+    public static string AesDe(this string me, string key, CipherMode cipherMode = CipherMode.ECB
+                             , PaddingMode paddingMode = PaddingMode.PKCS7)
     {
         using var aes = System.Security.Cryptography.Aes.Create();
         aes.Padding = PaddingMode.PKCS7;
@@ -156,8 +152,8 @@ public static class StringExtensions
     public static DateTime DateTimeExactTry(this string me, string format, DateTime def)
     {
         return !System.DateTime.TryParseExact(me, format, CultureInfo.CurrentCulture, DateTimeStyles.None, out var ret)
-                   ? def
-                   : ret;
+            ? def
+            : ret;
     }
 
 

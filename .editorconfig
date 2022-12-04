@@ -1,0 +1,45 @@
+root = true
+
+[*]
+indent_style = space
+indent_size = 4
+end_of_line = lf
+charset = utf-8
+trim_trailing_whitespace = true
+
+
+# ReSharper properties
+resharper_align_linq_query = true
+resharper_align_multiline_argument = true
+resharper_align_multiline_array_and_object_initializer = true
+resharper_align_multiline_binary_patterns = true
+resharper_align_multiline_calls_chain = true
+resharper_align_multiline_extends_list = true
+resharper_align_multiline_parameter = true
+resharper_align_multiline_property_pattern = true
+resharper_align_multiline_switch_expression = true
+resharper_align_multiple_declaration = true
+resharper_align_multline_type_parameter_constrains = true
+resharper_align_multline_type_parameter_list = true
+resharper_align_tuple_components = true
+resharper_allow_comment_after_lbrace = true
+resharper_csharp_empty_block_style = together_same_line
+resharper_csharp_outdent_commas = true
+resharper_csharp_stick_comment = false
+resharper_csharp_wrap_before_comma = true
+resharper_indent_nested_foreach_stmt = true
+resharper_indent_nested_for_stmt = true
+resharper_indent_nested_while_stmt = true
+resharper_indent_preprocessor_if = usual_indent
+resharper_indent_preprocessor_other = usual_indent
+resharper_int_align = true
+resharper_keep_existing_arrangement = false
+resharper_place_linq_into_on_new_line = false
+resharper_place_simple_switch_expression_on_single_line = true
+resharper_wrap_before_eq = true
+resharper_wrap_chained_method_calls = chop_if_long
+resharper_wrap_switch_expression = chop_if_long
+
+# Microsoft .NET properties
+csharp_indent_braces = false
+csharp_new_line_before_open_brace = local_functions, methods, types

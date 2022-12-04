@@ -3,5 +3,19 @@
         <BaseOutputPath>../build/temp/bin</BaseOutputPath>
         <BaseIntermediateOutputPath>../build/temp/obj</BaseIntermediateOutputPath>
         <MSBuildProjectExtensionsPath>../build/temp/obj</MSBuildProjectExtensionsPath>
+        <Authors>nsnail</Authors>
+        <Product>NSExt</Product>
+        <Copyright>© 2006-2022 nsnail</Copyright>
+        <RepositoryUrl>https://github.com/nsnail/ns-ext.git</RepositoryUrl>
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+        <EmbedUntrackedSource>true</EmbedUntrackedSource>
+        <EmbedAllSources>true</EmbedAllSources>
+        <RepositoryType>Git</RepositoryType>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageProjectUrl>https://github.com/nsnail/ns-ext.git</PackageProjectUrl>
+        <PackageOutputPath>../build/nupkgs</PackageOutputPath>
     </PropertyGroup>
 </Project>

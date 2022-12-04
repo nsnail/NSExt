@@ -17,11 +17,11 @@ public static class DbCommandExtensions
                       DbType.String or DbType.DateTime or DbType.Date or DbType.Time or DbType.DateTime2
                           or DbType.DateTimeOffset or DbType.Guid or DbType.VarNumeric or DbType.AnsiStringFixedLength
                           or DbType.AnsiString
-                          or DbType.StringFixedLength => sql.Replace(me.Parameters[i].ParameterName,
-                                                                     "'" + me.Parameters[i].Value + "'"),
-                      DbType.Boolean => sql.Replace(me.Parameters[i].ParameterName,
-                                                    Convert.ToBoolean(me.Parameters[i].Value) ? "1" : "0"),
-                      _ => sql.Replace(me.Parameters[i].ParameterName, me.Parameters[i].Value?.ToString())
+                          or DbType.StringFixedLength =>
+                          sql.Replace(me.Parameters[i].ParameterName, "'" + me.Parameters[i].Value + "'")
+                    , DbType.Boolean => sql.Replace(me.Parameters[i].ParameterName
+                                                  , Convert.ToBoolean(me.Parameters[i].Value) ? "1" : "0")
+                    , _ => sql.Replace(me.Parameters[i].ParameterName, me.Parameters[i].Value?.ToString())
                   };
 
         return sql;

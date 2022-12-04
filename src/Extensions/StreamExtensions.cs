@@ -14,9 +14,6 @@ public static class StreamExtensions
 
     public static bool IsTextStream(this Stream me)
     {
-        return me.FirstByteIndex(new byte[] {
-            0x00,
-            0xff
-        }) < 0;
+        return me.FirstByteIndex(new byte[] { 0x00, 0xff }) < 0;
     }
 }

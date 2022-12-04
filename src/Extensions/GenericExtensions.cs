@@ -10,10 +10,8 @@ public static class GenericExtensions
     /// <param name="copyObj">拷贝来源</param>
     /// <param name="propNameList">需要处理的属性名</param>
     /// <param name="isIncludeOrExclude">True包含，false排除</param>
-    public static void CopyFrom<T>(this T        me,
-                                   T             copyObj,
-                                   IList<string> propNameList       = null,
-                                   bool          isIncludeOrExclude = false)
+    public static void CopyFrom<T>(this T me, T copyObj, IList<string> propNameList = null
+                                 , bool   isIncludeOrExclude = false)
     {
         foreach (var p in me.GetType().GetProperties()) {
             if (!p.CanWrite) continue;

@@ -1,3 +1,3 @@
-do.exe trim-utf8-bom
-do.exe remove-whitespace
-do.exe convert-lf
+dot rm-bom
+dot rm-blank
+dot tolf
