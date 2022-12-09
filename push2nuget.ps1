@@ -10,7 +10,7 @@ if ($apikey -eq $null -or $apikey -eq "")
 }
 
 rm -r ./build/nupkgs
-dotnet build -c Release ./src/NSExt.sln
+dotnet build -c Release
 $files = Get-ChildItem -Path ./build/nupkgs/ -Filter *.nupkg
 foreach($file in $files)
 {

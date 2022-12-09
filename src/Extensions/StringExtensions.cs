@@ -518,16 +518,6 @@ public static class StringExtensions
                            .ToLower(CultureInfo.CurrentCulture);
     }
 
-    /// <summary>
-    /// 纯文本字符串转html
-    /// </summary>
-    /// <param name="me"></param>
-    /// <returns></returns>
-    public static string Text2Html(this string me)
-    {
-        return me.Replace(" ", "&nbsp;").Replace("\r\n", "<br />").Replace("\r", "<br />").Replace("\n", "<br />");
-    }
-
 
     /// <summary>
     ///     蛇形命名
@@ -551,6 +541,16 @@ public static class StringExtensions
     {
         if (startIndex + length > me.Length) length = me.Length - startIndex;
         return me.Substring(startIndex, length);
+    }
+
+    /// <summary>
+    ///     纯文本字符串转html
+    /// </summary>
+    /// <param name="me"></param>
+    /// <returns></returns>
+    public static string Text2Html(this string me)
+    {
+        return $"<pre>{me}</pre>";
     }
 
     /// <summary>
