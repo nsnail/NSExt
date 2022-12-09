@@ -518,6 +518,16 @@ public static class StringExtensions
                            .ToLower(CultureInfo.CurrentCulture);
     }
 
+    /// <summary>
+    /// 纯文本字符串转html
+    /// </summary>
+    /// <param name="me"></param>
+    /// <returns></returns>
+    public static string Text2Html(this string me)
+    {
+        return me.Replace(" ", "&nbsp;").Replace("\r\n", "<br />").Replace("\r", "<br />").Replace("\n", "<br />");
+    }
+
 
     /// <summary>
     ///     蛇形命名

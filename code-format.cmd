@@ -1,3 +1,3 @@
-dot rm-bom
-dot rm-blank
-dot tolf
+dot rbom -w
+dot trim -w
+dot tolf -w
