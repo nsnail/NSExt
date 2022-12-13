@@ -94,7 +94,7 @@ Task("Publish-GitHub")
 });
 
 Task("Publish-NuGet")
-    .WithCriteria(ctx => BuildSystem.IsRunningOnGitHubActions, "Not running on GitHub Actions")
+    // .WithCriteria(ctx => BuildSystem.IsRunningOnGitHubActions, "Not running on GitHub Actions")
     .IsDependentOn("Package")
     .Does(context => 
 {
@@ -104,13 +104,14 @@ Task("Publish-NuGet")
     }
 
     // Publish to GitHub Packages
-    foreach(var file in context.GetFiles("./.artifacts/*.nupkg")) 
+    foreach(var file in context.GetFiles($"{pkgOutPath}/*.*nupkg")) 
     {
         context.Information("Publishing {0}...", file.GetFilename().FullPath);
         DotNetNuGetPush(file.FullPath, new DotNetNuGetPushSettings
         {
             Source = "https://api.nuget.org/v3/index.json",
             ApiKey = apiKey,
+            SkipDuplicate = true
         });
     }
 });
@@ -119,7 +120,7 @@ Task("Publish-NuGet")
 // Targets
 
 Task("Publish")
-    .IsDependentOn("Publish-GitHub")
+    //.IsDependentOn("Publish-GitHub")
     .IsDependentOn("Publish-NuGet");
 
 Task("Default")
