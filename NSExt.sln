@@ -5,6 +5,25 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NSExt", "src\NSExt.csproj", "{70DD1C27-7ACB-4BE0-A9CD-D781E4050DE5}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "meta", "meta", "{85E669CB-FC0A-4C1D-92DE-38D0662C257D}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		.tgitconfig = .tgitconfig
+		add-meta-files-to-sln.csx = add-meta-files-to-sln.csx
+		code-cleanup-on-save.csx = code-cleanup-on-save.csx
+		code-format.cmd = code-format.cmd
+		Directory.Build.props = Directory.Build.props
+		dot.sln.DotSettings = dot.sln.DotSettings
+		dotnet-tools.json = dotnet-tools.json
+		git-clean.ps1 = git-clean.ps1
+		global.json = global.json
+		LICENSE = LICENSE
+		push2nuget.ps1 = push2nuget.ps1
+		README.md = README.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
