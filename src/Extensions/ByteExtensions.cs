@@ -1,5 +1,8 @@
 namespace NSExt.Extensions;
 
+/// <summary>
+///     ByteExtensions
+/// </summary>
 public static class ByteExtensions
 {
     /// <summary>
@@ -12,7 +15,6 @@ public static class ByteExtensions
         return Convert.ToBase64String(me);
     }
 
-
     /// <summary>
     ///     将字节数组解码成字符串
     /// </summary>
@@ -23,7 +25,6 @@ public static class ByteExtensions
     {
         return e.GetString(me);
     }
-
 
     /// <summary>
     ///     将字节数组解码成字符串
@@ -38,15 +39,20 @@ public static class ByteExtensions
     /// <summary>
     ///     将字节数组转换成16进制字符串
     /// </summary>
-    /// <param name="me"></param>
+    /// <param name="me">me</param>
     /// <param name="upperCase">是否大写</param>
     /// <param name="splitShar">字节间分隔符</param>
-    /// <returns></returns>
     public static string String(this byte[] me, bool upperCase = true, string splitShar = null)
     {
-        var ret                   = BitConverter.ToString(me);
-        if (!upperCase) ret       = ret.ToLower();
-        if (splitShar != "-") ret = ret.Replace("-", splitShar ?? string.Empty);
+        var ret = BitConverter.ToString(me);
+        if (!upperCase) {
+            ret = ret.ToLower(CultureInfo.InvariantCulture);
+        }
+
+        if (splitShar != "-") {
+            ret = ret.Replace("-", splitShar ?? string.Empty);
+        }
+
         return ret;
     }
 }

@@ -1,5 +1,8 @@
 namespace NSExt.Extensions;
 
+/// <summary>
+///     EnumExtensions
+/// </summary>
 public static class EnumExtensions
 {
     /// <summary>
@@ -12,6 +15,6 @@ public static class EnumExtensions
         var t     = e.GetType();
         var fi    = t.GetField(Enum.GetName(t, e)!);
         var attrs = (DescriptionAttribute[])fi!.GetCustomAttributes(typeof(DescriptionAttribute), false);
-        return (attrs.Length != 0 ? attrs[0].Description : Enum.GetName(t, e)) ?? "";
+        return (attrs.Length != 0 ? attrs[0].Description : Enum.GetName(t, e)) ?? string.Empty;
     }
 }

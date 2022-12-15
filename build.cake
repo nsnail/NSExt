@@ -1,6 +1,6 @@
 var target = Argument("target", "Default");
 var configuration = Argument("configuration", "Release");
-var pkgOutPath = $"./build/NSExt/pkg/{configuration}";
+var pkgOutPath = $"./dist/NSExt/pkg/{configuration}";
 
 ////////////////////////////////////////////////////////////////
 // Tasks
@@ -13,7 +13,7 @@ Task("Clean")
 
 Task("Build")
     .IsDependentOn("Clean")
-    .Does(context => 
+    .Does(context =>
 {
     DotNetBuild("./NSExt.sln", new DotNetBuildSettings {
         Configuration = configuration,
@@ -26,7 +26,7 @@ Task("Build")
 
 Task("Test")
     .IsDependentOn("Build")
-    .Does(context => 
+    .Does(context =>
 {
     DotNetTest("./test/Spectre.Console.Tests/Spectre.Console.Tests.csproj", new DotNetTestSettings {
         Configuration = configuration,
@@ -49,7 +49,7 @@ Task("Test")
 
 Task("Package")
     .IsDependentOn("Build")
-    .Does(context => 
+    .Does(context =>
 {
     context.DotNetPack("./NSExt.sln", new DotNetPackSettings {
         Configuration = configuration,
@@ -64,7 +64,7 @@ Task("Package")
 Task("Publish-GitHub")
     .WithCriteria(ctx => BuildSystem.IsRunningOnGitHubActions, "Not running on GitHub Actions")
     .IsDependentOn("Package")
-    .Does(context => 
+    .Does(context =>
 {
     var apiKey = Argument<string>("github-key", null);
     if(string.IsNullOrWhiteSpace(apiKey)) {
@@ -73,10 +73,10 @@ Task("Publish-GitHub")
 
     // Publish to GitHub Packages
     var exitCode = 0;
-    foreach(var file in context.GetFiles("./.artifacts/*.nupkg")) 
+    foreach(var file in context.GetFiles("./.artifacts/*.nupkg"))
     {
         context.Information("Publishing {0}...", file.GetFilename().FullPath);
-        exitCode += StartProcess("dotnet", 
+        exitCode += StartProcess("dotnet",
             new ProcessSettings {
                 Arguments = new ProcessArgumentBuilder()
                     .Append("gpr")
@@ -87,7 +87,7 @@ Task("Publish-GitHub")
         );
     }
 
-    if(exitCode != 0) 
+    if(exitCode != 0)
     {
         throw new CakeException("Could not push GitHub packages.");
     }
@@ -96,7 +96,7 @@ Task("Publish-GitHub")
 Task("Publish-NuGet")
     // .WithCriteria(ctx => BuildSystem.IsRunningOnGitHubActions, "Not running on GitHub Actions")
     .IsDependentOn("Package")
-    .Does(context => 
+    .Does(context =>
 {
     var apiKey = Argument<string>("nuget-key", null);
     if(string.IsNullOrWhiteSpace(apiKey)) {
@@ -104,7 +104,7 @@ Task("Publish-NuGet")
     }
 
     // Publish to GitHub Packages
-    foreach(var file in context.GetFiles($"{pkgOutPath}/*.*nupkg")) 
+    foreach(var file in context.GetFiles($"{pkgOutPath}/*.*nupkg"))
     {
         context.Information("Publishing {0}...", file.GetFilename().FullPath);
         DotNetNuGetPush(file.FullPath, new DotNetNuGetPushSettings

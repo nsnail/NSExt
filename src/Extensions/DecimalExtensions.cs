@@ -1,5 +1,8 @@
 namespace NSExt.Extensions;
 
+/// <summary>
+///     DecimalExtensions
+/// </summary>
 public static class DecimalExtensions
 {
     /// <summary>

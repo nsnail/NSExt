@@ -1,13 +1,13 @@
 namespace NSExt.Extensions;
 
+/// <summary>
+///     EnumerableExtensions
+/// </summary>
 public static class EnumerableExtensions
 {
     /// <summary>
     ///     将列表转成分隔符分隔的字符串
     /// </summary>
-    /// <param name="me"></param>
-    /// <param name="separator"></param>
-    /// <returns></returns>
     public static string Join(this IEnumerable<object> me, string separator)
     {
         return string.Join(separator, me);
