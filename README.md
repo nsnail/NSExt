@@ -1,4 +1,5 @@
 # ns-ext
+[中](README.zh-CN.md) | **En**
 The **ns-ext** is a .NET extension function library, containing the following types of extension modules:
 
 
@@ -21,3 +22,44 @@ The **ns-ext** is a .NET extension function library, containing the following ty
 |  String type extension | StringExtensions.cs |
 | Prototype type extension | TypeExtensions.cs |
 | Resource locator type extension | UriExtensions.cs |
+
+## Quick start
+
+### Install
+
+```shell
+dotnet add package NSExt --prerelease
+```
+
+### Example
+
+```c#
+using NSExt.Extensions;
+
+internal static class Program
+{
+    private class Person
+    {
+        public string Name { get; set; }
+        public int Age { get; set; }
+    }
+    public static void Main(string[] args)
+    {
+        var person =
+        """
+{
+  "Name": "Jason",
+  "Age": "30"
+}
+""".Object<Person>();
+
+        Console.WriteLine(person.Json());
+    }
+}
+```
+
+### Output
+
+```json
+{"name":"Jason","age":30}
+```
