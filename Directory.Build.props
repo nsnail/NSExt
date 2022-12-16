@@ -1,9 +1,11 @@
 <Project>
     <PropertyGroup>
         <ImplicitUsings>enable</ImplicitUsings>
-        <BaseOutputPath>../build/$(MSBuildProjectName)/bin</BaseOutputPath>
-        <BaseIntermediateOutputPath>../build/$(MSBuildProjectName)/obj</BaseIntermediateOutputPath>
-        <MSBuildProjectExtensionsPath>$(BaseIntermediateOutputPath)</MSBuildProjectExtensionsPath>
+        <BaseOutputPath>../dist</BaseOutputPath>
+        <BaseIntermediateOutputPath>../dist</BaseIntermediateOutputPath>
+        <OutputPath>$(BaseOutputPath)/$(MSBuildProjectName)/bin</OutputPath>
+        <IntermediateOutputPath>$(BaseIntermediateOutputPath)/$(MSBuildProjectName)/obj</IntermediateOutputPath>
+        <MSBuildProjectExtensionsPath>$(BaseIntermediateOutputPath)/$(MSBuildProjectName)/obj</MSBuildProjectExtensionsPath>
         <Authors>nsnail</Authors>
         <Product>NSExt</Product>
         <Copyright>© 2006-2022 nsnail</Copyright>

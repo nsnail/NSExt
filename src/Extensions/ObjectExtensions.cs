@@ -2,6 +2,9 @@ using System.Text.Json;
 
 namespace NSExt.Extensions;
 
+/// <summary>
+///     ObjectExtensions
+/// </summary>
 public static class ObjectExtensions
 {
     /// <summary>

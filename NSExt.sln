@@ -11,17 +11,22 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "meta", "meta", "{85E669CB-F
 		.gitattributes = .gitattributes
 		.gitignore = .gitignore
 		.tgitconfig = .tgitconfig
-		add-meta-files-to-sln.csx = add-meta-files-to-sln.csx
-		code-cleanup-on-save.csx = code-cleanup-on-save.csx
+		AddMetaFilesToSln.csx = AddMetaFilesToSln.csx
+		build.cake = build.cake
 		code-format.cmd = code-format.cmd
+		CodeCleanupOnSave.csx = CodeCleanupOnSave.csx
+		CodeQuality.props = CodeQuality.props
 		Directory.Build.props = Directory.Build.props
 		dot.sln.DotSettings = dot.sln.DotSettings
 		dotnet-tools.json = dotnet-tools.json
-		git-clean.ps1 = git-clean.ps1
+		git-clean.cmd = git-clean.cmd
 		global.json = global.json
+		ImageOptimize.csx = ImageOptimize.csx
 		LICENSE = LICENSE
 		push2nuget.ps1 = push2nuget.ps1
 		README.md = README.md
+		stylecop.json = stylecop.json
+		StyleCopAnalyzers.ruleset = StyleCopAnalyzers.ruleset
 	EndProjectSection
 EndProject
 Global

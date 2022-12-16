@@ -2,48 +2,87 @@
 
 namespace NSExt.Extensions;
 
+/// <summary>
+///     LoggerExtensions
+/// </summary>
 public static class LoggerExtensions
 {
-    private static string CallerInfoMessage(object message, string callerName, string callerFilePath
-                                          , int    callerLineNumber)
-    {
-        return
-            $"{message} <s:{Environment.CurrentManagedThreadId}#{callerName}@{Path.GetFileName(callerFilePath)}:{callerLineNumber}>";
-    }
+    private const string _MESSAGE_S_THREADID_CALLERNAME_CALLERFILEPATH_CALLERLINENUMBER
+        = "{Message} <s:{ThreadId}#{CallerName}@{CallerFilePath}:{CallerLineNumber}>";
 
+    private static readonly Action<ILogger, string, string, string, string, string, Exception> _logDebug
+        = LoggerMessage.Define<string, string, string, string, string>(LogLevel.Debug, default
+                                                                     , _MESSAGE_S_THREADID_CALLERNAME_CALLERFILEPATH_CALLERLINENUMBER);
+
+    private static readonly Action<ILogger, string, string, string, string, string, Exception> _logError
+        = LoggerMessage.Define<string, string, string, string, string>(LogLevel.Error, default
+                                                                     , _MESSAGE_S_THREADID_CALLERNAME_CALLERFILEPATH_CALLERLINENUMBER);
+
+    private static readonly Action<ILogger, string, string, string, string, string, Exception> _logFatal
+        = LoggerMessage.Define<string, string, string, string, string>(LogLevel.Critical, default
+                                                                     , _MESSAGE_S_THREADID_CALLERNAME_CALLERFILEPATH_CALLERLINENUMBER);
+
+    private static readonly Action<ILogger, string, string, string, string, string, Exception> _logInfo
+        = LoggerMessage.Define<string, string, string, string, string>(LogLevel.Information, default
+                                                                     , _MESSAGE_S_THREADID_CALLERNAME_CALLERFILEPATH_CALLERLINENUMBER);
+
+    private static readonly Action<ILogger, string, string, string, string, string, Exception> _logWarn
+        = LoggerMessage.Define<string, string, string, string, string>(LogLevel.Warning, default
+                                                                     , _MESSAGE_S_THREADID_CALLERNAME_CALLERFILEPATH_CALLERLINENUMBER);
+
+    /// <summary>
+    ///     Debug
+    /// </summary>
     public static void Debug(this             ILogger me, object message, [CallerMemberName] string callerName = null
                            , [CallerFilePath] string callerFilePath = null, [CallerLineNumber] int callerLineNumber = 0)
     {
-        me.LogDebug(CallerInfoMessage(message, callerName, callerFilePath, callerLineNumber));
+        _logDebug(me, message.ToString(), Environment.CurrentManagedThreadId.ToString(CultureInfo.InvariantCulture)
+                , callerName, Path.GetFileName(callerFilePath), callerLineNumber.ToString(CultureInfo.InvariantCulture)
+                , null);
     }
 
-
+    /// <summary>
+    ///     Error
+    /// </summary>
     public static void Error(this             ILogger me, object message, [CallerMemberName] string callerName = null
                            , [CallerFilePath] string callerFilePath = null, [CallerLineNumber] int callerLineNumber = 0)
     {
-        me.LogError(CallerInfoMessage(message, callerName, callerFilePath, callerLineNumber));
+        _logError(me, message.ToString(), Environment.CurrentManagedThreadId.ToString(CultureInfo.InvariantCulture)
+                , callerName, Path.GetFileName(callerFilePath), callerLineNumber.ToString(CultureInfo.InvariantCulture)
+                , null);
     }
 
+    /// <summary>
+    ///     Fatal
+    /// </summary>
     public static void Fatal(this               ILogger me, object message, Exception ex = null
                            , [CallerMemberName] string  callerName = null, [CallerFilePath] string callerFilePath = null
                            , [CallerLineNumber] int     callerLineNumber = 0)
     {
-        if (ex is null)
-            me.LogCritical(CallerInfoMessage(message, callerName, callerFilePath, callerLineNumber));
-        else
-            me.LogCritical(CallerInfoMessage(message, callerName, callerFilePath, callerLineNumber), ex);
+        _logFatal(me, message.ToString(), Environment.CurrentManagedThreadId.ToString(CultureInfo.InvariantCulture)
+                , callerName, Path.GetFileName(callerFilePath), callerLineNumber.ToString(CultureInfo.InvariantCulture)
+                , ex);
     }
 
-
+    /// <summary>
+    ///     Info
+    /// </summary>
     public static void Info(this             ILogger me, object message, [CallerMemberName] string callerName = null
                           , [CallerFilePath] string  callerFilePath = null, [CallerLineNumber] int callerLineNumber = 0)
     {
-        me.LogInformation(CallerInfoMessage(message, callerName, callerFilePath, callerLineNumber));
+        _logInfo(me, message.ToString(), Environment.CurrentManagedThreadId.ToString(CultureInfo.InvariantCulture)
+               , callerName, Path.GetFileName(callerFilePath), callerLineNumber.ToString(CultureInfo.InvariantCulture)
+               , null);
     }
 
+    /// <summary>
+    ///     Warn
+    /// </summary>
     public static void Warn(this             ILogger me, object message, [CallerMemberName] string callerName = null
                           , [CallerFilePath] string  callerFilePath = null, [CallerLineNumber] int callerLineNumber = 0)
     {
-        me.LogWarning(CallerInfoMessage(message, callerName, callerFilePath, callerLineNumber));
+        _logWarn(me, message.ToString(), Environment.CurrentManagedThreadId.ToString(CultureInfo.InvariantCulture)
+               , callerName, Path.GetFileName(callerFilePath), callerLineNumber.ToString(CultureInfo.InvariantCulture)
+               , null);
     }
 }

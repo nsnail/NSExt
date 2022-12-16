@@ -1,10 +1,15 @@
 // ReSharper disable UnusedMember.Global
+// ReSharper disable MemberCanBePrivate.Global
 
+#pragma warning disable CA1720
 using System.Security.Cryptography;
 using System.Text.Json;
 
 namespace NSExt.Extensions;
 
+/// <summary>
+///     StringExtensions
+/// </summary>
 public static partial class StringExtensions
 {
     private static readonly JsonSerializerOptions _defaultJsonSerializerOptions
@@ -15,11 +20,7 @@ public static partial class StringExtensions
     /// </summary>
     /// <param name="me">要加密的串</param>
     /// <param name="key">密钥</param>
-    /// <param name="cipherMode">指定要用于加密的块密码模式。</param>
-    /// <param name="paddingMode">指定在消息数据块短于加密操作所需的完整字节数时要应用的填充类型。</param>
-    /// <returns></returns>
-    public static string Aes(this string me, string key, CipherMode cipherMode = CipherMode.ECB
-                           , PaddingMode paddingMode = PaddingMode.PKCS7)
+    public static string Aes(this string me, string key)
     {
         using var aes = System.Security.Cryptography.Aes.Create();
         aes.Padding = PaddingMode.PKCS7;
@@ -36,11 +37,7 @@ public static partial class StringExtensions
     /// </summary>
     /// <param name="me">要加密的串</param>
     /// <param name="key">密钥</param>
-    /// <param name="cipherMode">指定要用于加密的块密码模式。</param>
-    /// <param name="paddingMode">指定在消息数据块短于加密操作所需的完整字节数时要应用的填充类型。</param>
-    /// <returns></returns>
-    public static string AesDe(this string me, string key, CipherMode cipherMode = CipherMode.ECB
-                             , PaddingMode paddingMode = PaddingMode.PKCS7)
+    public static string AesDe(this string me, string key)
     {
         using var aes = System.Security.Cryptography.Aes.Create();
         aes.Padding = PaddingMode.PKCS7;
@@ -87,7 +84,6 @@ public static partial class StringExtensions
     /// <summary>
     ///     将易于web传输的base64web字符串转换为原生base64
     /// </summary>
-    /// <param name="me"></param>
     /// <returns>原生base64</returns>
     public static string Base64Sys(this string me)
     {
@@ -97,7 +93,6 @@ public static partial class StringExtensions
     /// <summary>
     ///     将原生base64字符串转换成易于web传输的字符串
     /// </summary>
-    /// <param name="me"></param>
     /// <returns>易于web传输的字符串</returns>
     public static string Base64Web(this string me)
     {
@@ -184,10 +179,8 @@ public static partial class StringExtensions
     /// <summary>
     ///     将字符串转换成枚举对象
     /// </summary>
-    /// <typeparam name="T"></typeparam>
-    /// <param name="name"></param>
-    /// <returns></returns>
-    public static T Enum<T>(this string name) where T : Enum
+    public static T Enum<T>(this string name)
+        where T : Enum
     {
         return (T)System.Enum.Parse(typeof(T), name, true);
     }
@@ -195,11 +188,8 @@ public static partial class StringExtensions
     /// <summary>
     ///     将字符串转换成枚举对象
     /// </summary>
-    /// <typeparam name="T"></typeparam>
-    /// <param name="name"></param>
-    /// <param name="def"></param>
-    /// <returns></returns>
-    public static T EnumTry<T>(this string name, T def) where T : Enum
+    public static T EnumTry<T>(this string name, T def)
+        where T : Enum
     {
         return !System.Enum.TryParse(typeof(T), name, out var ret) ? def : (T)ret;
     }
@@ -218,7 +208,6 @@ public static partial class StringExtensions
     ///     将字符串转为guid
     /// </summary>
     /// <param name="me">字符串</param>
-    /// <returns></returns>
     public static Guid Guid(this string me)
     {
         return System.Guid.Parse(me);
@@ -229,7 +218,6 @@ public static partial class StringExtensions
     /// </summary>
     /// <param name="me">字符串</param>
     /// <param name="def">转换失败的返回值</param>
-    /// <returns></returns>
     public static Guid Guid(this string me, Guid def)
     {
         return System.Guid.TryParse(me, out var ret) ? ret : def;
@@ -245,7 +233,6 @@ public static partial class StringExtensions
     {
         return e.GetBytes(me);
     }
-    //public  static  byte[] TextHex(this string me,)
 
     /// <summary>
     ///     将字符串转换成字节数组形式
@@ -260,7 +247,7 @@ public static partial class StringExtensions
     /// <summary>
     ///     对一个字符串进行sha1 hash运算
     /// </summary>
-    /// <param name="me">对一个字符串进行sha1 hash运算</param>
+    /// <param name="me">me</param>
     /// <param name="secret">密钥</param>
     /// <param name="e">使用的编码</param>
     /// <returns>hash摘要的16进制文本形式（无连字符小写）</returns>
@@ -276,8 +263,6 @@ public static partial class StringExtensions
     /// <summary>
     ///     html编码
     /// </summary>
-    /// <param name="me"></param>
-    /// <returns></returns>
     public static string Html(this string me)
     {
         return HttpUtility.HtmlEncode(me);
@@ -338,8 +323,6 @@ public static partial class StringExtensions
     /// <summary>
     ///     ipv4格式转int32格式
     /// </summary>
-    /// <param name="me"></param>
-    /// <returns></returns>
     public static int IpV4ToInt32(this string me)
     {
         return BitConverter.ToInt32(me.Split('.').Select(byte.Parse).Reverse().ToArray(), 0);
@@ -349,7 +332,6 @@ public static partial class StringExtensions
     ///     是否base64字符串
     /// </summary>
     /// <param name="me">字符串</param>
-    /// <returns></returns>
     public static bool IsBase64String(this string me)
     {
         // 一个合法的Base64，有着以下特征：
@@ -375,15 +357,9 @@ public static partial class StringExtensions
     /// <summary>
     ///     中文姓名打马赛克
     /// </summary>
-    /// <param name="me"></param>
-    /// <returns></returns>
     public static string MaskChineseName(this string me)
     {
-        if (me.Length == 2) {
-            return "*" + me[1..];
-        }
-
-        return me[..1] + "*" + me[^1..];
+        return me.Length == 2 ? "*" + me[1..] : me[..1] + "*" + me[^1..];
     }
 
     /// <summary>
@@ -393,7 +369,7 @@ public static partial class StringExtensions
     /// <returns>掩码后的手机号</returns>
     public static string MaskMobile(this string me)
     {
-        return new Regex(@"^(\d{3})\d{4}(\d{4})$").Replace(me, "$1****$2");
+        return RegexMobile().Replace(me, "$1****$2");
     }
 
     /// <summary>
@@ -404,8 +380,7 @@ public static partial class StringExtensions
     /// <returns>hash摘要的16进制文本形式（无连字符小写）</returns>
     public static string Md5(this string me, Encoding e)
     {
-        using var md5 = MD5.Create();
-        return BitConverter.ToString(md5.ComputeHash(e.GetBytes(me)))
+        return BitConverter.ToString(MD5.HashData(e.GetBytes(me)))
                            .Replace("-", string.Empty)
                            .ToLower(CultureInfo.CurrentCulture);
     }
@@ -424,8 +399,6 @@ public static partial class StringExtensions
     /// <summary>
     ///     null或空白字符
     /// </summary>
-    /// <param name="me"></param>
-    /// <returns></returns>
     public static bool NullOrWhiteSpace(this string me)
     {
         return string.IsNullOrWhiteSpace(me);
@@ -471,17 +444,15 @@ public static partial class StringExtensions
     /// <returns>处理之后的字符串</returns>
     public static string RemoveHtmlTag(this string me)
     {
-        return new Regex(@"<[^>]*>").Replace(me, "");
+        return RegexHtmlTag().Replace(me, string.Empty);
     }
 
     /// <summary>
     ///     删除换行符
     /// </summary>
-    /// <param name="me"></param>
-    /// <returns></returns>
     public static string RemoveWrapped(this string me)
     {
-        return me.Replace("\r", "").Replace("\n", "");
+        return me.Replace("\r", string.Empty).Replace("\n", string.Empty);
     }
 
     /// <summary>
@@ -492,8 +463,7 @@ public static partial class StringExtensions
     /// <returns>hash摘要的16进制文本形式（无连字符小写）</returns>
     public static string Sha1(this string me, Encoding e)
     {
-        using var sha1 = SHA1.Create();
-        return BitConverter.ToString(sha1.ComputeHash(e.GetBytes(me)))
+        return BitConverter.ToString(SHA1.HashData(e.GetBytes(me)))
                            .Replace("-", string.Empty)
                            .ToLower(CultureInfo.CurrentCulture);
     }
@@ -501,20 +471,14 @@ public static partial class StringExtensions
     /// <summary>
     ///     蛇形命名
     /// </summary>
-    /// <param name="me"></param>
-    /// <returns></returns>
     public static string Snakecase(this string me)
     {
-        return Regex.Replace(me, "([A-Z])", "-$1").ToLower().TrimStart('-');
+        return RegexUpperCaseLetter().Replace(me, "-$1").ToLower(CultureInfo.InvariantCulture).TrimStart('-');
     }
 
     /// <summary>
     ///     截取指定长度的字符串，代替substring
     /// </summary>
-    /// <param name="me"></param>
-    /// <param name="startIndex"></param>
-    /// <param name="length"></param>
-    /// <returns></returns>
     public static string Sub(this string me, int startIndex, int length)
     {
         if (startIndex + length > me.Length) {
@@ -527,8 +491,6 @@ public static partial class StringExtensions
     /// <summary>
     ///     纯文本字符串转html
     /// </summary>
-    /// <param name="me"></param>
-    /// <returns></returns>
     public static string Text2Html(this string me)
     {
         return $"<pre>{me}</pre>";
@@ -537,28 +499,22 @@ public static partial class StringExtensions
     /// <summary>
     ///     将连续多个空格替换成一个空格
     /// </summary>
-    /// <param name="me"></param>
-    /// <returns></returns>
     public static string TrimSpaces(this string me)
     {
         var ret = me.Replace("  ", " ");
+
         // ReSharper disable once TailRecursiveCall
         return ret == me ? ret : ret.TrimSpaces();
     }
 
     /// <summary>
-    ///     将\ux0000 、 %u0000 、 &#x0000;  编码转换成可读字符串
+    ///     将\ux0000 、 %u0000 、 &amp;#x0000;  编码转换成可读字符串
     /// </summary>
-    /// <param name="me"></param>
-    /// <returns></returns>
     public static string UnicodeDe(this string me)
     {
         const string replacement = "&#x$1;";
-        if (me.Contains(@"\u")) {
-            return RegexBacksLantUnicode().Replace(me, replacement).HtmlDe();
-        }
-
-        return me.Contains(@"%u") ? RegexPercentUnicode().Replace(me, replacement).HtmlDe() : me.HtmlDe();
+        return me.Contains(@"\u") ? RegexBacksLantUnicode().Replace(me, replacement).HtmlDe() :
+            me.Contains(@"%u")    ? RegexPercentUnicode().Replace(me, replacement).HtmlDe() : me.HtmlDe();
     }
 
     /// <summary>
@@ -599,6 +555,15 @@ public static partial class StringExtensions
     [GeneratedRegex("\\\\u([a-fA-F0-9]{4})")]
     private static partial Regex RegexBacksLantUnicode();
 
+    [GeneratedRegex("<[^>]*>")]
+    private static partial Regex RegexHtmlTag();
+
+    [GeneratedRegex("^(\\d{3})\\d{4}(\\d{4})$")]
+    private static partial Regex RegexMobile();
+
     [GeneratedRegex("\\\\u([a-fA-F0-9]{4})")]
     private static partial Regex RegexPercentUnicode();
+
+    [GeneratedRegex("([A-Z])")]
+    private static partial Regex RegexUpperCaseLetter();
 }

@@ -1,5 +1,8 @@
 namespace NSExt.Extensions;
 
+/// <summary>
+///     ByteExtensions
+/// </summary>
 public static class ByteExtensions
 {
     /// <summary>
@@ -36,17 +39,16 @@ public static class ByteExtensions
     /// <summary>
     ///     将字节数组转换成16进制字符串
     /// </summary>
-    /// <param name="me"></param>
+    /// <param name="me">me</param>
     /// <param name="upperCase">是否大写</param>
     /// <param name="splitShar">字节间分隔符</param>
     /// <param name="splitInterval">分隔符跳跃字节数</param>
-    /// <returns></returns>
     public static string String(this IEnumerable<byte> me, bool upperCase = true, string splitShar = ""
                               , int                    splitInterval = 1)
     {
         var sb = new StringBuilder();
         var i  = 0;
-        foreach (var c in me.Select(x => x.ToString(upperCase ? "X2" : "x2"))) {
+        foreach (var c in me.Select(x => x.ToString(upperCase ? "X2" : "x2", CultureInfo.InvariantCulture))) {
             if (i++ % splitInterval == 0) {
                 sb.Append(splitShar);
             }

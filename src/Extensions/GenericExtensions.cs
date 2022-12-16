@@ -1,5 +1,8 @@
 namespace NSExt.Extensions;
 
+/// <summary>
+///     GenericExtensions
+/// </summary>
 public static class GenericExtensions
 {
     /// <summary>
@@ -14,27 +17,24 @@ public static class GenericExtensions
                                  , bool   isIncludeOrExclude = false)
     {
         foreach (var p in me.GetType().GetProperties()) {
-            if (!p.CanWrite) continue;
-            bool isSet;
-            if (isIncludeOrExclude)
-                isSet = propNameList?.Contains(p.Name) ?? false;
-            else
-                isSet = !propNameList?.Contains(p.Name) ?? true;
+            if (!p.CanWrite) {
+                continue;
+            }
 
-            if (isSet) p.SetValue(me, copyObj.GetType().GetProperty(p.Name)?.GetValue(copyObj, null), null);
+            var isSet = isIncludeOrExclude
+                ? propNameList?.Contains(p.Name)  ?? false
+                : !propNameList?.Contains(p.Name) ?? true;
+            if (isSet) {
+                p.SetValue(me, copyObj.GetType().GetProperty(p.Name)?.GetValue(copyObj, null), null);
+            }
         }
     }
-
 
     /// <summary>
     ///     判断是否与某对象相等
     /// </summary>
-    /// <typeparam name="T"></typeparam>
-    /// <param name="me"></param>
-    /// <param name="compare"></param>
-    /// <param name="ret"></param>
-    /// <returns></returns>
-    public static T Is<T>(this T me, T compare, T ret) where T : struct
+    public static T Is<T>(this T me, T compare, T ret)
+        where T : struct
     {
         return me.Equals(compare) ? ret : me;
     }

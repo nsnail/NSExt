@@ -4,9 +4,15 @@ using System.Text.Json.Serialization;
 
 namespace NSExt.Extensions;
 
+/// <summary>
+///     JsonSerializerOptionsExtensions
+/// </summary>
 public static class JsonSerializerOptionsExtensions
 {
-    public static JsonSerializerOptions NewJsonSerializerOptions(this JsonSerializerOptions me)
+    /// <summary>
+    ///     NewJsonSerializerOptions
+    /// </summary>
+    public static JsonSerializerOptions NewJsonSerializerOptions(this JsonSerializerOptions _)
     {
         return new JsonSerializerOptions {
                                              ReadCommentHandling  = JsonCommentHandling.Skip
