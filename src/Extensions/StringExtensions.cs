@@ -1,30 +1,14 @@
 // ReSharper disable UnusedMember.Global
 
-
 using System.Security.Cryptography;
 using System.Text.Json;
 
 namespace NSExt.Extensions;
 
-public static class StringExtensions
+public static partial class StringExtensions
 {
     private static readonly JsonSerializerOptions _defaultJsonSerializerOptions
         = default(JsonSerializerOptions).NewJsonSerializerOptions();
-
-    /// <summary>
-    ///     MD5 hmac编码
-    /// </summary>
-    /// <param name="me">字符串</param>
-    /// <param name="key">密钥</param>
-    /// <param name="e">字符串使用的编码</param>
-    /// <returns>hash摘要的16进制文本形式（无连字符小写）</returns>
-    private static string Md5Hmac(this string me, string key, Encoding e)
-    {
-        using var md5Hmac = new HMACMD5(e.GetBytes(key));
-        return BitConverter.ToString(md5Hmac.ComputeHash(e.GetBytes(me)))
-                           .Replace("-", string.Empty)
-                           .ToLower(CultureInfo.CurrentCulture);
-    }
 
     /// <summary>
     ///     aes加密
@@ -46,7 +30,6 @@ public static class StringExtensions
         var       decrypted = encryptor.TransformFinalBlock(bytes, 0, bytes.Length);
         return decrypted.Base64();
     }
-
 
     /// <summary>
     ///     aes解密
@@ -98,7 +81,7 @@ public static class StringExtensions
     /// <returns>解码后的原始字符串</returns>
     public static string Base64De(this string me, Encoding e)
     {
-        return e.GetString(Base64De(me));
+        return e.GetString(me.Base64De());
     }
 
     /// <summary>
@@ -156,7 +139,6 @@ public static class StringExtensions
             : ret;
     }
 
-
     /// <summary>
     ///     将字符串转换成日期对象
     /// </summary>
@@ -178,7 +160,6 @@ public static class StringExtensions
         return decimal.Parse(me, CultureInfo.CurrentCulture);
     }
 
-
     /// <summary>
     ///     尝试将字符串转为decimal
     /// </summary>
@@ -189,7 +170,6 @@ public static class StringExtensions
     {
         return !decimal.TryParse(me, out var ret) ? def : ret;
     }
-
 
     /// <summary>
     ///     string to double
@@ -211,7 +191,6 @@ public static class StringExtensions
     {
         return (T)System.Enum.Parse(typeof(T), name, true);
     }
-
 
     /// <summary>
     ///     将字符串转换成枚举对象
@@ -235,7 +214,6 @@ public static class StringExtensions
         return float.Parse(me, CultureInfo.CurrentCulture);
     }
 
-
     /// <summary>
     ///     将字符串转为guid
     /// </summary>
@@ -257,7 +235,6 @@ public static class StringExtensions
         return System.Guid.TryParse(me, out var ret) ? ret : def;
     }
 
-
     /// <summary>
     ///     将字符串转换成字节数组形式
     /// </summary>
@@ -268,6 +245,7 @@ public static class StringExtensions
     {
         return e.GetBytes(me);
     }
+    //public  static  byte[] TextHex(this string me,)
 
     /// <summary>
     ///     将字符串转换成字节数组形式
@@ -278,7 +256,6 @@ public static class StringExtensions
     {
         return me.Hex(Encoding.UTF8);
     }
-
 
     /// <summary>
     ///     对一个字符串进行sha1 hash运算
@@ -337,7 +314,6 @@ public static class StringExtensions
         return !int.TryParse(me, out var ret) ? def : ret;
     }
 
-
     /// <summary>
     ///     string to Int64
     /// </summary>
@@ -369,7 +345,6 @@ public static class StringExtensions
         return BitConverter.ToInt32(me.Split('.').Select(byte.Parse).Reverse().ToArray(), 0);
     }
 
-
     /// <summary>
     ///     是否base64字符串
     /// </summary>
@@ -380,14 +355,22 @@ public static class StringExtensions
         // 一个合法的Base64，有着以下特征：
         // 字符串的长度为4的整数倍。
         // 字符串的符号取值只能在A -Z, a -z, 0 -9, +, /, =共计65个字符中，且 = 如果出现就必须在结尾出现。
-        if (!me.All(x => x.IsBase64Character())) return false;
-        if (me.Length % 4 != 0) return false;
+        if (!me.All(x => x.IsBase64Character())) {
+            return false;
+        }
+
+        if (me.Length % 4 != 0) {
+            return false;
+        }
+
         var firstEqualSignPos = me.IndexOf('=');
-        if (firstEqualSignPos < 0) return true;
+        if (firstEqualSignPos < 0) {
+            return true;
+        }
+
         var lastEqualSignPos = me.LastIndexOf('=');
         return lastEqualSignPos == me.Length - 1 && me[firstEqualSignPos..lastEqualSignPos].All(x => x == '=');
     }
-
 
     /// <summary>
     ///     中文姓名打马赛克
@@ -396,7 +379,9 @@ public static class StringExtensions
     /// <returns></returns>
     public static string MaskChineseName(this string me)
     {
-        if (me.Length == 2) return "*" + me[1..];
+        if (me.Length == 2) {
+            return "*" + me[1..];
+        }
 
         return me[..1] + "*" + me[^1..];
     }
@@ -410,7 +395,6 @@ public static class StringExtensions
     {
         return new Regex(@"^(\d{3})\d{4}(\d{4})$").Replace(me, "$1****$2");
     }
-
 
     /// <summary>
     ///     对一个字符串进行md5hash运算
@@ -437,7 +421,6 @@ public static class StringExtensions
         return me.AsEnumerable().NullOrEmpty() ? defVal : me;
     }
 
-
     /// <summary>
     ///     null或空白字符
     /// </summary>
@@ -459,7 +442,6 @@ public static class StringExtensions
         return JsonSerializer.Deserialize<T>(me, options ?? _defaultJsonSerializerOptions);
     }
 
-
     /// <summary>
     ///     反序列化一个文件获得指定类型的数据对象
     /// </summary>
@@ -471,7 +453,6 @@ public static class StringExtensions
     {
         return JsonSerializer.Deserialize(me, type, options ?? _defaultJsonSerializerOptions);
     }
-
 
     /// <summary>
     ///     生成密码
@@ -503,7 +484,6 @@ public static class StringExtensions
         return me.Replace("\r", "").Replace("\n", "");
     }
 
-
     /// <summary>
     ///     对一个字符串进行sha1 hash运算
     /// </summary>
@@ -518,7 +498,6 @@ public static class StringExtensions
                            .ToLower(CultureInfo.CurrentCulture);
     }
 
-
     /// <summary>
     ///     蛇形命名
     /// </summary>
@@ -529,7 +508,6 @@ public static class StringExtensions
         return Regex.Replace(me, "([A-Z])", "-$1").ToLower().TrimStart('-');
     }
 
-
     /// <summary>
     ///     截取指定长度的字符串，代替substring
     /// </summary>
@@ -539,7 +517,10 @@ public static class StringExtensions
     /// <returns></returns>
     public static string Sub(this string me, int startIndex, int length)
     {
-        if (startIndex + length > me.Length) length = me.Length - startIndex;
+        if (startIndex + length > me.Length) {
+            length = me.Length - startIndex;
+        }
+
         return me.Substring(startIndex, length);
     }
 
@@ -562,9 +543,23 @@ public static class StringExtensions
     {
         var ret = me.Replace("  ", " ");
         // ReSharper disable once TailRecursiveCall
-        return ret == me ? ret : TrimSpaces(ret);
+        return ret == me ? ret : ret.TrimSpaces();
     }
 
+    /// <summary>
+    ///     将\ux0000 、 %u0000 、 &#x0000;  编码转换成可读字符串
+    /// </summary>
+    /// <param name="me"></param>
+    /// <returns></returns>
+    public static string UnicodeDe(this string me)
+    {
+        const string replacement = "&#x$1;";
+        if (me.Contains(@"\u")) {
+            return RegexBacksLantUnicode().Replace(me, replacement).HtmlDe();
+        }
+
+        return me.Contains(@"%u") ? RegexPercentUnicode().Replace(me, replacement).HtmlDe() : me.HtmlDe();
+    }
 
     /// <summary>
     ///     url编码
@@ -585,4 +580,25 @@ public static class StringExtensions
     {
         return Uri.UnescapeDataString(me);
     }
+
+    /// <summary>
+    ///     MD5 hmac编码
+    /// </summary>
+    /// <param name="me">字符串</param>
+    /// <param name="key">密钥</param>
+    /// <param name="e">字符串使用的编码</param>
+    /// <returns>hash摘要的16进制文本形式（无连字符小写）</returns>
+    private static string Md5Hmac(this string me, string key, Encoding e)
+    {
+        using var md5Hmac = new HMACMD5(e.GetBytes(key));
+        return BitConverter.ToString(md5Hmac.ComputeHash(e.GetBytes(me)))
+                           .Replace("-", string.Empty)
+                           .ToLower(CultureInfo.CurrentCulture);
+    }
+
+    [GeneratedRegex("\\\\u([a-fA-F0-9]{4})")]
+    private static partial Regex RegexBacksLantUnicode();
+
+    [GeneratedRegex("\\\\u([a-fA-F0-9]{4})")]
+    private static partial Regex RegexPercentUnicode();
 }
