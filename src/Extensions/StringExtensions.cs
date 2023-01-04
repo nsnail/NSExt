@@ -509,6 +509,16 @@ public static class StringExtensions
     }
 
     /// <summary>
+    ///     将\ux0000 、 %u0000 、 &amp;#x0000;  编码转换成可读字符串
+    /// </summary>
+    public static string UnicodeDe(this string me)
+    {
+        const string replacement = "&#x$1;";
+        return me.Contains(@"\u") ? Regexes.RegexBacksLantUnicode.Replace(me, replacement).HtmlDe() :
+            me.Contains(@"%u")    ? Regexes.RegexPercentUnicode.Replace(me, replacement).HtmlDe() : me.HtmlDe();
+    }
+
+    /// <summary>
     ///     url编码
     /// </summary>
     /// <param name="me">字符串</param>

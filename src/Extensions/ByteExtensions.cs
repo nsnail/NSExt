@@ -42,17 +42,20 @@ public static class ByteExtensions
     /// <param name="me">me</param>
     /// <param name="upperCase">是否大写</param>
     /// <param name="splitShar">字节间分隔符</param>
-    public static string String(this byte[] me, bool upperCase = true, string splitShar = null)
+    /// <param name="splitInterval">分隔符跳跃字节数</param>
+    public static string String(this IEnumerable<byte> me, bool upperCase = true, string splitShar = ""
+                              , int                    splitInterval = 1)
     {
-        var ret = BitConverter.ToString(me);
-        if (!upperCase) {
-            ret = ret.ToLower(CultureInfo.InvariantCulture);
+        var sb = new StringBuilder();
+        var i  = 0;
+        foreach (var c in me.Select(x => x.ToString(upperCase ? "X2" : "x2", CultureInfo.InvariantCulture))) {
+            if (i++ % splitInterval == 0) {
+                sb.Append(splitShar);
+            }
+
+            sb.Append(c);
         }
 
-        if (splitShar != "-") {
-            ret = ret.Replace("-", splitShar ?? string.Empty);
-        }
-
-        return ret;
+        return sb.ToString();
     }
 }
