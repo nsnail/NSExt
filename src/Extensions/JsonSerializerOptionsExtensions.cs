@@ -15,14 +15,12 @@ public static class JsonSerializerOptionsExtensions
     public static JsonSerializerOptions NewJsonSerializerOptions(this JsonSerializerOptions _)
     {
         return new JsonSerializerOptions {
-                                             ReadCommentHandling  = JsonCommentHandling.Skip
-                                           , AllowTrailingCommas  = true
-                                           , DictionaryKeyPolicy  = JsonNamingPolicy.CamelCase
-                                           , PropertyNamingPolicy = JsonNamingPolicy.CamelCase
-                                           , Encoder              = JavaScriptEncoder.UnsafeRelaxedJsonEscaping
-                                           , NumberHandling
-                                                 = JsonNumberHandling.AllowReadingFromString |
-                                                   JsonNumberHandling.WriteAsString
+                                             ReadCommentHandling         = JsonCommentHandling.Skip
+                                           , AllowTrailingCommas         = true
+                                           , DictionaryKeyPolicy         = JsonNamingPolicy.CamelCase
+                                           , PropertyNamingPolicy        = JsonNamingPolicy.CamelCase
+                                           , Encoder                     = JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+                                           , NumberHandling              = JsonNumberHandling.AllowReadingFromString
                                            , PropertyNameCaseInsensitive = true
                                          };
     }

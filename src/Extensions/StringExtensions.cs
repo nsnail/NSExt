@@ -4,13 +4,14 @@
 #pragma warning disable CA1720
 using System.Security.Cryptography;
 using System.Text.Json;
+using NSExt.Constant;
 
 namespace NSExt.Extensions;
 
 /// <summary>
 ///     StringExtensions
 /// </summary>
-public static partial class StringExtensions
+public static class StringExtensions
 {
     private static readonly JsonSerializerOptions _defaultJsonSerializerOptions
         = default(JsonSerializerOptions).NewJsonSerializerOptions();
@@ -369,7 +370,7 @@ public static partial class StringExtensions
     /// <returns>掩码后的手机号</returns>
     public static string MaskMobile(this string me)
     {
-        return MyRegex().Replace(me, "$1****$2");
+        return Regexes.RegexMobile.Replace(me, "$1****$2");
     }
 
     /// <summary>
@@ -444,7 +445,7 @@ public static partial class StringExtensions
     /// <returns>处理之后的字符串</returns>
     public static string RemoveHtmlTag(this string me)
     {
-        return MyRegex1().Replace(me, string.Empty);
+        return Regexes.RegexHtmlTag.Replace(me, string.Empty);
     }
 
     /// <summary>
@@ -473,7 +474,7 @@ public static partial class StringExtensions
     /// </summary>
     public static string Snakecase(this string me)
     {
-        return MyRegex2().Replace(me, "-$1").ToLower(CultureInfo.InvariantCulture).TrimStart('-');
+        return Regexes.RegexUpLetter.Replace(me, "-$1").ToLower(CultureInfo.InvariantCulture).TrimStart('-');
     }
 
     /// <summary>
@@ -541,13 +542,4 @@ public static partial class StringExtensions
                            .Replace("-", string.Empty)
                            .ToLower(CultureInfo.CurrentCulture);
     }
-
-    [GeneratedRegex("^(\\d{3})\\d{4}(\\d{4})$")]
-    private static partial Regex MyRegex();
-
-    [GeneratedRegex("<[^>]*>")]
-    private static partial Regex MyRegex1();
-
-    [GeneratedRegex("([A-Z])")]
-    private static partial Regex MyRegex2();
 }
