@@ -1,3 +1,6 @@
+using System.Reflection;
+using NSExt.Attributes;
+
 namespace NSExt.Extensions;
 
 /// <summary>
@@ -12,9 +15,15 @@ public static class EnumExtensions
     /// <returns>description属性</returns>
     public static string Desc(this Enum e)
     {
-        var t     = e.GetType();
-        var fi    = t.GetField(Enum.GetName(t, e)!);
-        var attrs = (DescriptionAttribute[])fi!.GetCustomAttributes(typeof(DescriptionAttribute), false);
-        return (attrs.Length != 0 ? attrs[0].Description : Enum.GetName(t, e)) ?? string.Empty;
+        var t        = e.GetType();
+        var fi       = t.GetField(Enum.GetName(t, e)!);
+        var descAttr = fi!.GetCustomAttribute<DescriptionAttribute>(false);
+        if (descAttr is null) {
+            return Enum.GetName(t, e);
+        }
+
+        var str     = descAttr.Description;
+        var locAttr = fi!.GetCustomAttribute<LocalizationAttribute>(false);
+        return locAttr is null ? str : locAttr.ResourceClass.GetProperty(str)?.GetValue(default) as string ?? str;
     }
 }
