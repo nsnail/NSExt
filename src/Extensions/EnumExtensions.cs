@@ -17,13 +17,13 @@ public static class EnumExtensions
     {
         var t        = e.GetType();
         var fi       = t.GetField(Enum.GetName(t, e)!);
-        var descAttr = fi!.GetCustomAttribute<DescriptionAttribute>(false);
+        var descAttr = fi!.GetCustomAttribute<DescriptionAttribute>(true);
         if (descAttr is null) {
             return Enum.GetName(t, e);
         }
 
         var str     = descAttr.Description;
-        var locAttr = fi!.GetCustomAttribute<LocalizationAttribute>(false);
+        var locAttr = fi!.GetCustomAttribute<LocalizationAttribute>(true);
         return locAttr is null ? str : locAttr.ResourceClass.GetProperty(str)?.GetValue(default) as string ?? str;
     }
 }
