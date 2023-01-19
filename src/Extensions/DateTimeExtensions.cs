@@ -13,7 +13,7 @@ public static class DateTimeExtensions
     /// <summary>
     ///     将一个过去时间对象与当前时间相减转换成“xx以前”的字符串, 如2秒以前, 3天以前
     /// </summary>
-    /// <param name="me">时间对象</param>
+    /// <param name="me">me</param>
     /// <returns>字符串</returns>
     public static string TimeAgo(this DateTime me)
     {
@@ -26,7 +26,7 @@ public static class DateTimeExtensions
     /// <summary>
     ///     指定时间的世界协调时的unix时间戳形式
     /// </summary>
-    /// <param name="me">指定时间</param>
+    /// <param name="me">me</param>
     /// <returns>unix时间戳</returns>
     public static long TimeUnixUtc(this DateTime me)
     {

@@ -17,7 +17,7 @@ public static class IntExtensions
     /// <summary>
     ///     生成随机数
     /// </summary>
-    /// <param name="me">大于等于[0]，小于[1]</param>
+    /// <param name="me">me</param>
     public static int Rand(this int[] me)
     {
         return new Random(Guid.NewGuid().GetHashCode()).Next(me[0], me[1]);

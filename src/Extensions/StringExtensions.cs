@@ -11,15 +11,13 @@ namespace NSExt.Extensions;
 /// <summary>
 ///     StringExtensions
 /// </summary>
+#pragma warning disable CodeLinesAnalyzer
 public static class StringExtensions
 {
-    private static readonly JsonSerializerOptions _defaultJsonSerializerOptions
-        = default(JsonSerializerOptions).NewJsonSerializerOptions();
-
     /// <summary>
     ///     aes加密
     /// </summary>
-    /// <param name="me">要加密的串</param>
+    /// <param name="me">me</param>
     /// <param name="key">密钥</param>
     public static string Aes(this string me, string key)
     {
@@ -36,7 +34,7 @@ public static class StringExtensions
     /// <summary>
     ///     aes解密
     /// </summary>
-    /// <param name="me">要加密的串</param>
+    /// <param name="me">me</param>
     /// <param name="key">密钥</param>
     public static string AesDe(this string me, string key)
     {
@@ -53,7 +51,7 @@ public static class StringExtensions
     /// <summary>
     ///     base64编码
     /// </summary>
-    /// <param name="me">待base64编码的字符串</param>
+    /// <param name="me">me</param>
     /// <param name="e">字符串的编码方式</param>
     /// <returns>编码后的base64字符串</returns>
     public static string Base64(this string me, Encoding e)
@@ -64,7 +62,7 @@ public static class StringExtensions
     /// <summary>
     ///     base64解码
     /// </summary>
-    /// <param name="me">待解码的字符串</param>
+    /// <param name="me">me</param>
     /// <returns>解码后的原始字节数组</returns>
     public static byte[] Base64De(this string me)
     {
@@ -74,7 +72,7 @@ public static class StringExtensions
     /// <summary>
     ///     base64解码
     /// </summary>
-    /// <param name="me">待解码的字符串</param>
+    /// <param name="me">me</param>
     /// <param name="e">字符串的编码方式</param>
     /// <returns>解码后的原始字符串</returns>
     public static string Base64De(this string me, Encoding e)
@@ -103,7 +101,7 @@ public static class StringExtensions
     /// <summary>
     ///     将字符串转换成日期对象
     /// </summary>
-    /// <param name="me">待转换字符串</param>
+    /// <param name="me">me</param>
     /// <returns>转换后的日期对象</returns>
     public static DateTime DateTime(this string me)
     {
@@ -113,7 +111,7 @@ public static class StringExtensions
     /// <summary>
     ///     将字符串转换成日期对象
     /// </summary>
-    /// <param name="me">待转换字符串</param>
+    /// <param name="me">me</param>
     /// <param name="format">日期格式</param>
     /// <returns>转换后的日期对象</returns>
     public static DateTime DateTimeExact(this string me, string format)
@@ -124,7 +122,7 @@ public static class StringExtensions
     /// <summary>
     ///     将字符串转换成日期对象
     /// </summary>
-    /// <param name="me">待转换字符串</param>
+    /// <param name="me">me</param>
     /// <param name="format">日期格式</param>
     /// <param name="def">转换失败时返回的日期对象</param>
     /// <returns>转换后的日期对象</returns>
@@ -138,7 +136,7 @@ public static class StringExtensions
     /// <summary>
     ///     将字符串转换成日期对象
     /// </summary>
-    /// <param name="me">待转换字符串</param>
+    /// <param name="me">me</param>
     /// <param name="def">转换失败时返回的日期对象</param>
     /// <returns>转换后的日期对象</returns>
     public static DateTime DateTimeTry(this string me, DateTime def)
@@ -149,7 +147,7 @@ public static class StringExtensions
     /// <summary>
     ///     string to decimal
     /// </summary>
-    /// <param name="me">string</param>
+    /// <param name="me">me</param>
     /// <returns>decimal</returns>
     public static decimal Dec(this string me)
     {
@@ -159,7 +157,7 @@ public static class StringExtensions
     /// <summary>
     ///     尝试将字符串转为decimal
     /// </summary>
-    /// <param name="me">字符串</param>
+    /// <param name="me">me</param>
     /// <param name="def">转换失败后返回的默认值</param>
     /// <returns>转换后的decimal</returns>
     public static decimal DecTry(this string me, decimal def)
@@ -170,7 +168,7 @@ public static class StringExtensions
     /// <summary>
     ///     string to double
     /// </summary>
-    /// <param name="me">string</param>
+    /// <param name="me">me</param>
     /// <returns>Int32</returns>
     public static double Double(this string me)
     {
@@ -198,7 +196,7 @@ public static class StringExtensions
     /// <summary>
     ///     string to float
     /// </summary>
-    /// <param name="me">string</param>
+    /// <param name="me">me</param>
     /// <returns>Int32</returns>
     public static float Float(this string me)
     {
@@ -208,7 +206,7 @@ public static class StringExtensions
     /// <summary>
     ///     将字符串转为guid
     /// </summary>
-    /// <param name="me">字符串</param>
+    /// <param name="me">me</param>
     public static Guid Guid(this string me)
     {
         return System.Guid.Parse(me);
@@ -217,7 +215,7 @@ public static class StringExtensions
     /// <summary>
     ///     将字符串转换成guid
     /// </summary>
-    /// <param name="me">字符串</param>
+    /// <param name="me">me</param>
     /// <param name="def">转换失败的返回值</param>
     public static Guid Guid(this string me, Guid def)
     {
@@ -227,7 +225,7 @@ public static class StringExtensions
     /// <summary>
     ///     将字符串转换成字节数组形式
     /// </summary>
-    /// <param name="me">字符串</param>
+    /// <param name="me">me</param>
     /// <param name="e">字符串使用的编码</param>
     /// <returns>字节数组</returns>
     public static byte[] Hex(this string me, Encoding e)
@@ -238,7 +236,7 @@ public static class StringExtensions
     /// <summary>
     ///     将字符串转换成字节数组形式
     /// </summary>
-    /// <param name="me">字符串</param>
+    /// <param name="me">me</param>
     /// <returns>字节数组</returns>
     public static byte[] Hex(this string me)
     {
@@ -272,7 +270,7 @@ public static class StringExtensions
     /// <summary>
     ///     解码html编码
     /// </summary>
-    /// <param name="me">html编码后的字符串</param>
+    /// <param name="me">me</param>
     /// <returns>解码后的原始字符串</returns>
     public static string HtmlDe(this string me)
     {
@@ -282,7 +280,7 @@ public static class StringExtensions
     /// <summary>
     ///     string to Int32
     /// </summary>
-    /// <param name="me">string</param>
+    /// <param name="me">me</param>
     /// <returns>Int32</returns>
     public static int Int32(this string me)
     {
@@ -292,7 +290,7 @@ public static class StringExtensions
     /// <summary>
     ///     尝试将字符串转为int32
     /// </summary>
-    /// <param name="me">字符串</param>
+    /// <param name="me">me</param>
     /// <param name="def">转换失败后返回的默认值</param>
     /// <returns>转换后的int32</returns>
     public static int Int32Try(this string me, int def)
@@ -303,7 +301,7 @@ public static class StringExtensions
     /// <summary>
     ///     string to Int64
     /// </summary>
-    /// <param name="me">string</param>
+    /// <param name="me">me</param>
     /// <returns>Int64</returns>
     public static long Int64(this string me)
     {
@@ -313,7 +311,7 @@ public static class StringExtensions
     /// <summary>
     ///     尝试将字符串转为int64
     /// </summary>
-    /// <param name="me">字符串</param>
+    /// <param name="me">me</param>
     /// <param name="def">转换失败后返回的默认值</param>
     /// <returns>转换后的int64</returns>
     public static long Int64Try(this string me, long def)
@@ -332,7 +330,7 @@ public static class StringExtensions
     /// <summary>
     ///     是否base64字符串
     /// </summary>
-    /// <param name="me">字符串</param>
+    /// <param name="me">me</param>
     public static bool IsBase64String(this string me)
     {
         // 一个合法的Base64，有着以下特征：
@@ -366,7 +364,7 @@ public static class StringExtensions
     /// <summary>
     ///     对一个手机号进行掩码处理
     /// </summary>
-    /// <param name="me">手机号</param>
+    /// <param name="me">me</param>
     /// <returns>掩码后的手机号</returns>
     public static string MaskMobile(this string me)
     {
@@ -376,7 +374,7 @@ public static class StringExtensions
     /// <summary>
     ///     对一个字符串进行md5hash运算
     /// </summary>
-    /// <param name="me">字符串</param>
+    /// <param name="me">me</param>
     /// <param name="e">字符串使用的编码</param>
     /// <returns>hash摘要的16进制文本形式（无连字符小写）</returns>
     public static string Md5(this string me, Encoding e)
@@ -389,7 +387,7 @@ public static class StringExtensions
     /// <summary>
     ///     判断字符串是否为null或不存在子元素（如果为集合对象）；如果为空，返回指定的默认值，否则返回字符串本身
     /// </summary>
-    /// <param name="me">指定字符串</param>
+    /// <param name="me">me</param>
     /// <param name="defVal">指定的默认值</param>
     /// <returns>如果为空，返回指定的默认值，否则返回字符串本身</returns>
     public static string NullOrEmpty(this string me, string defVal)
@@ -408,30 +406,30 @@ public static class StringExtensions
     /// <summary>
     ///     反序列化一个文件获得指定类型的数据对象
     /// </summary>
-    /// <param name="me">等待反序列化的json文本</param>
+    /// <param name="me">me</param>
     /// <param name="options">序列化选项</param>
     /// <returns>反序列化后生成的对象</returns>
     public static T Object<T>(this string me, JsonSerializerOptions options = null)
     {
-        return JsonSerializer.Deserialize<T>(me, options ?? _defaultJsonSerializerOptions);
+        return JsonSerializer.Deserialize<T>(me, options);
     }
 
     /// <summary>
     ///     反序列化一个文件获得指定类型的数据对象
     /// </summary>
-    /// <param name="me">等待反序列化的json文本</param>
+    /// <param name="me">me</param>
     /// <param name="type">实际类型</param>
     /// <param name="options">序列化选项</param>
     /// <returns>反序列化后生成的对象</returns>
     public static object Object(this string me, Type type, JsonSerializerOptions options = null)
     {
-        return JsonSerializer.Deserialize(me, type, options ?? _defaultJsonSerializerOptions);
+        return JsonSerializer.Deserialize(me, type, options);
     }
 
     /// <summary>
     ///     生成密码
     /// </summary>
-    /// <param name="me">密码原文</param>
+    /// <param name="me">me</param>
     /// <returns>密文</returns>
     public static string Pwd(this string me)
     {
@@ -441,7 +439,7 @@ public static class StringExtensions
     /// <summary>
     ///     移除字符串中的html标签
     /// </summary>
-    /// <param name="me">字符串</param>
+    /// <param name="me">me</param>
     /// <returns>处理之后的字符串</returns>
     public static string RemoveHtmlTag(this string me)
     {
@@ -459,7 +457,7 @@ public static class StringExtensions
     /// <summary>
     ///     对一个字符串进行sha1 hash运算
     /// </summary>
-    /// <param name="me">字符串</param>
+    /// <param name="me">me</param>
     /// <param name="e">字符串使用的编码</param>
     /// <returns>hash摘要的16进制文本形式（无连字符小写）</returns>
     public static string Sha1(this string me, Encoding e)
@@ -521,7 +519,7 @@ public static class StringExtensions
     /// <summary>
     ///     url编码
     /// </summary>
-    /// <param name="me">字符串</param>
+    /// <param name="me">me</param>
     /// <returns>url编码后的字符串</returns>
     public static string Url(this string me)
     {
@@ -531,7 +529,7 @@ public static class StringExtensions
     /// <summary>
     ///     解码url编码
     /// </summary>
-    /// <param name="me">url编码后的字符串</param>
+    /// <param name="me">me</param>
     /// <returns>解码后的原始字符串</returns>
     public static string UrlDe(this string me)
     {
@@ -541,7 +539,7 @@ public static class StringExtensions
     /// <summary>
     ///     MD5 hmac编码
     /// </summary>
-    /// <param name="me">字符串</param>
+    /// <param name="me">me</param>
     /// <param name="key">密钥</param>
     /// <param name="e">字符串使用的编码</param>
     /// <returns>hash摘要的16进制文本形式（无连字符小写）</returns>
@@ -553,3 +551,4 @@ public static class StringExtensions
                            .ToLower(CultureInfo.CurrentCulture);
     }
 }
+#pragma warning restore CodeLinesAnalyzer

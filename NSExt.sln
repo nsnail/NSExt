@@ -17,14 +17,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "meta", "meta", "{85E669CB-F
 		CodeCleanupOnSave.csx = CodeCleanupOnSave.csx
 		CodeQuality.props = CodeQuality.props
 		Directory.Build.props = Directory.Build.props
-		dot.sln.DotSettings = dot.sln.DotSettings
 		dotnet-tools.json = dotnet-tools.json
 		git-clean.cmd = git-clean.cmd
 		global.json = global.json
 		ImageOptimize.csx = ImageOptimize.csx
 		LICENSE = LICENSE
-		push2nuget.ps1 = push2nuget.ps1
+		NSExt.sln.DotSettings = NSExt.sln.DotSettings
+		NSExt.sln.DotSettings.user = NSExt.sln.DotSettings.user
 		README.md = README.md
+		README.zh-CN.md = README.zh-CN.md
 		stylecop.json = stylecop.json
 		StyleCopAnalyzers.ruleset = StyleCopAnalyzers.ruleset
 	EndProjectSection

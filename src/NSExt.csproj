@@ -1,17 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
-    <PropertyGroup>
-        <TargetFramework>net7.0</TargetFramework>
-        <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    </PropertyGroup>
+    <Import Project="../CodeQuality.props"/>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.Extensions.Logging" Version="7.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Logging" Version="7.0.0"/>
         <PackageReference Include="MinVer" Version="4.3.0-beta.1">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
     </ItemGroup>
+    <ItemGroup>
+        <None Include="../logo.png" Pack="true" PackagePath=""/>
+    </ItemGroup>
 
-    <Import Project="../CodeQuality.props" />
 </Project>

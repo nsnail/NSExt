@@ -9,7 +9,7 @@ public static class GenericExtensions
     ///     从指定的对象拷贝属性
     /// </summary>
     /// <typeparam name="T">对象类型</typeparam>
-    /// <param name="me">拷贝目标</param>
+    /// <param name="me">me</param>
     /// <param name="copyObj">拷贝来源</param>
     /// <param name="propNameList">需要处理的属性名</param>
     /// <param name="isIncludeOrExclude">True包含，false排除</param>

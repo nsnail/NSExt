@@ -10,20 +10,17 @@ public static class ObjectExtensions
     /// <summary>
     ///     将一个对象序列化成json文本
     /// </summary>
-    /// <param name="me">指定对象</param>
-    /// <param name="format">是否格式化</param>
+    /// <param name="me">me</param>
     /// <returns>json文本</returns>
-    public static string Json(this object me, bool format = false)
+    public static string Json(this object me)
     {
-        var defaultOptions = default(JsonSerializerOptions).NewJsonSerializerOptions();
-        defaultOptions.WriteIndented = format;
-        return Json(me, defaultOptions);
+        return JsonSerializer.Serialize(me);
     }
 
     /// <summary>
     ///     将一个对象序列化成json文本
     /// </summary>
-    /// <param name="me">指定对象</param>
+    /// <param name="me">me</param>
     /// <param name="options">序列化选项</param>
     /// <returns>json文本</returns>
     public static string Json(this object me, JsonSerializerOptions options)

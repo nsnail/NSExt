@@ -13,15 +13,20 @@ trim_trailing_whitespace = true
 [*.cs]
 dotnet_analyzer_diagnostic.severity = warning
 dotnet_diagnostic.CA1707.severity = none
-dotnet_diagnostic.CA1720.severity = none
+dotnet_diagnostic.CA1716.severity = none
+dotnet_diagnostic.CA1848.severity = none
+dotnet_diagnostic.CA2254.severity = none
 dotnet_diagnostic.CA5350.severity = none
 dotnet_diagnostic.CA5351.severity = none
+dotnet_diagnostic.IDE0005.severity = none
 dotnet_diagnostic.IDE0008.severity = none
+dotnet_diagnostic.IDE0010.severity = none
 dotnet_diagnostic.IDE0017.severity = none
 dotnet_diagnostic.IDE0048.severity = none
 dotnet_diagnostic.IDE0055.severity = none
 dotnet_diagnostic.IDE0058.severity = none
 dotnet_diagnostic.IDE0160.severity = none
+dotnet_diagnostic.SYSLIB1045.severity = none
 
 
 # ReSharper properties

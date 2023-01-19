@@ -17,7 +17,7 @@ public static class EnumerableExtensions
     ///     判断对象是否为null或不存在子元素（如果为集合对象）
     /// </summary>
     /// <typeparam name="T">对象类型</typeparam>
-    /// <param name="me">指定对象</param>
+    /// <param name="me">me</param>
     /// <returns>空则返回true</returns>
     public static bool NullOrEmpty<T>(this IEnumerable<T> me)
     {

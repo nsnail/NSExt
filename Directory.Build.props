@@ -1,22 +1,35 @@
 <Project>
     <PropertyGroup>
-        <ImplicitUsings>enable</ImplicitUsings>
-        <BaseOutputPath>../dist</BaseOutputPath>
-        <BaseIntermediateOutputPath>../dist</BaseIntermediateOutputPath>
-        <OutputPath>$(BaseOutputPath)/$(MSBuildProjectName)/bin</OutputPath>
-        <IntermediateOutputPath>$(BaseIntermediateOutputPath)/$(MSBuildProjectName)/obj</IntermediateOutputPath>
-        <MSBuildProjectExtensionsPath>$(BaseIntermediateOutputPath)/$(MSBuildProjectName)/obj</MSBuildProjectExtensionsPath>
+        <AssemblyOriginatorKeyFile>../key.snk</AssemblyOriginatorKeyFile>
         <Authors>nsnail</Authors>
-        <Product>NSExt</Product>
-        <Copyright>© 2006-2022 nsnail</Copyright>
-        <RepositoryUrl>https://github.com/nsnail/ns-ext.git</RepositoryUrl>
-        <PublishRepositoryUrl>true</PublishRepositoryUrl>
-        <EmbedUntrackedSource>true</EmbedUntrackedSource>
+        <BaseIntermediateOutputPath>../dist</BaseIntermediateOutputPath>
+        <BaseOutputPath>../dist</BaseOutputPath>
+        <Copyright>© 2006-2023 nsnail</Copyright>
+        <DelaySign>false</DelaySign>
+        <Description>A .NET extension function library</Description>
         <EmbedAllSources>true</EmbedAllSources>
-        <RepositoryType>Git</RepositoryType>
+        <EmbedUntrackedSource>true</EmbedUntrackedSource>
+        <EnableBaseIntermediateOutputPathMismatchWarning>false</EnableBaseIntermediateOutputPathMismatchWarning>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <ImplicitUsings>enable</ImplicitUsings>
         <IncludeSymbols>true</IncludeSymbols>
-        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+        <IntermediateOutputPath>$(BaseIntermediateOutputPath)/$(MSBuildProjectName)/obj</IntermediateOutputPath>
+        <IsPackable>true</IsPackable>
+        <MSBuildProjectExtensionsPath>$(BaseIntermediateOutputPath)/$(MSBuildProjectName)/obj</MSBuildProjectExtensionsPath>
+        <OutputPath>$(BaseOutputPath)/$(MSBuildProjectName)/bin</OutputPath>
+        <PackageIcon>logo.png</PackageIcon>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageProjectUrl>https://github.com/nsnail/ns-ext.git</PackageProjectUrl>
+        <PackageTags>extensions</PackageTags>
+        <Product>NSExt</Product>
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <RepositoryUrl>https://github.com/nsnail/ns-ext.git</RepositoryUrl>
+        <SignAssembly>true</SignAssembly>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+        <TargetFramework>net7.0</TargetFramework>
+        <TargetFramework>net7.0</TargetFramework>
+        <Title>$(AssemblyName)</Title>
     </PropertyGroup>
 </Project>

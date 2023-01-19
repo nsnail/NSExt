@@ -1,1 +1,2 @@
-git reset --hard | git clean -d -fx .
+git reset --hard
+git clean -d -fx .

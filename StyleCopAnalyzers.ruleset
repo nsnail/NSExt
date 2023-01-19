@@ -13,7 +13,7 @@
         <Rule Id="SA1002" Action="Warning"/>          <!-- Semicolons should be spaced correctly -->
         <Rule Id="SA1003" Action="Warning"/>          <!-- Symbols should be spaced correctly -->
         <Rule Id="SA1004" Action="Warning"/>          <!-- Documentation lines should begin with single space -->
-        <Rule Id="SA1005" Action="None"/>             <!-- Single line comments should begin with single space -->
+        <Rule Id="SA1005" Action="Warning"/>             <!-- Single line comments should begin with single space -->
         <Rule Id="SA1006" Action="Warning"/>          <!-- Preprocessor keywords should not be preceded by space -->
         <Rule Id="SA1007" Action="Warning"/>          <!-- Operator keyword should be followed by space -->
         <Rule Id="SA1008" Action="None"/>             <!-- Opening parenthesis should be spaced correctly -->
@@ -73,7 +73,7 @@
         <Rule Id="SA1131" Action="Warning"/>          <!-- Use readable conditions -->
         <Rule Id="SA1132" Action="Warning"/>          <!-- Do not combine fields -->
         <Rule Id="SA1133" Action="Warning"/>          <!-- Do not combine attributes -->
-        <Rule Id="SA1134" Action="None"/>             <!-- Attributes should not share line -->
+        <Rule Id="SA1134" Action="Warning"/>             <!-- Attributes should not share line -->
         <Rule Id="SA1135" Action="Warning"/>          <!-- Using directives should be qualified -->
         <Rule Id="SA1136" Action="Warning"/>          <!-- Enum values should be on separate lines -->
         <Rule Id="SA1137" Action="Warning"/>          <!-- Elements should have the same indentation -->
@@ -115,7 +115,7 @@
         <Rule Id="SA1310" Action="None"/>             <!-- Field names should not contain underscore -->
         <Rule Id="SA1311" Action="Warning"/>          <!-- Static readonly fields should begin with upper-case letter -->
         <Rule Id="SA1312" Action="Warning"/>          <!-- Variable names should begin with lower-case letter -->
-        <Rule Id="SA1313" Action="None"/>             <!-- Parameter names should begin with lower-case letter -->
+        <Rule Id="SA1313" Action="Warning"/>             <!-- Parameter names should begin with lower-case letter -->
         <Rule Id="SA1314" Action="Warning"/>          <!-- Type parameter names should begin with T -->
         <Rule Id="SX1309" Action="Warning"/>          <!-- Field names should begin with underscore -->
         <Rule Id="SX1309S" Action="Warning"/>         <!-- Static field names should begin with underscore -->
@@ -125,12 +125,12 @@
         <Rule Id="SA1119" Action="Warning"/>          <!-- Statement should not use unnecessary parenthesis -->
         <Rule Id="SA1400" Action="Warning"/>          <!-- Access modifier should be declared -->
         <Rule Id="SA1401" Action="Warning"/>          <!-- Fields should be private -->
-        <Rule Id="SA1402" Action="Warning"/>          <!-- File may only contain a single type -->
+        <Rule Id="SA1402" Action="None"/>          <!-- File may only contain a single type -->
         <Rule Id="SA1403" Action="Warning"/>          <!-- File may only contain a single namespace -->
         <Rule Id="SA1404" Action="Warning"/>          <!-- Code analysis suppression should have justification -->
         <Rule Id="SA1405" Action="Warning"/>          <!-- Debug.Assert should provide message text -->
         <Rule Id="SA1406" Action="Warning"/>          <!-- Debug.Fail should provide message text -->
-        <Rule Id="SA1407" Action="None"/>             <!-- Arithmetic expressions should declare precedence -->
+        <Rule Id="SA1407" Action="Warning"/>             <!-- Arithmetic expressions should declare precedence -->
         <Rule Id="SA1408" Action="Warning"/>          <!-- Conditional expressions should declare precedence -->
         <Rule Id="SA1409" Action="Warning"/>          <!-- Remove unnecessary code -->
         <Rule Id="SA1410" Action="Warning"/>          <!-- Remove delegate parenthesis when possible -->
@@ -143,7 +143,7 @@
         <Rule Id="SA1500" Action="None"/>             <!-- Braces for multi-line statements should not share line -->
         <Rule Id="SA1501" Action="Warning"/>          <!-- Statement should not be on a single line -->
         <Rule Id="SA1502" Action="None"/>             <!-- Element should not be on a single line -->
-        <Rule Id="SA1503" Action="None"/>             <!-- Braces should not be omitted -->
+        <Rule Id="SA1503" Action="Warning"/>             <!-- Braces should not be omitted -->
         <Rule Id="SA1504" Action="Warning"/>          <!-- All accessors should be single-line or multi-line -->
         <Rule Id="SA1505" Action="Warning"/>          <!-- Opening braces should not be followed by blank line -->
         <Rule Id="SA1506" Action="Warning"/>          <!-- Element documentation headers should not be followed by blank line -->
@@ -173,7 +173,7 @@
         <Rule Id="SA1606" Action="Warning"/>          <!-- Element documentation should have summary text -->
         <Rule Id="SA1607" Action="Warning"/>          <!-- Partial element documentation should have summary text -->
         <Rule Id="SA1608" Action="Warning"/>          <!-- Element documentation should not have default summary -->
-        <Rule Id="SA1609" Action="Warning"/>          <!-- Property documentation should have value -->
+        <Rule Id="SA1609" Action="None"/>          <!-- Property documentation should have value -->
         <Rule Id="SA1610" Action="Warning"/>          <!-- Property documentation should have value text -->
         <Rule Id="SA1611" Action="None"/>             <!-- Element parameters should be documented -->
         <Rule Id="SA1612" Action="Warning"/>          <!-- Element parameter documentation should match element parameters -->
@@ -187,13 +187,13 @@
         <Rule Id="SA1620" Action="Warning"/>          <!-- Generic type parameter documentation should match type parameters -->
         <Rule Id="SA1621" Action="Warning"/>          <!-- Generic type parameter documentation should declare parameter name -->
         <Rule Id="SA1622" Action="Warning"/>          <!-- Generic type parameter documentation should have text -->
-        <Rule Id="SA1623" Action="Warning"/>          <!-- Property summary documentation should match accessors -->
+        <Rule Id="SA1623" Action="None"/>          <!-- Property summary documentation should match accessors -->
         <Rule Id="SA1624" Action="Warning"/>          <!-- Property summary documentation should omit accessor with restricted access -->
         <Rule Id="SA1625" Action="Warning"/>          <!-- Element documentation should not be copied and pasted -->
         <Rule Id="SA1626" Action="Warning"/>          <!-- Single-line comments should not use documentation style slashes -->
         <Rule Id="SA1627" Action="Warning"/>          <!-- Documentation text should not be empty -->
         <Rule Id="SA1628" Action="Warning"/>          <!-- Documentation text should begin with a capital letter -->
-        <Rule Id="SA1629" Action="None"/>             <!-- Documentation text should end with a period -->
+        <Rule Id="SA1629" Action="None"/>          <!-- Documentation text should end with a period -->
         <Rule Id="SA1630" Action="Warning"/>          <!-- Documentation text should contain whitespace -->
         <Rule Id="SA1631" Action="Warning"/>          <!-- Documentation should meet character percentage -->
         <Rule Id="SA1632" Action="Warning"/>          <!-- Documentation text should meet minimum character length -->
