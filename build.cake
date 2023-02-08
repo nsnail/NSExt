@@ -15,7 +15,7 @@ Task("Build")
     .IsDependentOn("Clean")
     .Does(context =>
 {
-    DotNetPublish("./src/NSExt.csproj", new DotNetPublishSettings {
+    DotNetPublish("./src/NSExt/NSExt.csproj", new DotNetPublishSettings {
         Configuration = configuration,
         Framework = framework,
     });
@@ -89,7 +89,7 @@ Task("Publish-NuGet")
  }
 
  // Publish to GitHub Packages
- foreach(var file in context.GetFiles("./dist/NSExt/bin/*.*"))
+ foreach(var file in context.GetFiles("./dist/NSExt/bin/Release/*.*"))
  {
      context.Information("Publishing {0}...", file.GetFilename().FullPath);
      DotNetNuGetPush(file.FullPath, new DotNetNuGetPushSettings
