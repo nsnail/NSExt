@@ -1,35 +1,13 @@
 <Project>
     <PropertyGroup>
-        <AssemblyOriginatorKeyFile>../key.snk</AssemblyOriginatorKeyFile>
+        <!--        $(XXX) 定义有顺序 排序请注意-->
+        <SolutionDir>$(MSBuildThisFileDirectory)</SolutionDir>
         <Authors>nsnail</Authors>
-        <BaseIntermediateOutputPath>../dist</BaseIntermediateOutputPath>
-        <BaseOutputPath>../dist</BaseOutputPath>
+        <BaseIntermediateOutputPath>$(SolutionDir)/dist/$(MSBuildProjectName)/obj</BaseIntermediateOutputPath>
+        <BaseOutputPath>$(SolutionDir)/dist/$(MSBuildProjectName)/bin</BaseOutputPath>
         <Copyright>© 2006-2023 nsnail</Copyright>
-        <DelaySign>false</DelaySign>
-        <Description>A .NET extension function library</Description>
-        <EmbedAllSources>true</EmbedAllSources>
-        <EmbedUntrackedSource>true</EmbedUntrackedSource>
         <EnableBaseIntermediateOutputPathMismatchWarning>false</EnableBaseIntermediateOutputPathMismatchWarning>
-        <GenerateDocumentationFile>true</GenerateDocumentationFile>
-        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <ImplicitUsings>enable</ImplicitUsings>
-        <IncludeSymbols>true</IncludeSymbols>
-        <IntermediateOutputPath>$(BaseIntermediateOutputPath)/$(MSBuildProjectName)/obj</IntermediateOutputPath>
-        <IsPackable>true</IsPackable>
-        <MSBuildProjectExtensionsPath>$(BaseIntermediateOutputPath)/$(MSBuildProjectName)/obj</MSBuildProjectExtensionsPath>
-        <OutputPath>$(BaseOutputPath)/$(MSBuildProjectName)/bin</OutputPath>
-        <PackageIcon>logo.png</PackageIcon>
-        <PackageLicenseExpression>MIT</PackageLicenseExpression>
-        <PackageProjectUrl>https://github.com/nsnail/ns-ext.git</PackageProjectUrl>
-        <PackageTags>extensions</PackageTags>
-        <Product>NSExt</Product>
-        <PublishRepositoryUrl>true</PublishRepositoryUrl>
-        <RepositoryType>git</RepositoryType>
-        <RepositoryUrl>https://github.com/nsnail/ns-ext.git</RepositoryUrl>
-        <SignAssembly>true</SignAssembly>
-        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <TargetFramework>net7.0</TargetFramework>
-        <TargetFramework>net7.0</TargetFramework>
-        <Title>$(AssemblyName)</Title>
     </PropertyGroup>
 </Project>

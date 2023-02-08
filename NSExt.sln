@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NSExt", "src\NSExt.csproj", "{70DD1C27-7ACB-4BE0-A9CD-D781E4050DE5}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "meta", "meta", "{85E669CB-FC0A-4C1D-92DE-38D0662C257D}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
@@ -30,6 +28,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "meta", "meta", "{85E669CB-F
 		StyleCopAnalyzers.ruleset = StyleCopAnalyzers.ruleset
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NSExt.Tests", "src\NSExt.Tests\NSExt.Tests.csproj", "{557FBEF6-E6D5-4531-86DF-D772A10E2261}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NSExt", "src\NSExt\NSExt.csproj", "{BA0982BE-6E57-4AAF-9778-F9B2EB46F505}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,9 +41,13 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{70DD1C27-7ACB-4BE0-A9CD-D781E4050DE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{70DD1C27-7ACB-4BE0-A9CD-D781E4050DE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{70DD1C27-7ACB-4BE0-A9CD-D781E4050DE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{70DD1C27-7ACB-4BE0-A9CD-D781E4050DE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{557FBEF6-E6D5-4531-86DF-D772A10E2261}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{557FBEF6-E6D5-4531-86DF-D772A10E2261}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{557FBEF6-E6D5-4531-86DF-D772A10E2261}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{557FBEF6-E6D5-4531-86DF-D772A10E2261}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA0982BE-6E57-4AAF-9778-F9B2EB46F505}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA0982BE-6E57-4AAF-9778-F9B2EB46F505}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA0982BE-6E57-4AAF-9778-F9B2EB46F505}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA0982BE-6E57-4AAF-9778-F9B2EB46F505}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
