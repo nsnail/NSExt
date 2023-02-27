@@ -496,6 +496,25 @@ public static class StringExtensions
     }
 
     /// <summary>
+    ///     首字母小写
+    /// </summary>
+    public static string ToLowerCamelCase(this string me)
+    {
+        return string.IsNullOrWhiteSpace(me)
+            ? me
+            : string.Concat( //
+                me[0].ToString(CultureInfo.InvariantCulture).ToLowerInvariant(), me.AsSpan(1));
+    }
+
+    /// <summary>
+    ///     首字母大写
+    /// </summary>
+    public static string ToUpperCamelCase(this string me)
+    {
+        return string.IsNullOrWhiteSpace(me) ? me : string.Concat(me[0].ToString().ToUpperInvariant(), me.AsSpan(1));
+    }
+
+    /// <summary>
     ///     将连续多个空格替换成一个空格
     /// </summary>
     public static string TrimSpaces(this string me)

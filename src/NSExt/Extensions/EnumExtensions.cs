@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using System.Reflection;
 using NSExt.Attributes;
 
@@ -13,6 +14,7 @@ public static class EnumExtensions
     /// </summary>
     /// <param name="e">枚举对象</param>
     /// <returns>description属性</returns>
+    [Obsolete(nameof(ResDesc))]
     public static string Desc(this Enum e)
     {
         var typeOfEnum  = e.GetType();
@@ -25,6 +27,23 @@ public static class EnumExtensions
         var str     = descAttr.Description;
         var locAttr = typeOfField!.GetCustomAttribute<LocalizationAttribute>(true);
         return locAttr is null ? str : locAttr.ResourceClass.GetProperty(str)?.GetValue(default) as string ?? str;
+    }
+
+    /// <summary>
+    ///     通过类泛型类型获取特性
+    /// </summary>
+    public static T GetAttributeOfType<T>(this Enum me)
+        where T : Attribute
+    {
+        return me.GetType().GetMember(me.ToString()).First().GetCustomAttributes<T>(false).FirstOrDefault();
+    }
+
+    /// <summary>
+    ///     获取显示特性
+    /// </summary>
+    public static DisplayAttribute GetDisplay(this Enum me)
+    {
+        return me.GetAttributeOfType<DisplayAttribute>();
     }
 
     /// <summary>

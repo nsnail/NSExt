@@ -17,7 +17,7 @@ public class TestCase
         _testOutputHelper = testOutputHelper;
     }
 
-    public enum MyEnum
+    public enum MyEnum1
     {
         [ResourceDescription<TestCase>(nameof(Description))]
         Online = 1
@@ -33,7 +33,7 @@ public class TestCase
     [Fact]
     public void Case1()
     {
-        var test = MyEnum.Online.ResDesc<TestCase>();
+        var test = MyEnum1.Online.ResDesc<TestCase>();
 
         _testOutputHelper.WriteLine(test);
         Assert.True(test is not null);
