@@ -16,6 +16,15 @@ public static class LongExtensions
     }
 
     /// <summary>
+    ///     生成随机数
+    /// </summary>
+    /// <param name="me">me</param>
+    public static long Rand(this long[] me)
+    {
+        return new Random(Guid.NewGuid().GetHashCode()).NextInt64(me[0], me[1]);
+    }
+
+    /// <summary>
     ///     1970毫秒数转换成日期对象
     /// </summary>
     public static DateTime Time(this long msFrom1970)
