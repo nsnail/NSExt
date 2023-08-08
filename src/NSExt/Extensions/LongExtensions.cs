@@ -31,4 +31,12 @@ public static class LongExtensions
     {
         return new DateTime(1970, 1, 1).AddMilliseconds(msFrom1970).ToLocalTime();
     }
+
+    /// <summary>
+    ///     ToString 的 Invariant 版本
+    /// </summary>
+    public static string ToInvString(this long me)
+    {
+        return me.ToString(CultureInfo.InvariantCulture);
+    }
 }

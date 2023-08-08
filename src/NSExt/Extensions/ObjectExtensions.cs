@@ -27,12 +27,4 @@ public static class ObjectExtensions
     {
         return JsonSerializer.Serialize(me, options);
     }
-
-    /// <summary>
-    ///     ToString 的 Invariant 版本
-    /// </summary>
-    public static string ToInvString(this object me)
-    {
-        return me.ToString(CultureInfo.InvariantCulture);
-    }
 }

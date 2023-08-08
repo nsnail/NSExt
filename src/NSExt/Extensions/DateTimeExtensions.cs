@@ -42,6 +42,14 @@ public static class DateTimeExtensions
     }
 
     /// <summary>
+    ///     ToString 的 Invariant 版本
+    /// </summary>
+    public static string ToInvString(this DateTime me)
+    {
+        return me.ToString(CultureInfo.InvariantCulture);
+    }
+
+    /// <summary>
     ///     yyyy_MM
     /// </summary>
     public static string yyyy_MM(this DateTime me)

@@ -24,6 +24,14 @@ public static class IntExtensions
     }
 
     /// <summary>
+    ///     ToString 的 Invariant 版本
+    /// </summary>
+    public static string ToInvString(this int me)
+    {
+        return me.ToString(CultureInfo.InvariantCulture);
+    }
+
+    /// <summary>
     ///     转换成ipv4
     /// </summary>
     public static string ToIpV4(this int me)

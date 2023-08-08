@@ -16,4 +16,12 @@ public static class DecimalExtensions
         var dec = Math.Round(me, place);
         return dec;
     }
+
+    /// <summary>
+    ///     ToString 的 Invariant 版本
+    /// </summary>
+    public static string ToInvString(this decimal me)
+    {
+        return me.ToString(CultureInfo.InvariantCulture);
+    }
 }
