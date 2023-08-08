@@ -496,14 +496,6 @@ public static class StringExtensions
     }
 
     /// <summary>
-    ///     ToString 的 Invariant 版本
-    /// </summary>
-    public static string ToInvString(this string me)
-    {
-        return me.ToString(CultureInfo.InvariantCulture);
-    }
-
-    /// <summary>
     ///     首字母小写
     /// </summary>
     public static string ToLowerCamelCase(this string me)
