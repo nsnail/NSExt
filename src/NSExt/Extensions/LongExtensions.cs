@@ -29,7 +29,7 @@ public static class LongExtensions
     /// </summary>
     public static DateTime Time(this long msFrom1970)
     {
-        return new DateTime(1970, 1, 1).AddMilliseconds(msFrom1970).ToLocalTime();
+        return DateTime.UnixEpoch.AddMilliseconds(msFrom1970).ToLocalTime();
     }
 
     /// <summary>

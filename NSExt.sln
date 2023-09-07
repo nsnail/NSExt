@@ -12,20 +12,22 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "meta", "meta", "{85E669CB-F
 		AddMetaFilesToSln.csx = AddMetaFilesToSln.csx
 		build.cake = build.cake
 		code-format.cmd = code-format.cmd
+		code.quality.props = code.quality.props
 		CodeCleanupOnSave.csx = CodeCleanupOnSave.csx
-		CodeQuality.props = CodeQuality.props
 		Directory.Build.props = Directory.Build.props
 		dotnet-tools.json = dotnet-tools.json
 		git-clean.cmd = git-clean.cmd
 		global.json = global.json
 		ImageOptimize.csx = ImageOptimize.csx
+		key.snk = key.snk
 		LICENSE = LICENSE
+		logo.png = logo.png
 		NSExt.sln.DotSettings = NSExt.sln.DotSettings
 		NSExt.sln.DotSettings.user = NSExt.sln.DotSettings.user
 		README.md = README.md
 		README.zh-CN.md = README.zh-CN.md
+		stylecop.analyzers.ruleset = stylecop.analyzers.ruleset
 		stylecop.json = stylecop.json
-		StyleCopAnalyzers.ruleset = StyleCopAnalyzers.ruleset
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NSExt.Tests", "src\NSExt.Tests\NSExt.Tests.csproj", "{557FBEF6-E6D5-4531-86DF-D772A10E2261}"

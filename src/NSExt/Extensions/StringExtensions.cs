@@ -141,7 +141,7 @@ public static class StringExtensions
     /// <returns>转换后的日期对象</returns>
     public static DateTime DateTimeTry(this string me, DateTime def)
     {
-        return !System.DateTime.TryParse(me, out var ret) ? def : ret;
+        return !System.DateTime.TryParse(me, CultureInfo.InvariantCulture, out var ret) ? def : ret;
     }
 
     /// <summary>
@@ -252,7 +252,9 @@ public static class StringExtensions
     /// <returns>hash摘要的16进制文本形式（无连字符小写）</returns>
     public static string HmacSha1(this string me, string secret, Encoding e)
     {
+        #pragma warning disable CA5350
         using var hmacSha1 = new HMACSHA1(e.GetBytes(secret));
+        #pragma warning restore CA5350
 
         return BitConverter.ToString(hmacSha1.ComputeHash(e.GetBytes(me)))
                            .Replace("-", string.Empty)
@@ -379,7 +381,9 @@ public static class StringExtensions
     /// <returns>hash摘要的16进制文本形式（无连字符小写）</returns>
     public static string Md5(this string me, Encoding e)
     {
+        #pragma warning disable CA5351
         return BitConverter.ToString(MD5.HashData(e.GetBytes(me)))
+                           #pragma warning restore CA5351
                            .Replace("-", string.Empty)
                            .ToLower(CultureInfo.CurrentCulture);
     }
@@ -462,7 +466,9 @@ public static class StringExtensions
     /// <returns>hash摘要的16进制文本形式（无连字符小写）</returns>
     public static string Sha1(this string me, Encoding e)
     {
+        #pragma warning disable CA5350
         return BitConverter.ToString(SHA1.HashData(e.GetBytes(me)))
+                           #pragma warning restore CA5350
                            .Replace("-", string.Empty)
                            .ToLower(CultureInfo.CurrentCulture);
     }
@@ -531,8 +537,18 @@ public static class StringExtensions
     public static string UnicodeDe(this string me)
     {
         const string replacement = "&#x$1;";
-        return me.Contains(@"\u") ? Regexes.RegexBacksLantUnicode.Replace(me, replacement).HtmlDe() :
-            me.Contains(@"%u")    ? Regexes.RegexPercentUnicode.Replace(me, replacement).HtmlDe() : me.HtmlDe();
+        if (me.Contains(@"\u")) {
+            return Regexes.RegexBacksLantUnicode.Replace(me, replacement).HtmlDe();
+        }
+
+        // ReSharper disable once ConvertIfStatementToReturnStatement
+        #pragma warning disable IDE0046
+        if (me.Contains("%u")) {
+            #pragma warning restore IDE0046
+            return Regexes.RegexPercentUnicode.Replace(me, replacement).HtmlDe();
+        }
+
+        return me.HtmlDe();
     }
 
     /// <summary>
@@ -564,7 +580,9 @@ public static class StringExtensions
     /// <returns>hash摘要的16进制文本形式（无连字符小写）</returns>
     private static string Md5Hmac(this string me, string key, Encoding e)
     {
+        #pragma warning disable CA5351
         using var md5Hmac = new HMACMD5(e.GetBytes(key));
+        #pragma warning restore CA5351
         return BitConverter.ToString(md5Hmac.ComputeHash(e.GetBytes(me)))
                            .Replace("-", string.Empty)
                            .ToLower(CultureInfo.CurrentCulture);

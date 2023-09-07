@@ -21,6 +21,6 @@ public static class EnumerableExtensions
     /// <returns>空则返回true</returns>
     public static bool NullOrEmpty<T>(this IEnumerable<T> me)
     {
-        return me is null || !me.Any();
+        return me?.Any() != true;
     }
 }

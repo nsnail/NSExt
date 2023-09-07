@@ -1,7 +1,9 @@
 namespace NSExt.Constant;
 #pragma warning disable SYSLIB1045
 
-// 使用 RegexGenerator 新特性会生成重复key值的xmlcomment导致出错
+/// <summary>
+///     使用 RegexGenerator 新特性会生成重复key值的xmlcomment导致出错
+/// </summary>
 internal static class Regexes
 {
     public static readonly Regex RegexBacksLantUnicode

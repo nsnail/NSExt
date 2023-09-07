@@ -13,8 +13,7 @@ public static class DecimalExtensions
     /// <returns>处理后的值</returns>
     public static decimal Round(this decimal me, int place)
     {
-        var dec = Math.Round(me, place);
-        return dec;
+        return Math.Round(me, place);
     }
 
     /// <summary>

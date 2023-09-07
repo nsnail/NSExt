@@ -4,7 +4,7 @@ namespace NSExt.Attributes;
 ///     本地化资源描述特性
 /// </summary>
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Class | AttributeTargets.Field)]
-public class ResourceDescriptionAttribute<T> : Attribute
+public sealed class ResourceDescriptionAttribute<T> : Attribute
 {
     /// <summary>
     ///     Initializes a new instance of the <see cref="ResourceDescriptionAttribute{T}" /> class.

@@ -10,7 +10,6 @@ public static class DbCommandExtensions
     /// </summary>
     public static string ParameterFormat(this DbCommand me)
     {
-        // var aa = pars.ToDictionary(it => it.ParameterName, it => it.Value);
         var sql = me.CommandText;
 
         // 应逆向替换，否则由于 多个表的过滤器问题导致替换不完整  如 @TenantId1  @TenantId10
@@ -24,7 +23,10 @@ public static class DbCommandExtensions
                               me.Parameters[i].ParameterName, "'" + me.Parameters[i].Value + "'")
                     , DbType.Boolean => sql.Replace( //
                           me.Parameters[i].ParameterName
-                        , Convert.ToBoolean(me.Parameters[i].Value, CultureInfo.InvariantCulture) ? "1" : "0")
+                        , me.Parameters[i].Value != DBNull.Value &&
+                          Convert.ToBoolean(me.Parameters[i].Value, CultureInfo.InvariantCulture)
+                              ? "1"
+                              : "0")
                     , _ => sql.Replace(me.Parameters[i].ParameterName, me.Parameters[i].Value?.ToString())
                   };
         }

@@ -4,7 +4,7 @@ namespace NSExt.Attributes;
 ///     指定本地化资源类型
 /// </summary>
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Class | AttributeTargets.Field)]
-public class LocalizationAttribute : Attribute
+public sealed class LocalizationAttribute : Attribute
 {
     /// <summary>
     ///     Initializes a new instance of the <see cref="LocalizationAttribute" /> class.

@@ -1,5 +1,5 @@
 <Project Sdk="Microsoft.NET.Sdk">
-    <Import Project="../../CodeQuality.props"/>
+    <Import Project="../../code.quality.props"/>
     <PropertyGroup>
         <AssemblyOriginatorKeyFile>../../key.snk</AssemblyOriginatorKeyFile>
         <DelaySign>false</DelaySign>

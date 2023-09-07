@@ -50,10 +50,10 @@ public static class ByteExtensions
         var i  = 0;
         foreach (var c in me.Select(x => x.ToString(upperCase ? "X2" : "x2", CultureInfo.InvariantCulture))) {
             if (i++ % splitInterval == 0) {
-                sb.Append(splitShar);
+                _ = sb.Append(splitShar);
             }
 
-            sb.Append(c);
+            _ = sb.Append(c);
         }
 
         return sb.ToString();

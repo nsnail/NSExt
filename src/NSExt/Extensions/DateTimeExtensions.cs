@@ -1,8 +1,7 @@
 // ReSharper disable InconsistentNaming
 // ReSharper disable UnusedMember.Global
 
-#pragma warning disable SA1300
-#pragma warning disable IDE1006
+#pragma warning disable SA1300, IDE1006
 namespace NSExt.Extensions;
 
 /// <summary>
@@ -10,19 +9,6 @@ namespace NSExt.Extensions;
 /// </summary>
 public static class DateTimeExtensions
 {
-    /// <summary>
-    ///     将一个过去时间对象与当前时间相减转换成“xx以前”的字符串, 如2秒以前, 3天以前
-    /// </summary>
-    /// <param name="me">me</param>
-    /// <returns>字符串</returns>
-    public static string TimeAgo(this DateTime me)
-    {
-        var ts = DateTime.Now - me;
-        return ts.Days > 0 ? ts.Days    + "天前" :
-            ts.Hours   > 0 ? ts.Hours   + "小时前" :
-            ts.Minutes > 0 ? ts.Minutes + "分钟前" : ts.Seconds + "秒前";
-    }
-
     /// <summary>
     ///     指定时间的世界协调时的unix时间戳形式
     /// </summary>
@@ -47,6 +33,23 @@ public static class DateTimeExtensions
     public static string ToInvString(this DateTime me)
     {
         return me.ToString(CultureInfo.InvariantCulture);
+    }
+
+    /// <summary>
+    ///     将一个过去时间对象与当前时间相减转换成“xx以前”的字符串, 如2秒以前, 3天以前
+    /// </summary>
+    /// <param name="me">me</param>
+    /// <returns>字符串</returns>
+    public static string UtcTimeAgo(this DateTime me)
+    {
+        var ts = DateTime.UtcNow - me;
+        return ts.Days switch {
+                   > 0 => ts.Days + "天前"
+                 , _ => ts.Hours switch {
+                            > 0 => ts.Hours + "小时前"
+                          , _   => ts.Minutes switch { > 0 => ts.Minutes + "分钟前", _ => ts.Seconds + "秒前" }
+                        }
+               };
     }
 
     /// <summary>
