@@ -1,0 +1,57 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "meta", "meta", "{5198A03D-0CAC-4828-A807-34A693F73859}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		.tgitconfig = .tgitconfig
+		build.cake = build.cake
+		code.cleanup.full.ps1 = code.cleanup.full.ps1
+		code.quality.props = code.quality.props
+		Directory.Build.props = Directory.Build.props
+		dot.clean.cmd = dot.clean.cmd
+		dotnet-tools.json = dotnet-tools.json
+		git.pr.ps1 = git.pr.ps1
+		git.rc.ps1 = git.rc.ps1
+		global.json = global.json
+		image.optimize.csx = image.optimize.csx
+		key.snk = key.snk
+		LICENSE = LICENSE
+		logo.png = logo.png
+		NSExt.sln.DotSettings = NSExt.sln.DotSettings
+		nuget.config = nuget.config
+		packable.props = packable.props
+		README.md = README.md
+		README.zh-CN.md = README.zh-CN.md
+		stylecop.analyzers.ruleset = stylecop.analyzers.ruleset
+		stylecop.json = stylecop.json
+		sync.metafiles.csx = sync.metafiles.csx
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NSExt.Tests", "src\NSExt.Tests\NSExt.Tests.csproj", "{557FBEF6-E6D5-4531-86DF-D772A10E2261}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NSExt", "src\NSExt\NSExt.csproj", "{BA0982BE-6E57-4AAF-9778-F9B2EB46F505}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{557FBEF6-E6D5-4531-86DF-D772A10E2261}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{557FBEF6-E6D5-4531-86DF-D772A10E2261}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{557FBEF6-E6D5-4531-86DF-D772A10E2261}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{557FBEF6-E6D5-4531-86DF-D772A10E2261}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA0982BE-6E57-4AAF-9778-F9B2EB46F505}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA0982BE-6E57-4AAF-9778-F9B2EB46F505}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA0982BE-6E57-4AAF-9778-F9B2EB46F505}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA0982BE-6E57-4AAF-9778-F9B2EB46F505}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
