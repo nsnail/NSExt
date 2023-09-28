@@ -25,6 +25,8 @@ public static class StreamExtensions
     /// </summary>
     public static bool IsTextStream(this Stream me)
     {
+        #pragma warning disable IDE0300
         return me.FirstByteIndex(new byte[] { 0x00, 0xff }) < 0;
+        #pragma warning restore IDE0300
     }
 }
