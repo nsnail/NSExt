@@ -9,7 +9,9 @@ public sealed class LocalizationAttribute : Attribute
     /// <summary>
     ///     Initializes a new instance of the <see cref="LocalizationAttribute" /> class.
     /// </summary>
+    #pragma warning disable IDE0290
     public LocalizationAttribute(Type resourceClass)
+        #pragma warning restore IDE0290
     {
         ResourceClass = resourceClass;
     }

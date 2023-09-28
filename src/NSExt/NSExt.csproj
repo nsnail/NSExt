@@ -2,7 +2,7 @@
     <Import Project="../../code.quality.props"/>
     <Import Project="../../packable.props"/>
     <ItemGroup>
-        <PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0-rc.1.23419.4"/>
+        <PackageReference Include="Microsoft.Extensions.Logging" Version="7.0.0"/>
     </ItemGroup>
     <ItemGroup>
         <None Include="../../logo.png" Pack="true" PackagePath=""/>

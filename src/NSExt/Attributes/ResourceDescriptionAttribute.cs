@@ -9,7 +9,9 @@ public sealed class ResourceDescriptionAttribute<T> : Attribute
     /// <summary>
     ///     Initializes a new instance of the <see cref="ResourceDescriptionAttribute{T}" /> class.
     /// </summary>
+    #pragma warning disable IDE0290
     public ResourceDescriptionAttribute(string resourceName)
+        #pragma warning restore IDE0290
     {
         ResourceName = resourceName;
     }
