@@ -1,33 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <Import Project="../../code.quality.props"/>
-    <PropertyGroup>
-        <AssemblyOriginatorKeyFile>../../key.snk</AssemblyOriginatorKeyFile>
-        <DelaySign>false</DelaySign>
-        <Description>A .NET extension function library</Description>
-        <EmbedAllSources>true</EmbedAllSources>
-        <EmbedUntrackedSource>true</EmbedUntrackedSource>
-        <GenerateDocumentationFile>true</GenerateDocumentationFile>
-        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <IncludeSymbols>true</IncludeSymbols>
-        <IsPackable>true</IsPackable>
-        <PackageIcon>logo.png</PackageIcon>
-        <PackageLicenseExpression>MIT</PackageLicenseExpression>
-        <PackageProjectUrl>https://github.com/nsnail/ns-ext.git</PackageProjectUrl>
-        <PackageTags>extensions</PackageTags>
-        <Product>NSExt</Product>
-        <PublishRepositoryUrl>true</PublishRepositoryUrl>
-        <RepositoryType>git</RepositoryType>
-        <RepositoryUrl>https://github.com/nsnail/ns-ext.git</RepositoryUrl>
-        <SignAssembly>true</SignAssembly>
-        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-        <Title>$(AssemblyName)</Title>
-    </PropertyGroup>
+    <Import Project="../../packable.props"/>
     <ItemGroup>
-        <PackageReference Include="Microsoft.Extensions.Logging" Version="7.0.0"/>
-        <PackageReference Include="MinVer" Version="5.0.0-alpha.1">
-            <PrivateAssets>all</PrivateAssets>
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-        </PackageReference>
+        <PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0-rc.1.23419.4"/>
     </ItemGroup>
     <ItemGroup>
         <None Include="../../logo.png" Pack="true" PackagePath=""/>

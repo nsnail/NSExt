@@ -476,7 +476,7 @@ public static class StringExtensions
     /// <summary>
     ///     蛇形命名
     /// </summary>
-    public static string Snakecase(this string me)
+    public static string SnakeCase(this string me)
     {
         return Regexes.RegexUpLetter.Replace(me, "-$1").ToLower(CultureInfo.InvariantCulture).TrimStart('-');
     }

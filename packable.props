@@ -1,0 +1,18 @@
+<Project>
+    <PropertyGroup>
+        <AssemblyOriginatorKeyFile>../../key.snk</AssemblyOriginatorKeyFile>
+        <DelaySign>false</DelaySign>
+        <EmbedAllSources>true</EmbedAllSources>
+        <EmbedUntrackedSource>true</EmbedUntrackedSource>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <IncludeSymbols>true</IncludeSymbols>
+        <IsPackable>true</IsPackable>
+        <PackageIcon>logo.png</PackageIcon>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageProjectUrl>https://github.com/nsnail/NSExt.git</PackageProjectUrl>
+        <PackageTags>extensions</PackageTags>
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+        <SignAssembly>true</SignAssembly>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    </PropertyGroup>
+</Project>

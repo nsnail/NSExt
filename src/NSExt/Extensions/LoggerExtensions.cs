@@ -7,28 +7,28 @@ namespace NSExt.Extensions;
 /// </summary>
 public static class LoggerExtensions
 {
-    private const string _MESSAGE_S_THREADID_CALLERNAME_CALLERFILEPATH_CALLERLINENUMBER
+    private const string _MESSAGE_S_THREAD_ID_CALLER_NAME_CALLER_FILE_PATH_CALLER_LINE_NUMBER
         = "{Message} <s:{CallerName}@{CallerFilePath}:{CallerLineNumber}>";
 
     private static readonly Action<ILogger, string, string, string, string, Exception> _logDebug
         = LoggerMessage.Define<string, string, string, string>(LogLevel.Debug, default
-                                                             , _MESSAGE_S_THREADID_CALLERNAME_CALLERFILEPATH_CALLERLINENUMBER);
+                                                             , _MESSAGE_S_THREAD_ID_CALLER_NAME_CALLER_FILE_PATH_CALLER_LINE_NUMBER);
 
     private static readonly Action<ILogger, string, string, string, string, Exception> _logError
         = LoggerMessage.Define<string, string, string, string>(LogLevel.Error, default
-                                                             , _MESSAGE_S_THREADID_CALLERNAME_CALLERFILEPATH_CALLERLINENUMBER);
+                                                             , _MESSAGE_S_THREAD_ID_CALLER_NAME_CALLER_FILE_PATH_CALLER_LINE_NUMBER);
 
     private static readonly Action<ILogger, string, string, string, string, Exception> _logFatal
         = LoggerMessage.Define<string, string, string, string>(LogLevel.Critical, default
-                                                             , _MESSAGE_S_THREADID_CALLERNAME_CALLERFILEPATH_CALLERLINENUMBER);
+                                                             , _MESSAGE_S_THREAD_ID_CALLER_NAME_CALLER_FILE_PATH_CALLER_LINE_NUMBER);
 
     private static readonly Action<ILogger, string, string, string, string, Exception> _logInfo
         = LoggerMessage.Define<string, string, string, string>(LogLevel.Information, default
-                                                             , _MESSAGE_S_THREADID_CALLERNAME_CALLERFILEPATH_CALLERLINENUMBER);
+                                                             , _MESSAGE_S_THREAD_ID_CALLER_NAME_CALLER_FILE_PATH_CALLER_LINE_NUMBER);
 
     private static readonly Action<ILogger, string, string, string, string, Exception> _logWarn
         = LoggerMessage.Define<string, string, string, string>(LogLevel.Warning, default
-                                                             , _MESSAGE_S_THREADID_CALLERNAME_CALLERFILEPATH_CALLERLINENUMBER);
+                                                             , _MESSAGE_S_THREAD_ID_CALLER_NAME_CALLER_FILE_PATH_CALLER_LINE_NUMBER);
 
     /// <summary>
     ///     Debug
