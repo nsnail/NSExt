@@ -33,4 +33,3 @@ jobs:
       - id: get_version
         run: echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/v}
       - run: dotnet nuget push ./dist/backend/NSExt/bin/Release/NSExt.${{ steps.get_version.outputs.VERSION }}.nupkg --skip-duplicate --api-key ${{ secrets.NUGET_TOKEN }} --source https://api.nuget.org/v3/index.json
-      - run: dotnet nuget push ./dist/backend/NSExt/bin/Release/NSExt.${{ steps.get_version.outputs.VERSION }}.snupkg --skip-duplicate --api-key ${{ secrets.NUGET_TOKEN }} --source https://api.nuget.org/v3/index.json
