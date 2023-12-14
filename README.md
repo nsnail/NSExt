@@ -1,65 +1,96 @@
-# ns-ext
+# dot
 
 [中](README.zh-CN.md) | **En**
-The **ns-ext** is a .NET extension function library, containing the following types of extension modules:
 
-| Features                                 | File name                          |
-|------------------------------------------|------------------------------------|
-| Byte type extension                      | ByteExtensions.cs                  |
-| Character Type Extensions                | CharExtensions.cs                  |
-| Date Type Extensions                     | DateTimeExtensions.cs              |
-| Database command type extension          | DbCommandExtensions.cs             |
-| Decimal Number Type extension            | DecimalExtensions.cs               |
-| Enumable type extension                  | EnumerableExtensions.cs            |
-| Enumeration type extension               | EnumExtensions.cs                  |
-| General type extension                   | GenericExtensions.cs               |
-| Integer type extension                   | IntExtensions.cs                   |
-| Json Serialization option type extension | JsonSerializerOptionsExtensions.cs |
-| Log type extension                       | LoggerExtensions.cs                |
-| Long integer extension                   | LongExtensions.cs                  |
-| Object type extension                    | ObjectExtensions.cs                |
-| Stream type extension                    | StreamExtensions.cs                |
-| String type extension                    | StringExtensions.cs                |
-| Prototype type extension                 | TypeExtensions.cs                  |
-| Resource locator type extension          | UriExtensions.cs                   |
+Cross-platform, all-around utility set with a beautiful character interface-the Swiss Army knife
 
-## Quick start
+### Brief introduction
 
-### Install
+The dot is the one based on the one. NET 7, a cross-platform command-line tool, integrates more than 10 utilities that
+program developers often use in their daily work, and is constantly increasing.
 
-```shell
-dotnet add package NSExt --prerelease
+```
+USAGE:
+    dot [OPTIONS] <COMMAND>
+
+OPTIONS:
+    -h, --help       Prints help information
+    -v, --version    Prints version information
+
+COMMANDS:
+    git                                      Git batch operation tool
+    color                                    Screen coordinate color selection tool
+    tran                                     Translation tools
+    guid                                     GUID tool
+    ip                                       IP tools
+    json                                     Json tool
+    pwd <password length> <generate type>    Random password generator
+    rbom                                     Remove the uf8 bom of the file
+    trim                                     Remove line breaks and spaces at the end of the file
+    text                                     Text encoding tool
+    time                                     Time synchronization tool
+    tolf                                     Convert newline characters to LF
+    get <url>                                Multithreaded download tool
+
 ```
 
-### Example
+### Some functional examples
 
-```c#
-using NSExt.Extensions;
+- ##### Git batch management
 
-internal static class Program
-{
-    private class Person
-    {
-        public string Name { get; set; }
-        public int Age { get; set; }
-    }
-    public static void Main(string[] args)
-    {
-        var person =
-        """
-{
-  "Name": "Jason",
-  "Age": "30"
-}
-""".Object<Person>();
+When you have a clone and a lot of git repositories, use this command to pull their latest code all at once:
 
-        Console.WriteLine(person.Json());
-    }
-}
+```
+dot git -a "pull" d:\repos
 ```
 
-### Output
+![20221212212417](./assets/snapshots/20221212212417.png)
 
-```json
-{"name":"Jason","age":30}
+Similarly, you can execute any git commands on a bunch of git repositories in bulk:
+
 ```
+dot git -a "config --get http.proxy" d:\repos
+```
+
+![20221212213957](./assets/snapshots/20221212213957.png)
+
+- ##### High-precision time-clock synchronization
+
+Supports parallel requests from multiple NTP clock servers, while removing the network communication duration to set the
+precise synchronization of the native clocks with the NTP standard time:
+
+```
+dot time -k
+```
+
+![20221212214514](./assets/snapshots/20221212214514.png)
+
+- ##### Text codec
+
+Copy you need to view various codec text in the clipboard, and then enter the following command to view
+
+```
+dot text
+```
+
+![20221212214904](./assets/snapshots/20221212214904.png)
+
+- ##### Multi-threading download tool
+
+Support setting the block size, number of threads to replace the single thread wget tool:
+
+```
+dot get https://github.com/nsnail/dot/releases/download/v1.1.1/dot-v1.1.1-win-x64.7z
+```
+
+![20221212215259](./assets/snapshots/20221212215259.png)
+
+- ##### Remove the blank at the end of the file
+
+Remove excess spaces and line breaks in the tail of all files in the specified directory:
+
+```
+dot trim d:\repos
+```
+
+![20221212215853](./assets/snapshots/20221212215853.png)

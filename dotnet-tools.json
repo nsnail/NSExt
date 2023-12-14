@@ -2,22 +2,28 @@
   "version": 1,
   "isRoot": true,
   "tools": {
-    "cake.tool": {
-      "version": "3.1.0",
+    "dotnet-t4": {
+      "version": "2.3.1",
       "commands": [
-        "dotnet-cake"
+        "t4"
       ]
     },
     "dotnet-script": {
-      "version": "1.4.0",
+      "version": "1.5.0",
       "commands": [
         "dotnet-script"
       ]
     },
     "jetbrains.resharper.globaltools": {
-      "version": "2023.2.0",
+      "version": "2023.3.0",
       "commands": [
         "jb"
+      ]
+    },
+    "dnt": {
+      "version": "1.8.3",
+      "commands": [
+        "dnt"
       ]
     }
   }

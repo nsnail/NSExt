@@ -1,1 +1,0 @@
-dotnet jb cleanupcode --no-build ./NSExt.sln
