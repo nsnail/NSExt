@@ -21,6 +21,7 @@
         <Product>NSExt</Product>
         <RepositoryType>git</RepositoryType>
         <RepositoryUrl>https://github.com/nsnail/NSExt.git</RepositoryUrl>
+        <RootNamespace>NSExt</RootNamespace>
         <TargetFrameworks>net6.0;net7.0;net8.0</TargetFrameworks>
         <Title>$(AssemblyName)</Title>
     </PropertyGroup>

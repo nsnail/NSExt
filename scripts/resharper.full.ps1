@@ -1,1 +1,1 @@
-dotnet jb cleanupcode --no-build ../NSExt.sln
+jb cleanupcode --no-build ../NSExt.sln
