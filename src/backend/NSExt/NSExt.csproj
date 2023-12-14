@@ -4,12 +4,12 @@
         <DelaySign>false</DelaySign>
         <EmbedAllSources>true</EmbedAllSources>
         <EmbedUntrackedSource>true</EmbedUntrackedSource>
-        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <IncludeSymbols>true</IncludeSymbols>
         <IsPackable>true</IsPackable>
         <PackageIcon>logo.png</PackageIcon>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageProjectUrl>https://github.com/nsnail/NSExt.git</PackageProjectUrl>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageTags>extensions</PackageTags>
         <PublishRepositoryUrl>true</PublishRepositoryUrl>
         <RootNamespace>NSExt</RootNamespace>
@@ -23,7 +23,8 @@
         <PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0"/>
     </ItemGroup>
     <ItemGroup>
-        <None Include="../../../assets/logo.png" Pack="true" PackagePath=""/>
+        <None Include="../../../assets/logo.png" Pack="true" PackagePath="/"/>
+        <None Include="../../../README.md" Pack="true" PackagePath="/"/>
         <None Update="*.json">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>

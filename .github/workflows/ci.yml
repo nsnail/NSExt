@@ -15,7 +15,13 @@ jobs:
         with:
           dotnet-version: 8.0.x
       - working-directory: ./src/backend/NSExt
-        run: dotnet build -c Release
+        run: dotnet build -c Release -f net6.0
+      - working-directory: ./src/backend/NSExt
+        run: dotnet build -c Release -f net7.0
+      - working-directory: ./src/backend/NSExt
+        run: dotnet build -c Release -f net8.0
+      - working-directory: ./src/backend/NSExt
+        run: dotnet pack -c Release --no-build
       - uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -24,5 +30,7 @@ jobs:
           release_name: Release ${{ github.ref }}
           draft: false
           prerelease: false
-      - run: dotnet nuget push ./dist/backend/NSExt/bin/Release/NSExt.${{ github.ref }}.nupkg --skip-duplicate --api-key ${{ secrets.NUGET_TOKEN }} --source https://api.nuget.org/v3/index.json
-      - run: dotnet nuget push ./dist/backend/NSExt/bin/Release/NSExt.${{ github.ref }}.snupkg --skip-duplicate --api-key ${{ secrets.NUGET_TOKEN }} --source https://api.nuget.org/v3/index.json
+      - id: get_version
+        run: echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/v}
+      - run: dotnet nuget push ./dist/backend/NSExt/bin/Release/NSExt.${{ steps.get_version.outputs.VERSION }}.nupkg --skip-duplicate --api-key ${{ secrets.NUGET_TOKEN }} --source https://api.nuget.org/v3/index.json
+      - run: dotnet nuget push ./dist/backend/NSExt/bin/Release/NSExt.${{ steps.get_version.outputs.VERSION }}.snupkg --skip-duplicate --api-key ${{ secrets.NUGET_TOKEN }} --source https://api.nuget.org/v3/index.json
