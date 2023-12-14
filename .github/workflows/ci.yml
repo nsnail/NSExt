@@ -1,0 +1,50 @@
+name: CI
+on:
+  push:
+    tags:
+      - v*
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          filter: tree:0
+      - uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 8.0.x
+      - uses: actions/cache@v3
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }}
+          restore-keys: ${{ runner.os }}-nuget
+      - working-directory: ./src/backend/NSExt
+        run: dotnet publish NSExt.csproj -f net8.0-windows -r win-x64 -c Release
+      - working-directory: ./src/backend/NSExt
+        run: dotnet publish NSExt.csproj -f net8.0 -r linux-x64 -c Release
+      - uses: actions/create-release@v1
+        id: create_release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+      - uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./dist/backend/NSExt/bin/Release/net8.0-windows/win-x64/publish/dot.exe
+          asset_name: dot-win-x64.exe
+          asset_content_type: application/octet-stream
+      - uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./dist/backend/NSExt/bin/Release/net8.0/linux-x64/publish/dot
+          asset_name: dot-linux-x64
+          asset_content_type: application/octet-stream
