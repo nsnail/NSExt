@@ -3,38 +3,66 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C84EB5A0-37AD-4B17-A51E-E36888C4441E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "backend", "backend", "{4DAF9366-855F-46BB-AE4C-660C92FA0697}"
+EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "meta", "meta", "{5198A03D-0CAC-4828-A807-34A693F73859}"
 	ProjectSection(SolutionItems) = preProject
+		.commitlintrc.js = .commitlintrc.js
 		.editorconfig = .editorconfig
 		.gitattributes = .gitattributes
 		.gitignore = .gitignore
-		.tgitconfig = .tgitconfig
-		build.cake = build.cake
-		code.cleanup.full.ps1 = code.cleanup.full.ps1
-		code.quality.props = code.quality.props
 		Directory.Build.props = Directory.Build.props
-		dot.clean.cmd = dot.clean.cmd
 		dotnet-tools.json = dotnet-tools.json
-		git.pr.ps1 = git.pr.ps1
-		git.rc.ps1 = git.rc.ps1
 		global.json = global.json
-		image.optimize.csx = image.optimize.csx
 		key.snk = key.snk
 		LICENSE = LICENSE
-		logo.png = logo.png
 		NSExt.sln.DotSettings = NSExt.sln.DotSettings
-		nuget.config = nuget.config
-		packable.props = packable.props
+		NuGet.Config = NuGet.Config
+		package.json = package.json
 		README.md = README.md
 		README.zh-CN.md = README.zh-CN.md
-		stylecop.analyzers.ruleset = stylecop.analyzers.ruleset
-		stylecop.json = stylecop.json
-		sync.metafiles.csx = sync.metafiles.csx
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NSExt.Tests", "src\NSExt.Tests\NSExt.Tests.csproj", "{557FBEF6-E6D5-4531-86DF-D772A10E2261}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{BB0B25C9-0901-4923-913F-00F9A6B352A5}"
+	ProjectSection(SolutionItems) = preProject
+		clean.ln.csx = scripts/clean.ln.csx
+		code.clean.csx = scripts/code.clean.csx
+		code.clean.ps1 = scripts/code.clean.ps1
+		gen.cs.tt = scripts/gen.cs.tt
+		gen.ln.cmd = scripts/gen.ln.cmd
+		gen.resx.tt = scripts/gen.resx.tt
+		git.pr.ps1 = scripts/git.pr.ps1
+		git.rc.ps1 = scripts/git.rc.ps1
+		image.optimize.csx = scripts/image.optimize.csx
+		install.as.tpl.ps1 = scripts/install.as.tpl.ps1
+		rename.csx = scripts/rename.csx
+		resharper.full.ps1 = scripts/resharper.full.ps1
+		switcher.nsext.json = scripts/switcher.nsext.json
+		switcher.ps1 = scripts/switcher.ps1
+		sync.sln.files.csx = scripts/sync.sln.files.csx
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NSExt", "src\NSExt\NSExt.csproj", "{BA0982BE-6E57-4AAF-9778-F9B2EB46F505}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{1129FE25-466B-4F4F-85FC-3752664245E1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{3C6F049E-3EE8-4D66-9AFF-E8A369032487}"
+	ProjectSection(SolutionItems) = preProject
+		ci.yml = .github/workflows/ci.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{8E4C93BA-9493-4892-80C4-5E174C504829}"
+	ProjectSection(SolutionItems) = preProject
+		code.quality.props = build/code.quality.props
+		copy.pkg.xml.comment.files.targets = build/copy.pkg.xml.comment.files.targets
+		minver.targets = build/minver.targets
+		prebuild.targets = build/prebuild.targets
+		stylecop.analyzers.ruleset = build/stylecop.analyzers.ruleset
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NSExt", "src\backend\NSExt\NSExt.csproj", "{1E62C322-EE42-4699-A6F1-791C53EFA62D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NSExt.Tests", "src\backend\NSExt.Tests\NSExt.Tests.csproj", "{00604162-C444-478B-B773-3AB23C856CA7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,13 +73,19 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{557FBEF6-E6D5-4531-86DF-D772A10E2261}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{557FBEF6-E6D5-4531-86DF-D772A10E2261}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{557FBEF6-E6D5-4531-86DF-D772A10E2261}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{557FBEF6-E6D5-4531-86DF-D772A10E2261}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BA0982BE-6E57-4AAF-9778-F9B2EB46F505}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BA0982BE-6E57-4AAF-9778-F9B2EB46F505}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BA0982BE-6E57-4AAF-9778-F9B2EB46F505}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BA0982BE-6E57-4AAF-9778-F9B2EB46F505}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E62C322-EE42-4699-A6F1-791C53EFA62D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E62C322-EE42-4699-A6F1-791C53EFA62D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E62C322-EE42-4699-A6F1-791C53EFA62D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E62C322-EE42-4699-A6F1-791C53EFA62D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00604162-C444-478B-B773-3AB23C856CA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00604162-C444-478B-B773-3AB23C856CA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00604162-C444-478B-B773-3AB23C856CA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00604162-C444-478B-B773-3AB23C856CA7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4DAF9366-855F-46BB-AE4C-660C92FA0697} = {C84EB5A0-37AD-4B17-A51E-E36888C4441E}
+		{3C6F049E-3EE8-4D66-9AFF-E8A369032487} = {1129FE25-466B-4F4F-85FC-3752664245E1}
+		{1E62C322-EE42-4699-A6F1-791C53EFA62D} = {4DAF9366-855F-46BB-AE4C-660C92FA0697}
+		{00604162-C444-478B-B773-3AB23C856CA7} = {4DAF9366-855F-46BB-AE4C-660C92FA0697}
 	EndGlobalSection
 EndGlobal

@@ -1,3 +1,6 @@
+using System.Data;
+using System.Data.Common;
+
 namespace NSExt.Extensions;
 
 /// <summary>

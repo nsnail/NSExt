@@ -4,6 +4,7 @@
 #pragma warning disable CA1720
 using System.Security.Cryptography;
 using System.Text.Json;
+using System.Web;
 using NSExt.Constant;
 
 namespace NSExt.Extensions;
@@ -141,7 +142,9 @@ public static class StringExtensions
     /// <returns>转换后的日期对象</returns>
     public static DateTime DateTimeTry(this string me, DateTime def)
     {
-        return !System.DateTime.TryParse(me, CultureInfo.InvariantCulture, out var ret) ? def : ret;
+        return !System.DateTime.TryParse(me, CultureInfo.InvariantCulture, DateTimeStyles.None, out var ret)
+            ? def
+            : ret;
     }
 
     /// <summary>

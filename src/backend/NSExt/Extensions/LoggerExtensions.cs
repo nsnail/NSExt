@@ -1,5 +1,8 @@
 // ReSharper disable TemplateIsNotCompileTimeConstantProblem
 
+using System.Runtime.CompilerServices;
+using Microsoft.Extensions.Logging;
+
 namespace NSExt.Extensions;
 
 /// <summary>
