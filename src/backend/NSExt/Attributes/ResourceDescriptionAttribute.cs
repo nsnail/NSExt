@@ -19,7 +19,7 @@ public sealed class ResourceDescriptionAttribute<T> : Attribute
     /// <summary>
     ///     资源名称
     /// </summary>
-    public string ResourceName { get; set; }
+    public string ResourceName { get; }
 
     /// <summary>
     ///     资源对象
