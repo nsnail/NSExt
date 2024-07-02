@@ -1,58 +1,38 @@
-<wpf:ResourceDictionary xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                        xmlns:s="clr-namespace:System;assembly=mscorlib"
-                        xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xml:space="preserve">
-	<s:String x:Key="/Default/CodeEditing/GenerateMemberBody/DocumentationGenerationKind/@EntryValue">Inherit</s:String>
-    <s:Boolean
-        x:Key="/Default/CodeEditing/TypingAssist/SkipClosingBracesOnTabInStringLiterals/@EntryValue">True</s:Boolean>
-    <s:Boolean
-        x:Key="/Default/CodeInspection/ExcludedFiles/FileMasksToSkip/=_002A_002Ett/@EntryIndexedValue">True</s:Boolean>
-    <s:String
-        x:Key="/Default/CodeInspection/Highlighting/InspectionSeverities/=AssignmentInConditionalExpression/@EntryIndexedValue">DO_NOT_SHOW</s:String>
-    <s:String x:Key="/Default/CodeInspection/Highlighting/InspectionSeverities/=LocalizableElement/@EntryIndexedValue">HINT</s:String>
-    <s:String
-        x:Key="/Default/CodeInspection/Highlighting/InspectionSeverities/=UnusedAutoPropertyAccessor_002EGlobal/@EntryIndexedValue">DO_NOT_SHOW</s:String>
-    <s:String
-        x:Key="/Default/CodeInspection/Highlighting/InspectionSeverities/=UnusedAutoPropertyAccessor_002ELocal/@EntryIndexedValue">DO_NOT_SHOW</s:String>
-    <s:String
-        x:Key="/Default/CodeStyle/CodeFormatting/CSharpFormat/PLACE_ACCESSOR_ATTRIBUTE_ON_SAME_LINE_EX/@EntryValue">NEVER</s:String>
-    <s:String
-        x:Key="/Default/CodeStyle/CodeFormatting/CSharpFormat/PLACE_ACCESSORHOLDER_ATTRIBUTE_ON_SAME_LINE_EX/@EntryValue">NEVER</s:String>
-    <s:String x:Key="/Default/CodeStyle/CodeFormatting/CSharpFormat/PLACE_FIELD_ATTRIBUTE_ON_SAME_LINE_EX/@EntryValue">NEVER</s:String>
-    <s:String
-        x:Key="/Default/CodeStyle/CodeFormatting/CSharpFormat/PLACE_RECORD_FIELD_ATTRIBUTE_ON_SAME_LINE_EX/@EntryValue">NEVER</s:String>
-    <s:String x:Key="/Default/CodeStyle/Naming/CSharpNaming/Abbreviations/=ID/@EntryIndexedValue">ID</s:String>
-    <s:String x:Key="/Default/CodeStyle/Naming/CSharpNaming/Abbreviations/=IOS/@EntryIndexedValue">IOS</s:String>
-    <s:String x:Key="/Default/CodeStyle/Naming/CSharpNaming/Abbreviations/=IP/@EntryIndexedValue">IP</s:String>
-    <s:String x:Key="/Default/CodeStyle/Naming/CSharpNaming/Abbreviations/=UI/@EntryIndexedValue">UI</s:String>
-    <s:String
-        x:Key="/Default/CodeStyle/Naming/CSharpNaming/PredefinedNamingRules/=TypesAndNamespaces/@EntryIndexedValue">&lt;Policy Inspect="True" Prefix="" Suffix="" Style="AaBb_AaBb" /&gt;</s:String>
-    <s:String x:Key="/Default/CustomTools/CustomToolsData/@EntryValue"></s:String>
-    <s:Boolean
-        x:Key="/Default/Environment/SettingsMigration/IsMigratorApplied/=JetBrains_002EReSharper_002EPsi_002ECSharp_002ECodeStyle_002ECSharpKeepExistingMigration/@EntryIndexedValue">True</s:Boolean>
-    <s:Boolean
-        x:Key="/Default/Environment/SettingsMigration/IsMigratorApplied/=JetBrains_002EReSharper_002EPsi_002ECSharp_002ECodeStyle_002ECSharpPlaceEmbeddedOnSameLineMigration/@EntryIndexedValue">True</s:Boolean>
-    <s:Boolean
-        x:Key="/Default/Environment/SettingsMigration/IsMigratorApplied/=JetBrains_002EReSharper_002EPsi_002ECSharp_002ECodeStyle_002ECSharpUseContinuousIndentInsideBracesMigration/@EntryIndexedValue">True</s:Boolean>
-    <s:Boolean
-        x:Key="/Default/Environment/SettingsMigration/IsMigratorApplied/=JetBrains_002EReSharper_002EPsi_002ECSharp_002ECodeStyle_002ESettingsUpgrade_002EMigrateBlankLinesAroundFieldToBlankLinesAroundProperty/@EntryIndexedValue">True</s:Boolean>
-    <s:Boolean x:Key="/Default/ReSpeller/ReSpellerEnabled/@EntryValue">True</s:Boolean>
-    <s:Int64 x:Key="/Default/CodeStyle/CodeFormatting/CSharpFormat/KEEP_BLANK_LINES_IN_CODE/@EntryValue">1</s:Int64>
-    <s:Int64
-        x:Key="/Default/CodeStyle/CodeFormatting/CSharpFormat/KEEP_BLANK_LINES_IN_DECLARATIONS/@EntryValue">1</s:Int64>
+<wpf:ResourceDictionary xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xml:space="preserve">
+    <!--    CodeEditing-->
+    <s:Boolean x:Key="/Default/CodeEditing/TypingAssist/SkipClosingBracesOnTabInStringLiterals/@EntryValue">True</s:Boolean>
+    <s:String x:Key="/Default/CodeEditing/GenerateMemberBody/DocumentationGenerationKind/@EntryValue">Inherit</s:String>
+
+    <!--    CodeInspection-->
+    <s:Boolean x:Key="/Default/CodeInspection/ExcludedFiles/FileMasksToSkip/=_002A_002Ett/@EntryIndexedValue">True</s:Boolean>
     <s:String x:Key="/Default/CodeInspection/Highlighting/AnalysisEnabled/@EntryValue">OFF</s:String>
-    <s:String
-        x:Key="/Default/CodeInspection/Highlighting/InspectionSeverities/=TooWideLocalVariableScope/@EntryIndexedValue">HINT</s:String>
+    <s:String x:Key="/Default/CodeInspection/Highlighting/InspectionSeverities/=AssignmentInConditionalExpression/@EntryIndexedValue">DO_NOT_SHOW</s:String>
+    <s:String x:Key="/Default/CodeInspection/Highlighting/InspectionSeverities/=ClassNeverInstantiated_002EGlobal/@EntryIndexedValue">DO_NOT_SHOW</s:String>
+    <s:String x:Key="/Default/CodeInspection/Highlighting/InspectionSeverities/=DuplicateResource/@EntryIndexedValue">DO_NOT_SHOW</s:String>
+    <s:String x:Key="/Default/CodeInspection/Highlighting/InspectionSeverities/=RedundantPatternParentheses/@EntryIndexedValue">DO_NOT_SHOW</s:String>
+    <s:String x:Key="/Default/CodeInspection/Highlighting/InspectionSeverities/=SuggestBaseTypeForParameter/@EntryIndexedValue">DO_NOT_SHOW</s:String>
+    <s:String x:Key="/Default/CodeInspection/Highlighting/InspectionSeverities/=SuggestBaseTypeForParameterInConstructor/@EntryIndexedValue">DO_NOT_SHOW</s:String>
+    <s:String x:Key="/Default/CodeInspection/Highlighting/InspectionSeverities/=TooWideLocalVariableScope/@EntryIndexedValue">HINT</s:String>
+    <s:String x:Key="/Default/CodeInspection/Highlighting/InspectionSeverities/=UnusedAutoPropertyAccessor_002EGlobal/@EntryIndexedValue">DO_NOT_SHOW</s:String>
+    <s:String x:Key="/Default/CodeInspection/Highlighting/InspectionSeverities/=UnusedAutoPropertyAccessor_002ELocal/@EntryIndexedValue">DO_NOT_SHOW</s:String>
+
+    <!--    CodeStyle-->
+    <s:Int64 x:Key="/Default/CodeStyle/CodeFormatting/CSharpFormat/KEEP_BLANK_LINES_IN_CODE/@EntryValue">1</s:Int64>
+    <s:Int64 x:Key="/Default/CodeStyle/CodeFormatting/CSharpFormat/KEEP_BLANK_LINES_IN_DECLARATIONS/@EntryValue">1</s:Int64>
     <s:String x:Key="/Default/CodeStyle/CodeFormatting/CSharpCodeStyle/BRACES_FOR_FOR/@EntryValue">Required</s:String>
-    <s:String
-        x:Key="/Default/CodeStyle/CodeFormatting/CSharpCodeStyle/BRACES_FOR_FOREACH/@EntryValue">Required</s:String>
-    <s:String
-        x:Key="/Default/CodeStyle/CodeFormatting/CSharpCodeStyle/BRACES_FOR_IFELSE/@EntryValue">Required</s:String>
+    <s:String x:Key="/Default/CodeStyle/CodeFormatting/CSharpCodeStyle/BRACES_FOR_FOREACH/@EntryValue">Required</s:String>
+    <s:String x:Key="/Default/CodeStyle/CodeFormatting/CSharpCodeStyle/BRACES_FOR_IFELSE/@EntryValue">Required</s:String>
     <s:String x:Key="/Default/CodeStyle/CodeFormatting/CSharpCodeStyle/BRACES_FOR_WHILE/@EntryValue">Required</s:String>
-    <s:String x:Key="/Default/CodeStyle/Naming/CSharpNaming/PredefinedNamingRules/=Constants/@EntryIndexedValue">&lt;Policy Inspect="True" Prefix="" Suffix="" Style="AA_BB" /&gt;</s:String>
-    <s:String x:Key="/Default/CodeStyle/Naming/CSharpNaming/PredefinedNamingRules/=PrivateConstants/@EntryIndexedValue">&lt;Policy Inspect="True" Prefix="_" Suffix="" Style="AA_BB" /&gt;</s:String>
-    <s:String
-        x:Key="/Default/CodeStyle/Naming/CSharpNaming/PredefinedNamingRules/=PrivateStaticReadonly/@EntryIndexedValue">&lt;Policy Inspect="True" Prefix="_" Suffix="" Style="aaBb" /&gt;</s:String>
-    <s:String x:Key="/Default/CodeStyle/Naming/CSharpNaming/PredefinedNamingRules/=StaticReadonly/@EntryIndexedValue">&lt;Policy Inspect="True" Prefix="" Suffix="" Style="AaBb" /&gt;</s:String>
+    <s:String x:Key="/Default/CodeStyle/CodeFormatting/CSharpFormat/PLACE_ACCESSORHOLDER_ATTRIBUTE_ON_SAME_LINE_EX/@EntryValue">NEVER</s:String>
+    <s:String x:Key="/Default/CodeStyle/CodeFormatting/CSharpFormat/PLACE_ACCESSOR_ATTRIBUTE_ON_SAME_LINE_EX/@EntryValue">NEVER</s:String>
+    <s:String x:Key="/Default/CodeStyle/CodeFormatting/CSharpFormat/PLACE_FIELD_ATTRIBUTE_ON_SAME_LINE_EX/@EntryValue">NEVER</s:String>
+    <s:String x:Key="/Default/CodeStyle/CodeFormatting/CSharpFormat/PLACE_RECORD_FIELD_ATTRIBUTE_ON_SAME_LINE_EX/@EntryValue">NEVER</s:String>
+    <s:String x:Key="/Default/CodeStyle/Naming/CSharpNaming/UserRules/=15b5b1f1_002D457c_002D4ca6_002Db278_002D5615aedc07d3/@EntryIndexedValue">&lt;Policy&gt;&lt;Descriptor Staticness="Static" AccessRightKinds="Private" Description="Static readonly fields (private)"&gt;&lt;ElementKinds&gt;&lt;Kind Name="READONLY_FIELD" /&gt;&lt;/ElementKinds&gt;&lt;/Descriptor&gt;&lt;Policy Inspect="True" Prefix="_" Suffix="" Style="aaBb" /&gt;&lt;/Policy&gt;</s:String>
+    <s:String x:Key="/Default/CodeStyle/Naming/CSharpNaming/UserRules/=236f7aa5_002D7b06_002D43ca_002Dbf2a_002D9b31bfcff09a/@EntryIndexedValue">&lt;Policy&gt;&lt;Descriptor Staticness="Any" AccessRightKinds="Private" Description="Constant fields (private)"&gt;&lt;ElementKinds&gt;&lt;Kind Name="CONSTANT_FIELD" /&gt;&lt;/ElementKinds&gt;&lt;/Descriptor&gt;&lt;Policy Inspect="True" Prefix="_" Suffix="" Style="AA_BB" /&gt;&lt;/Policy&gt;</s:String>
+    <s:String x:Key="/Default/CodeStyle/Naming/CSharpNaming/UserRules/=669e5282_002Dfb4b_002D4e90_002D91e7_002D07d269d04b60/@EntryIndexedValue">&lt;Policy&gt;&lt;Descriptor Staticness="Any" AccessRightKinds="Protected, ProtectedInternal, Internal, Public, PrivateProtected" Description="Constant fields (not private)"&gt;&lt;ElementKinds&gt;&lt;Kind Name="CONSTANT_FIELD" /&gt;&lt;/ElementKinds&gt;&lt;/Descriptor&gt;&lt;Policy Inspect="True" Prefix="" Suffix="" Style="AA_BB" /&gt;&lt;/Policy&gt;</s:String>
+    <s:String x:Key="/Default/CodeStyle/Naming/CSharpNaming/UserRules/=a0b4bc4d_002Dd13b_002D4a37_002Db37e_002Dc9c6864e4302/@EntryIndexedValue">&lt;Policy&gt;&lt;Descriptor Staticness="Any" AccessRightKinds="Any" Description="Types and namespaces"&gt;&lt;ElementKinds&gt;&lt;Kind Name="NAMESPACE" /&gt;&lt;Kind Name="CLASS" /&gt;&lt;Kind Name="STRUCT" /&gt;&lt;Kind Name="ENUM" /&gt;&lt;Kind Name="DELEGATE" /&gt;&lt;/ElementKinds&gt;&lt;/Descriptor&gt;&lt;Policy Inspect="True" Prefix="" Suffix="" Style="AaBb_AaBb" /&gt;&lt;/Policy&gt;</s:String>
+    <s:String x:Key="/Default/CodeStyle/Naming/CSharpNaming/UserRules/=c873eafb_002Dd57f_002D481d_002D8c93_002D77f6863c2f88/@EntryIndexedValue">&lt;Policy&gt;&lt;Descriptor Staticness="Static" AccessRightKinds="Protected, ProtectedInternal, Internal, Public, PrivateProtected" Description="Static readonly fields (not private)"&gt;&lt;ElementKinds&gt;&lt;Kind Name="READONLY_FIELD" /&gt;&lt;/ElementKinds&gt;&lt;/Descriptor&gt;&lt;Policy Inspect="True" Prefix="" Suffix="" Style="AaBb" /&gt;&lt;/Policy&gt;</s:String>
+
     <s:String x:Key="/Default/CodeStyle/CSharpFileLayoutPatterns/Pattern/@EntryValue">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;Patterns xmlns="urn:schemas-jetbrains-com:member-reordering-patterns"&gt;
     &lt;TypePattern&gt;
@@ -93,36 +73,21 @@
         &lt;/Entry&gt;
     &lt;/TypePattern&gt;
 &lt;/Patterns&gt;</s:String>
-    <s:Boolean x:Key="/Default/UserDictionary/Words/=Aigc/@EntryIndexedValue">True</s:Boolean>
-    <s:Boolean x:Key="/Default/UserDictionary/Words/=Biji/@EntryIndexedValue">True</s:Boolean>
-    <s:Boolean x:Key="/Default/UserDictionary/Words/=Childs/@EntryIndexedValue">True</s:Boolean>
-    <s:Boolean x:Key="/Default/UserDictionary/Words/=Depts/@EntryIndexedValue">True</s:Boolean>
-    <s:Boolean x:Key="/Default/UserDictionary/Words/=fenlei/@EntryIndexedValue">True</s:Boolean>
-    <s:Boolean x:Key="/Default/UserDictionary/Words/=FFFFFF/@EntryIndexedValue">True</s:Boolean>
-    <s:Boolean x:Key="/Default/UserDictionary/Words/=Furion/@EntryIndexedValue">True</s:Boolean>
-    <s:Boolean x:Key="/Default/UserDictionary/Words/=Haojia/@EntryIndexedValue">True</s:Boolean>
-    <s:Boolean x:Key="/Default/UserDictionary/Words/=hongbao/@EntryIndexedValue">True</s:Boolean>
-    <s:Boolean x:Key="/Default/UserDictionary/Words/=inte/@EntryIndexedValue">True</s:Boolean>
-    <s:Boolean x:Key="/Default/UserDictionary/Words/=logourl/@EntryIndexedValue">True</s:Boolean>
-    <s:Boolean x:Key="/Default/UserDictionary/Words/=Meituan/@EntryIndexedValue">True</s:Boolean>
-    <s:Boolean x:Key="/Default/UserDictionary/Words/=miaosha/@EntryIndexedValue">True</s:Boolean>
-    <s:Boolean x:Key="/Default/UserDictionary/Words/=nicktitle/@EntryIndexedValue">True</s:Boolean>
-    <s:Boolean x:Key="/Default/UserDictionary/Words/=qudao/@EntryIndexedValue">True</s:Boolean>
-    <s:Boolean x:Key="/Default/UserDictionary/Words/=Responsing/@EntryIndexedValue">True</s:Boolean>
-    <s:Boolean x:Key="/Default/UserDictionary/Words/=Smzdm/@EntryIndexedValue">True</s:Boolean>
-    <s:Boolean x:Key="/Default/UserDictionary/Words/=Tabao/@EntryIndexedValue">True</s:Boolean>
-    <s:Boolean x:Key="/Default/UserDictionary/Words/=tablename/@EntryIndexedValue">True</s:Boolean>
-    <s:Boolean x:Key="/Default/UserDictionary/Words/=Taobao/@EntryIndexedValue">True</s:Boolean>
-    <s:Boolean x:Key="/Default/UserDictionary/Words/=Taoke/@EntryIndexedValue">True</s:Boolean>
-    <s:Boolean x:Key="/Default/UserDictionary/Words/=Tese/@EntryIndexedValue">True</s:Boolean>
-    <s:Boolean x:Key="/Default/UserDictionary/Words/=timesort/@EntryIndexedValue">True</s:Boolean>
-    <s:Boolean x:Key="/Default/UserDictionary/Words/=weixin/@EntryIndexedValue">True</s:Boolean>
-    <s:Boolean x:Key="/Default/UserDictionary/Words/=XBOXONE/@EntryIndexedValue">True</s:Boolean>
-    <s:Boolean x:Key="/Default/UserDictionary/Words/=youhui/@EntryIndexedValue">True</s:Boolean>
-    <s:Boolean x:Key="/Default/UserDictionary/Words/=yugao/@EntryIndexedValue">True</s:Boolean>
-    <s:Boolean x:Key="/Default/UserDictionary/Words/=YYYYMMDD/@EntryIndexedValue">True</s:Boolean>
-    <s:Boolean x:Key="/Default/UserDictionary/Words/=YYYYMMDDHHMMSSFFFZZZZ/@EntryIndexedValue">True</s:Boolean>
-    <s:Boolean x:Key="/Default/UserDictionary/Words/=zhiyou/@EntryIndexedValue">True</s:Boolean>
-    <s:Boolean x:Key="/Default/UserDictionary/Words/=zhuanlan/@EntryIndexedValue">True</s:Boolean>
+
+    <!--    Environment-->
+    <s:Boolean x:Key="/Default/Environment/SettingsMigration/IsMigratorApplied/=JetBrains_002EReSharper_002EPsi_002ECSharp_002ECodeStyle_002ECSharpKeepExistingMigration/@EntryIndexedValue">True</s:Boolean>
+    <s:Boolean x:Key="/Default/Environment/SettingsMigration/IsMigratorApplied/=JetBrains_002EReSharper_002EPsi_002ECSharp_002ECodeStyle_002ECSharpPlaceEmbeddedOnSameLineMigration/@EntryIndexedValue">True</s:Boolean>
+    <s:Boolean x:Key="/Default/Environment/SettingsMigration/IsMigratorApplied/=JetBrains_002EReSharper_002EPsi_002ECSharp_002ECodeStyle_002ECSharpUseContinuousIndentInsideBracesMigration/@EntryIndexedValue">True</s:Boolean>
+    <s:Boolean x:Key="/Default/Environment/SettingsMigration/IsMigratorApplied/=JetBrains_002EReSharper_002EPsi_002ECSharp_002ECodeStyle_002ESettingsUpgrade_002EMigrateBlankLinesAroundFieldToBlankLinesAroundProperty/@EntryIndexedValue">True</s:Boolean>
+    <s:Boolean x:Key="/Default/Environment/SettingsMigration/IsMigratorApplied/=JetBrains_002EReSharper_002EPsi_002ECSharp_002ECodeStyle_002ESettingsUpgrade_002EPredefinedNamingRulesToUserRulesUpgrade/@EntryIndexedValue">True</s:Boolean>
+
+    <!--    ReSpeller-->
+    <s:Boolean x:Key="/Default/ReSpeller/ReSpellerEnabled/@EntryValue">True</s:Boolean>
+
+    <!--    UserDictionary-->
+    <s:Boolean x:Key="/Default/UserDictionary/Words/=FLG/@EntryIndexedValue">True</s:Boolean>
+    <s:Boolean x:Key="/Default/UserDictionary/Words/=FLGL/@EntryIndexedValue">True</s:Boolean>
+    <s:Boolean x:Key="/Default/UserDictionary/Words/=RGX/@EntryIndexedValue">True</s:Boolean>
+    <s:Boolean x:Key="/Default/UserDictionary/Words/=RGXL/@EntryIndexedValue">True</s:Boolean>
 
 </wpf:ResourceDictionary>
