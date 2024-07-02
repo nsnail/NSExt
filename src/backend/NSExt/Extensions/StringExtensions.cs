@@ -359,6 +359,26 @@ public static class StringExtensions
     }
 
     /// <summary>
+    ///     是否json字符串
+    /// </summary>
+    /// <param name="me">me</param>
+    public static bool IsJsonString(this string me)
+    {
+        if (me.NullOrEmpty()) {
+            return false;
+        }
+
+        try {
+            _ = JsonDocument.Parse(me);
+        }
+        catch {
+            return false;
+        }
+
+        return true;
+    }
+
+    /// <summary>
     ///     中文姓名打马赛克
     /// </summary>
     public static string MaskChineseName(this string me)
