@@ -258,10 +258,13 @@ public static class StringExtensions
         #pragma warning disable CA5350
         using var hmacSha1 = new HMACSHA1(e.GetBytes(secret));
         #pragma warning restore CA5350
-
+        #if NET9_0_OR_GREATER
+        return Convert.ToHexStringLower(hmacSha1.ComputeHash(e.GetBytes(me)));
+        #else
         return BitConverter.ToString(hmacSha1.ComputeHash(e.GetBytes(me)))
-                           .Replace("-", string.Empty)
-                           .ToLower(CultureInfo.CurrentCulture);
+                   .Replace("-", string.Empty)
+                   .ToLower(CultureInfo.CurrentCulture);
+        #endif
     }
 
     /// <summary>
@@ -405,10 +408,14 @@ public static class StringExtensions
     public static string Md5(this string me, Encoding e)
     {
         #pragma warning disable CA5351
+        #if NET9_0_OR_GREATER
+        return Convert.ToHexStringLower(MD5.HashData(e.GetBytes(me)));
+        #else
         return BitConverter.ToString(MD5.HashData(e.GetBytes(me)))
                            #pragma warning restore CA5351
                            .Replace("-", string.Empty)
                            .ToLower(CultureInfo.CurrentCulture);
+        #endif
     }
 
     /// <summary>
@@ -490,10 +497,14 @@ public static class StringExtensions
     public static string Sha1(this string me, Encoding e)
     {
         #pragma warning disable CA5350
+        #if NET9_0_OR_GREATER
+        return Convert.ToHexStringLower(SHA1.HashData(e.GetBytes(me)));
+        #else
         return BitConverter.ToString(SHA1.HashData(e.GetBytes(me)))
                            #pragma warning restore CA5350
                            .Replace("-", string.Empty)
                            .ToLower(CultureInfo.CurrentCulture);
+        #endif
     }
 
     /// <summary>
@@ -606,9 +617,13 @@ public static class StringExtensions
         #pragma warning disable CA5351
         using var md5Hmac = new HMACMD5(e.GetBytes(key));
         #pragma warning restore CA5351
+        #if NET9_0_OR_GREATER
+        return Convert.ToHexStringLower(md5Hmac.ComputeHash(e.GetBytes(me)));
+        #else
         return BitConverter.ToString(md5Hmac.ComputeHash(e.GetBytes(me)))
                            .Replace("-", string.Empty)
                            .ToLower(CultureInfo.CurrentCulture);
+        #endif
     }
 }
 #pragma warning restore CodeLinesAnalyzer

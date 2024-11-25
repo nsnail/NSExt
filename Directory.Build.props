@@ -22,11 +22,11 @@
         <RepositoryType>git</RepositoryType>
         <RepositoryUrl>https://github.com/nsnail/NSExt.git</RepositoryUrl>
         <RootNamespace>NSExt</RootNamespace>
-        <TargetFrameworks>net6.0;net7.0;net8.0</TargetFrameworks>
+        <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
         <Title>$(AssemblyName)</Title>
     </PropertyGroup>
     <ItemGroup>
-        <PackageReference Include="MinVer" Version="5.0.0">
+        <PackageReference Include="MinVer" Version="6.0.0">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
