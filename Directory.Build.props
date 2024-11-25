@@ -17,7 +17,7 @@
         <LangVersion>preview</LangVersion>
         <MinVerDefaultPreReleaseIdentifiers>beta</MinVerDefaultPreReleaseIdentifiers>
         <MinVerTagPrefix>v</MinVerTagPrefix>
-        <NoWarn>CA1707;IDE0005;IDE0008;IDE0010;IDE0028;IDE0055;IDE0160;IDE0300;IDE0305;RCS1141;RCS1142;RCS1181;S101;S1121;S1135;S125;S2094;S3604;S4663;SYSLIB1045;SA1010;RCS1123;SA1407;IDE0048;S1075;S3928</NoWarn>
+        <NoWarn>CA1707;CA1720;CA5350;CA5351;IDE0005;IDE0008;IDE0010;IDE0028;IDE0048;IDE0055;IDE0160;IDE0300;IDE0305;RCS1123;RCS1141;RCS1142;RCS1181;S101;S1075;S1121;S1135;S125;S2094;S3604;S3928;S4663;SA1010;SA1407;SYSLIB1045</NoWarn>
         <Product>NSExt</Product>
         <RepositoryType>git</RepositoryType>
         <RepositoryUrl>https://github.com/nsnail/NSExt.git</RepositoryUrl>
