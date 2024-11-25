@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.3.0](https://github.com/nsnail/NSExt/compare/v2.2.1...v2.3.0) (2024-11-25)
+
+
+### Features
+
+* ✨ 新增一些扩展方法 ([#25](https://github.com/nsnail/NSExt/issues/25)) ([c7c978f](https://github.com/nsnail/NSExt/commit/c7c978fe5cf931e085e40ad1347bdb3f3450dd0a))
+
 ### [2.2.2](https://github.com/nsnail/NSExt/compare/v2.2.1...v2.2.2) (2024-11-25)
 
 ### [2.2.1](https://github.com/nsnail/NSExt/compare/v2.2.0...v2.2.1) (2024-11-25)
