@@ -55,7 +55,7 @@ nunit-*.xml
 dlldata.c
 
 # Benchmark Results
-BenchmarkNSExtNet.Artifacts/
+BenchmarkDotNet.Artifacts/
 
 # .NET Core
 project.lock.json
@@ -130,12 +130,12 @@ $tf/
 # ReSharper is a .NET coding add-in
 _ReSharper*/
 *.[Rr]e[Ss]harper
-*.NSExtSettings.user
+*.DotSettings.user
 
 # TeamCity is a build add-in
 _TeamCity*
 
-# NSExtCover is a Code Coverage Tool
+# DotCover is a Code Coverage Tool
 *.dotCover
 
 # AxoCover is a Code Coverage Tool
