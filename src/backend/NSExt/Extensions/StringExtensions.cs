@@ -1,10 +1,10 @@
-// ReSharper disable UnusedMember.Global
-// ReSharper disable MemberCanBePrivate.Global
-
-#pragma warning disable CA1720
+using System.Numerics;
+using System.Reflection;
 using System.Security.Cryptography;
 using System.Text.Json;
 using System.Web;
+using Microsoft.CodeAnalysis.CSharp.Scripting;
+using Microsoft.CodeAnalysis.Scripting;
 using NSExt.Constant;
 
 namespace NSExt.Extensions;
@@ -12,9 +12,11 @@ namespace NSExt.Extensions;
 /// <summary>
 ///     StringExtensions
 /// </summary>
-#pragma warning disable CodeLinesAnalyzer
-public static class StringExtensions
+public static partial class StringExtensions
 {
+    private const string _CHARACTERS = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    private static readonly Regex _regexIpV4 = RegexIpV4();
+
     /// <summary>
     ///     aes加密
     /// </summary>
@@ -24,11 +26,11 @@ public static class StringExtensions
     {
         using var aes = System.Security.Cryptography.Aes.Create();
         aes.Padding = PaddingMode.PKCS7;
-        aes.Mode    = CipherMode.ECB;
-        aes.Key     = key.Hex();
+        aes.Mode = CipherMode.ECB;
+        aes.Key = key.Hex();
         using var encryptor = aes.CreateEncryptor();
-        var       bytes     = me.Hex();
-        var       decrypted = encryptor.TransformFinalBlock(bytes, 0, bytes.Length);
+        var bytes = me.Hex();
+        var decrypted = encryptor.TransformFinalBlock(bytes, 0, bytes.Length);
         return decrypted.Base64();
     }
 
@@ -41,12 +43,70 @@ public static class StringExtensions
     {
         using var aes = System.Security.Cryptography.Aes.Create();
         aes.Padding = PaddingMode.PKCS7;
-        aes.Mode    = CipherMode.ECB;
-        aes.Key     = key.Hex();
+        aes.Mode = CipherMode.ECB;
+        aes.Key = key.Hex();
         using var encryptor = aes.CreateDecryptor();
-        var       bytes     = me.Base64De();
-        var       decrypted = encryptor.TransformFinalBlock(bytes, 0, bytes.Length);
+        var bytes = me.Base64De();
+        var decrypted = encryptor.TransformFinalBlock(bytes, 0, bytes.Length);
         return decrypted.HexDe();
+    }
+
+    /// <summary>
+    ///     将指定的输入字符串进行Base62解码
+    /// </summary>
+    /// <exception cref="ArgumentException">ArgumentException</exception>
+    public static string Base62Decode(this string me)
+    {
+        BigInteger result = 0;
+
+        foreach (var index in me.Select(c => _CHARACTERS.IndexOf(c)))
+        {
+            if (index < 0)
+            {
+                throw new ArgumentException("Invalid character in Base62 string.");
+            }
+
+            result = result * 62 + index;
+        }
+
+        // Convert BigInteger back to byte array and then to string
+        var bytes = result.ToByteArray();
+
+        // Handle the sign bit
+        if (bytes[^1] == 0)
+        {
+            Array.Resize(ref bytes, bytes.Length - 1);
+        }
+
+        return Encoding.UTF8.GetString(bytes);
+    }
+
+    /// <summary>
+    ///     将指定的输入字符串进行Base62编码
+    /// </summary>
+    public static string Base62Encode(this string me)
+    {
+        // Convert string to byte array
+        var bytes = Encoding.UTF8.GetBytes(me);
+
+        // Convert byte array to BigInteger for easier processing
+        var bigInteger = new BigInteger(bytes);
+
+        if (bigInteger == 0)
+        {
+            return _CHARACTERS[0].ToString();
+        }
+
+        var result = new StringBuilder();
+
+        while (bigInteger > 0)
+        {
+            var remainder = (int)(bigInteger % 62);
+            bigInteger /= 62;
+            _ = result.Insert(0, _CHARACTERS[remainder]);
+        }
+
+        return result.ToString();
     }
 
     /// <summary>
@@ -82,6 +142,22 @@ public static class StringExtensions
     }
 
     /// <summary>
+    ///     解码避免转义的Base64
+    /// </summary>
+    public static string Base64InUrlDecode(this string me)
+    {
+        return me.Replace("-", "+").Replace("_", "/");
+    }
+
+    /// <summary>
+    ///     编码避免转义的Base64
+    /// </summary>
+    public static string Base64InUrlEncode(this string me)
+    {
+        return me.Replace("+", "-").Replace("/", "_");
+    }
+
+    /// <summary>
     ///     将易于web传输的base64web字符串转换为原生base64
     /// </summary>
     /// <returns>原生base64</returns>
@@ -97,6 +173,14 @@ public static class StringExtensions
     public static string Base64Web(this string me)
     {
         return me.Replace("+", "-").Replace("/", "_").Replace("=", ".");
+    }
+
+    /// <summary>
+    ///     计算Crc32
+    /// </summary>
+    public static int Crc32(this string me)
+    {
+        return BitConverter.ToInt32(System.IO.Hashing.Crc32.Hash(Encoding.UTF8.GetBytes(me)));
     }
 
     /// <summary>
@@ -129,9 +213,7 @@ public static class StringExtensions
     /// <returns>转换后的日期对象</returns>
     public static DateTime DateTimeExactTry(this string me, string format, DateTime def)
     {
-        return !System.DateTime.TryParseExact(me, format, CultureInfo.CurrentCulture, DateTimeStyles.None, out var ret)
-            ? def
-            : ret;
+        return !System.DateTime.TryParseExact(me, format, CultureInfo.CurrentCulture, DateTimeStyles.None, out var ret) ? def : ret;
     }
 
     /// <summary>
@@ -142,9 +224,7 @@ public static class StringExtensions
     /// <returns>转换后的日期对象</returns>
     public static DateTime DateTimeTry(this string me, DateTime def)
     {
-        return !System.DateTime.TryParse(me, CultureInfo.InvariantCulture, DateTimeStyles.None, out var ret)
-            ? def
-            : ret;
+        return !System.DateTime.TryParse(me, CultureInfo.InvariantCulture, DateTimeStyles.None, out var ret) ? def : ret;
     }
 
     /// <summary>
@@ -194,6 +274,15 @@ public static class StringExtensions
         where T : Enum
     {
         return !System.Enum.TryParse(typeof(T), name, out var ret) ? def : (T)ret;
+    }
+
+    /// <summary>
+    ///     执行C#代码
+    /// </summary>
+    public static Task<T> ExecuteCSharpCodeAsync<T>(this string me, Assembly[] assemblies, params string[] importNamespaces)
+    {
+        // 使用 Roslyn 编译并执行代码
+        return CSharpScript.EvaluateAsync<T>(me, ScriptOptions.Default.WithReferences(assemblies).WithImports(importNamespaces));
     }
 
     /// <summary>
@@ -255,16 +344,13 @@ public static class StringExtensions
     /// <returns>hash摘要的16进制文本形式（无连字符小写）</returns>
     public static string HmacSha1(this string me, string secret, Encoding e)
     {
-        #pragma warning disable CA5350
         using var hmacSha1 = new HMACSHA1(e.GetBytes(secret));
-        #pragma warning restore CA5350
-        #if NET9_0_OR_GREATER
+
+#if NET9_0_OR_GREATER
         return Convert.ToHexStringLower(hmacSha1.ComputeHash(e.GetBytes(me)));
-        #else
-        return BitConverter.ToString(hmacSha1.ComputeHash(e.GetBytes(me)))
-                   .Replace("-", string.Empty)
-                   .ToLower(CultureInfo.CurrentCulture);
-        #endif
+#else
+        return BitConverter.ToString(hmacSha1.ComputeHash(e.GetBytes(me))).Replace("-", string.Empty).ToLower(CultureInfo.CurrentCulture);
+#endif
     }
 
     /// <summary>
@@ -344,16 +430,19 @@ public static class StringExtensions
         // 一个合法的Base64，有着以下特征：
         // 字符串的长度为4的整数倍。
         // 字符串的符号取值只能在A -Z, a -z, 0 -9, +, /, =共计65个字符中，且 = 如果出现就必须在结尾出现。
-        if (!me.All(x => x.IsBase64Character())) {
+        if (!me.All(x => x.IsBase64Character()))
+        {
             return false;
         }
 
-        if (me.Length % 4 != 0) {
+        if (me.Length % 4 != 0)
+        {
             return false;
         }
 
         var firstEqualSignPos = me.IndexOf('=');
-        if (firstEqualSignPos < 0) {
+        if (firstEqualSignPos < 0)
+        {
             return true;
         }
 
@@ -362,19 +451,30 @@ public static class StringExtensions
     }
 
     /// <summary>
+    ///     是否IPV4地址
+    /// </summary>
+    public static bool IsIpV4(this string me)
+    {
+        return _regexIpV4.IsMatch(me);
+    }
+
+    /// <summary>
     ///     是否json字符串
     /// </summary>
     /// <param name="me">me</param>
     public static bool IsJsonString(this string me)
     {
-        if (me.NullOrEmpty()) {
+        if (me.NullOrEmpty())
+        {
             return false;
         }
 
-        try {
+        try
+        {
             _ = JsonDocument.Parse(me);
         }
-        catch {
+        catch
+        {
             return false;
         }
 
@@ -407,15 +507,13 @@ public static class StringExtensions
     /// <returns>hash摘要的16进制文本形式（无连字符小写）</returns>
     public static string Md5(this string me, Encoding e)
     {
-        #pragma warning disable CA5351
-        #if NET9_0_OR_GREATER
+#if NET9_0_OR_GREATER
         return Convert.ToHexStringLower(MD5.HashData(e.GetBytes(me)));
-        #else
+#else
         return BitConverter.ToString(MD5.HashData(e.GetBytes(me)))
-                           #pragma warning restore CA5351
-                           .Replace("-", string.Empty)
-                           .ToLower(CultureInfo.CurrentCulture);
-        #endif
+            .Replace("-", string.Empty)
+            .ToLower(CultureInfo.CurrentCulture);
+#endif
     }
 
     /// <summary>
@@ -496,15 +594,13 @@ public static class StringExtensions
     /// <returns>hash摘要的16进制文本形式（无连字符小写）</returns>
     public static string Sha1(this string me, Encoding e)
     {
-        #pragma warning disable CA5350
-        #if NET9_0_OR_GREATER
+#if NET9_0_OR_GREATER
         return Convert.ToHexStringLower(SHA1.HashData(e.GetBytes(me)));
-        #else
+#else
         return BitConverter.ToString(SHA1.HashData(e.GetBytes(me)))
-                           #pragma warning restore CA5350
-                           .Replace("-", string.Empty)
-                           .ToLower(CultureInfo.CurrentCulture);
-        #endif
+            .Replace("-", string.Empty)
+            .ToLower(CultureInfo.CurrentCulture);
+#endif
     }
 
     /// <summary>
@@ -520,7 +616,8 @@ public static class StringExtensions
     /// </summary>
     public static string Sub(this string me, int startIndex, int length)
     {
-        if (startIndex + length > me.Length) {
+        if (startIndex + length > me.Length)
+        {
             length = me.Length - startIndex;
         }
 
@@ -540,10 +637,7 @@ public static class StringExtensions
     /// </summary>
     public static string ToLowerCamelCase(this string me)
     {
-        return string.IsNullOrWhiteSpace(me)
-            ? me
-            : string.Concat( //
-                me[0].ToString(CultureInfo.InvariantCulture).ToLowerInvariant(), me.AsSpan(1));
+        return string.IsNullOrWhiteSpace(me) ? me : string.Concat(me[0].ToString(CultureInfo.InvariantCulture).ToLowerInvariant(), me.AsSpan(1));
     }
 
     /// <summary>
@@ -552,6 +646,14 @@ public static class StringExtensions
     public static string ToUpperCamelCase(this string me)
     {
         return string.IsNullOrWhiteSpace(me) ? me : string.Concat(me[0].ToString().ToUpperInvariant(), me.AsSpan(1));
+    }
+
+    /// <summary>
+    ///     去掉前部字符串
+    /// </summary>
+    public static string TrimPrefix(this string me, string clearStr)
+    {
+        return Regex.Replace(me, $"^{clearStr}", string.Empty);
     }
 
     /// <summary>
@@ -566,23 +668,24 @@ public static class StringExtensions
     }
 
     /// <summary>
+    ///     去掉尾部字符串
+    /// </summary>
+    public static string TrimSuffix(this string me, string clearStr)
+    {
+        return Regex.Replace(me, $"{clearStr}$", string.Empty);
+    }
+
+    /// <summary>
     ///     将\ux0000 、 %u0000 、 &amp;#x0000;  编码转换成可读字符串
     /// </summary>
     public static string UnicodeDe(this string me)
     {
+#pragma warning disable S3358, RCS1238
         const string replacement = "&#x$1;";
-        if (me.Contains(@"\u")) {
-            return Regexes.RegexBacksLantUnicode.Replace(me, replacement).HtmlDe();
-        }
-
-        // ReSharper disable once ConvertIfStatementToReturnStatement
-        #pragma warning disable IDE0046
-        if (me.Contains("%u")) {
-            #pragma warning restore IDE0046
-            return Regexes.RegexPercentUnicode.Replace(me, replacement).HtmlDe();
-        }
-
-        return me.HtmlDe();
+        return !me.Contains(@"\u")
+            ? me.Contains("%u") ? Regexes.RegexPercentUnicode.Replace(me, replacement).HtmlDe() : me.HtmlDe()
+            : Regexes.RegexBacksLantUnicode.Replace(me, replacement).HtmlDe();
+#pragma warning restore S3358, RCS1238
     }
 
     /// <summary>
@@ -614,16 +717,15 @@ public static class StringExtensions
     /// <returns>hash摘要的16进制文本形式（无连字符小写）</returns>
     private static string Md5Hmac(this string me, string key, Encoding e)
     {
-        #pragma warning disable CA5351
         using var md5Hmac = new HMACMD5(e.GetBytes(key));
-        #pragma warning restore CA5351
-        #if NET9_0_OR_GREATER
+
+#if NET9_0_OR_GREATER
         return Convert.ToHexStringLower(md5Hmac.ComputeHash(e.GetBytes(me)));
-        #else
-        return BitConverter.ToString(md5Hmac.ComputeHash(e.GetBytes(me)))
-                           .Replace("-", string.Empty)
-                           .ToLower(CultureInfo.CurrentCulture);
-        #endif
+#else
+        return BitConverter.ToString(md5Hmac.ComputeHash(e.GetBytes(me))).Replace("-", string.Empty).ToLower(CultureInfo.CurrentCulture);
+#endif
     }
+
+    [GeneratedRegex(@"^(25[0-5]|2[0-4][0-9]|[0-1]?[0-9]{1,2})(\.(25[0-5]|2[0-4][0-9]|[0-1]?[0-9]{1,2})){3}$")]
+    private static partial Regex RegexIpV4();
 }
-#pragma warning restore CodeLinesAnalyzer
