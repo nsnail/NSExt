@@ -13,13 +13,11 @@ jobs:
           filter: tree:0
       - uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: 8.0.x
-      - working-directory: ./src/backend/NSExt
-        run: dotnet build -c Release -f net6.0
-      - working-directory: ./src/backend/NSExt
-        run: dotnet build -c Release -f net7.0
+          dotnet-version: 9.0.x
       - working-directory: ./src/backend/NSExt
         run: dotnet build -c Release -f net8.0
+      - working-directory: ./src/backend/NSExt
+        run: dotnet build -c Release -f net9.0
       - working-directory: ./src/backend/NSExt
         run: dotnet pack -c Release --no-build
       - uses: actions/create-release@v1
