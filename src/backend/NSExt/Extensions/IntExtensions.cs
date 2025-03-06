@@ -36,6 +36,8 @@ public static class IntExtensions
     /// </summary>
     public static string ToIpV4(this int me)
     {
-        return string.Join(".", BitConverter.GetBytes(me).Reverse());
+        var bytes = BitConverter.GetBytes(me);
+        Array.Reverse(bytes);
+        return string.Join('.', bytes);
     }
 }
