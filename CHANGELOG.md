@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.3.4](https://github.com/nsnail/NSExt/compare/v2.3.2...v2.3.4) (2025-03-06)
+
 ### [2.3.3](https://github.com/nsnail/NSExt/compare/v2.3.2...v2.3.3) (2025-01-02)
 
 ### [2.3.2](https://github.com/nsnail/NSExt/compare/v2.3.1...v2.3.2) (2024-11-25)
