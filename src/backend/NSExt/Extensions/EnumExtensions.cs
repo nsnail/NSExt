@@ -27,7 +27,7 @@ public static class EnumExtensions
         var resDescAttr = typeOfField!.GetCustomAttribute<ResourceDescriptionAttribute<T>>(true);
         return resDescAttr is null
             ? Enum.GetName(typeOfEnum, e)
-            : typeof(T).GetProperty(resDescAttr.ResourceName)?.GetValue(default) as string;
+            : typeof(T).GetProperty(resDescAttr.ResourceName)?.GetValue(null) as string;
     }
 
     /// <summary>
